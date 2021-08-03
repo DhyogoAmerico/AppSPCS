@@ -13,7 +13,7 @@ export class NotFoundComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.GetTeste();
+    // this.GetTeste();
   }
   
   GetTeste() {
