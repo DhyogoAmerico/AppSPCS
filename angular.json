@@ -94,7 +94,7 @@
             ],
             "styles": [
               "src/styles.less",
-              "./global/global-style.less"
+              "./global/css/global-style.less"
             ],
             "scripts": []
           }
