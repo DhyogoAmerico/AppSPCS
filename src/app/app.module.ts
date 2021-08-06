@@ -9,15 +9,17 @@ import { SharedService } from './services/shared.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CommonLoginComponent } from './components/common-login/common-login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    CommonLoginComponent
+    CommonLoginComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -5,11 +5,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const appRoutes: Routes = [
-  // { 
-  //   path: '', 
-  //   pathMatch: 'full',
-  //   redirectTo: '/login'
-  // },
+  { 
+    path: '', 
+    pathMatch: 'full',
+    redirectTo: '/login'
+  },
   {
     path: 'login',
     component: LoginComponent

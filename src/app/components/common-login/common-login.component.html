@@ -1,17 +1,19 @@
 <div class="cntLogin">
-    <div class="form-group">
-        <div class="group-input">
-            <label>Email:</label>
-            <input class="input-form" type="text" placeholder="Email">
+    <form formGroup='formLogin'>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Email:</label>
+                <input class="input-form" type="text" placeholder="Email" formControl='email_use'>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="group-input">
-            <label>Senha:</label>
-            <input class="input-form" type="text" placeholder="Senha">
+        <div class="form-group">
+            <div class="group-input">
+                <label>Senha:</label>
+                <input class="input-form" type="text" placeholder="Senha" formControl='password'>
+            </div>
         </div>
-    </div>
-    <div class="cntButton">
-        Entrar
-    </div>
+        <button class="cntButton" [disabled]='!formLogin.valid'>
+            Entrar
+        </button>
+    </form>
 </div>
