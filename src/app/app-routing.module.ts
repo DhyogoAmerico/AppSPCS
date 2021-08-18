@@ -15,15 +15,14 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: '**',
+    path: '404',
     component: NotFoundComponent
   }
-  
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules , initialNavigation: 'enabled' })
   ],
   exports: [RouterModule]
 })

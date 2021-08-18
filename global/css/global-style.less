@@ -1,6 +1,7 @@
+@import "https://use.fontawesome.com/releases/v5.3.1/css/all.css";
 
 
-*{
+* {
     font-size: 15px;
     color: #656b88;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,9 +21,9 @@ body {
         flex-direction: column;
         margin: 10px;
         .input-form {
-            height: 24px;
             font-size: 16px;
             border-radius: 4px;
+            padding: 7px;
             border: 1px solid #d0d0d0;
         }
     }
@@ -43,6 +44,9 @@ label {
     margin-bottom: 4px;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
+button {
+    &:disabled{
+        color: #656b88 !important;
+        background-color: #cccccc !important;
+    }
 }

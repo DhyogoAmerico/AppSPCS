@@ -1,15 +1,21 @@
 <div class="cntLogin">
-    <form formGroup='formLogin'>
+    <form [formGroup]='formLogin' (ngSubmit)="submitLogin()">
         <div class="form-group">
             <div class="group-input">
                 <label>Email:</label>
-                <input class="input-form" type="text" placeholder="Email" formControl='email_use'>
+                <input class="input-form" type="text" placeholder="Email" formControlName='email_use'>
             </div>
         </div>
         <div class="form-group">
             <div class="group-input">
                 <label>Senha:</label>
-                <input class="input-form" type="text" placeholder="Senha" formControl='password'>
+                <div  class="input-form inputPassword">
+                    <input class="password" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='password'>
+                    <div class="clickType" (click)='alterTypePassword()'>
+                            <i *ngIf="typePassword" class="far fa-eye"></i>
+                            <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <button class="cntButton" [disabled]='!formLogin.valid'>

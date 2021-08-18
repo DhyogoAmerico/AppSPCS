@@ -7,10 +7,30 @@
             font-size: 13px;
             font-weight: 600;
         }
+        .inputPassword {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0;
+            .password {
+                background: transparent;
+                border: none;
+                flex: 1;
+                padding: 7px;
+            }
+            .clickType {
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+                padding-right: 10px;
+                font-size: 18px;
+            }
+        }
     }
     .cntButton {
         text-align: center;
         background: #0fca1d;
+        cursor: pointer;
         color: white;
         border: none;
         margin-top: 15px;

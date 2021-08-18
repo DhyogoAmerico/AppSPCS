@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from '../../pages/not-found/not-found.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [  
-
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: '**',
+    redirectTo: '404'
+  }
 ];
 
 @NgModule({

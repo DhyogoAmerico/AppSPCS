@@ -94,8 +94,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/primeng-lts/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.less",
               "global/css/global-style.less"
             ],
