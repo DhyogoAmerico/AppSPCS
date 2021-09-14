@@ -3,8 +3,22 @@
 
     <button (click)='showSuccess()'>teste</button> -->
     <div class="cntAll">
-        <div class="logo">
-            <img src="../../../assets/image/logoSPCS.png">
+        <div>
+            <div class="logo">
+                <img src="../../../assets/image/logoSPCS.png">
+            </div>
+            <div class="cntButtons">
+                <ng-container *ngFor="let item of listSide">
+                    <a class="button" [routerLink]='item.link'>
+                        {{item.label}}
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+        <div class="btnPerfil">
+            <div class="btn">
+                Meu perfil
+            </div>
         </div>
     </div>
 </div>

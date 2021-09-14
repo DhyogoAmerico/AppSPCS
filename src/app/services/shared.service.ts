@@ -1,22 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SharedService {
-  public apiUrl = 'http://localhost:5000/api/';
+  private apiUrl = environment.urlApi;
   constructor(
-    private http: HttpClient
+    private httpClient: HttpClient
   ) { }
 
-  GetAllStates() : Observable<any>{
+  registerUsuario(typeUser, body) : Observable<any>{
     const headers = new HttpHeaders()
       .set('Content-Type','application/json');
-
-    return this.http.get(this.apiUrl + 'State/GetAllState', { headers });
+    return this.httpClient.post(this.apiUrl + 'usuario/novo/' + typeUser, body, { headers });
   }
 
 }

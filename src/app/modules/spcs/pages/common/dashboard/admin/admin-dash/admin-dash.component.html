@@ -1,0 +1,13 @@
+<div class="cntAll">
+    <app-dash-informations></app-dash-informations>
+    <div class="cntButtons">
+        <ng-container *ngFor="let item of listBtnDash">
+            <a class="button" [routerLink]='item.link' [queryParams]="{type: item.queryParam}">
+                <i [class]="item.icon"></i>
+                <div class="title">
+                    {{item.label}}
+                </div>
+            </a>
+        </ng-container>
+    </div>
+</div>

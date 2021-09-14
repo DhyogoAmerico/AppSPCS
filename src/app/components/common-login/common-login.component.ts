@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule, Routes } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'common-login-component',
@@ -19,7 +20,8 @@ export class CommonLoginComponent implements OnInit {
     )
   });
   constructor(
-    private route: Router
+    private route: Router,
+    private cookieService: CookieService
   ) { }
 
 
@@ -32,7 +34,24 @@ export class CommonLoginComponent implements OnInit {
   }
 
   alterTypePassword() {
-    this.typePassword = this.typePassword ? false : true;
+    if(this.typePassword){
+      //password
+      this.typePassword = false;
+    }
+    else {
+      //text
+      this.typePassword = true;
+      setTimeout(() => {
+        this.typePassword = false;
+      }, 500);
+    }
   }
+
+  // testeCookie(){
+  //   let dateTeste = new Date();
+  //   dateTeste.setMinutes(dateTeste.getMinutes() + 30);//mais 30minutos
+  //   console.log(dateTeste);
+  //   this.cookieService.set('teste','teste',2);
+  // }
 
 }

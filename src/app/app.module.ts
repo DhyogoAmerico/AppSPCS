@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
+import {DialogModule} from 'primeng/dialog';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {GrowlModule} from 'primeng/components/growl/growl';
+import {ButtonModule} from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,21 +20,30 @@ import { LoginComponent } from './pages/login/login.component';
 import { CommonLoginComponent } from './components/common-login/common-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { Interceptor } from './services/common-service/interceptor';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { ToastService } from './services/common-service/toast.service';
+import { NgxMaskModule } from 'ngx-mask';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    CommonLoginComponent,
+    CommonLoginComponent
   ],
   imports: [
     ReactiveFormsModule,
     RouterModule,
     SidebarModule,
+    ButtonModule,
+    DialogModule,
     BrowserAnimationsModule,
     MessagesModule,
+    NgxMaskModule.forRoot({
+      validation: true,
+    }),
     MessageModule,
     ToastModule,
     GrowlModule,
@@ -43,7 +54,11 @@ import { RouterModule } from '@angular/router';
     SpcsModule
   ],
   providers: [
-    SharedService
+    MessageService,
+    ToastService,
+    CookieService,
+    SharedService,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

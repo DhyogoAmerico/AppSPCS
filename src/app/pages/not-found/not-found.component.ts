@@ -7,21 +7,8 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class NotFoundComponent implements OnInit {
 
-  
-  constructor(
-    private sharedService: SharedService
-  ) { }
+  constructor() { }
 
-  ngOnInit() {
-    // this.GetTeste();
-  }
-  
-  GetTeste() {
-    this.sharedService.GetAllStates().subscribe(
-      (response: any) => {
-        console.log(response);
-      }
-    );
-  }
+  ngOnInit() { }
 
 }

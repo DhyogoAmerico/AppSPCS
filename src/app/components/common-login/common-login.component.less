@@ -10,8 +10,12 @@
         .inputPassword {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 0;
+            &:focus {
+                box-shadow: 0 0 4px #88a8ff;
+                outline: none;
+            }
             .password {
                 background: transparent;
                 border: none;
@@ -21,9 +25,10 @@
             .clickType {
                 display: flex;
                 cursor: pointer;
-                align-items: center;
-                padding-right: 10px;
+                align-items: inherit;
+                padding: 10px 15px;
                 font-size: 18px;
+                position: absolute;
             }
         }
     }

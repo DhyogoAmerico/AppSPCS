@@ -1,0 +1,50 @@
+<div class="cntRegister">
+    <div class="title">
+        Cadastro - Paciente
+    </div>
+    <div class="cntForm">
+        <form [formGroup]='registerForm' (ngSubmit)='submitForm()'>
+            <div class="form-group">
+                <div class="group-input">
+                    <div class="form-label">Nome Completo</div>
+                    <input class="form-control" type="text" formControlName='nome'>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group-input">
+                    <div class="form-label">CPF</div>
+                    <input type="text" class="form-control" maxlength="14" mask="000.000.000-00" formControlName='cpf'>
+                </div>
+                <div class="group-input">
+                    <div class="form-label">Email</div>
+                    <input type="email" class="form-control" formControlName='email'>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="typeUser !== 'paciente'">
+                <div class="group-input">
+                    <div class="form-label">Senha</div>
+                    <input type="password" class="form-control" formControlName='senha'>
+                </div>
+                <div class="group-input">
+                    <div class="form-label">Confirme sua Senha</div>
+                    <input type="password" class="form-control" formControlName='senhaConfirmacao'>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="typeUser === 'medico'">
+                <div class="group-input">
+                    <div class="form-label">CRM</div>
+                    <input type="text" class="form-control" formControlName='crm'>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="typeUser === 'enfermeiro'">
+                <div class="group-input">
+                    <div class="form-label">Coren</div>
+                    <input type="text" class="form-control" formControlName='coren'>
+                </div>
+            </div>
+            <div class="cntButton">
+                <button type="submit">Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>

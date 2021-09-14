@@ -2,16 +2,70 @@
     height: 100vh;
     width: 260px;
     position: relative;
-    background-color: white;
     box-shadow: 0 0 11px 2px #a2a2a2;
     .cntAll {
         display: flex;
         flex-direction: column;
+        background-color: #191919;
+        min-height: 100%;
+        justify-content: space-between;
         .logo {
             padding: 10px;
             text-align: center;
             img {
                 width: 150px;
+            }
+        }
+        .cntButtons {
+            margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+            a {
+                transition: .2s all ease-in;
+                // font-size: 12px !important;
+                // border-bottom: 1px solid #bfbfbf;
+                padding: 12px 25px;
+                cursor: pointer;
+                color: hsl(0, 0%, 75%);
+                border-top-left-radius: 35px;
+                border-bottom-left-radius: 35px;
+                text-decoration: none;
+                :active {
+                    background-color: #59b13a;
+                    color: white;
+                    border-top-left-radius: 35px;
+                    border-bottom-left-radius: 35px;
+                }
+                &:hover {
+                    // color: #59b13a;
+                    background-color: #82c769;
+                    color: white;
+                }
+            }
+        }
+        .btnPerfil {
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px;
+            .btn {
+                // font-size: 12px !important;
+                // border-bottom: 1px solid #bfbfbf;
+                padding: 12px 25px;
+                cursor: pointer;
+                color: #bfbfbf;
+                &:hover {
+                    // color: #59b13a;
+                    background-color: #82c769;
+                    color: white;
+                    border-top-left-radius: 35px;
+                    border-bottom-left-radius: 35px;
+                    &:active {
+                        background-color: #59b13a;
+                        color: white;
+                        border-top-left-radius: 35px;
+                        border-bottom-left-radius: 35px;
+                    }
+                }
             }
         }
     }
