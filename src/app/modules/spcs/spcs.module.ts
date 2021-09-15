@@ -21,6 +21,7 @@ import { ToastService } from 'src/app/services/common-service/toast.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { DashInformationsComponent } from './components/dash-informations/dash-informations.component';
+import { PacientesComponent } from './pages/pacientes/pacientes.component';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { DashInformationsComponent } from './components/dash-informations/dash-i
     EnfermeiroDashComponent, 
     AdminDashComponent, 
     RegisterComponent, 
-    DashInformationsComponent
+    DashInformationsComponent, PacientesComponent
   ],
   imports: [
     CommonModule,

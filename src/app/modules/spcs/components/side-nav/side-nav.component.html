@@ -9,7 +9,7 @@
             </div>
             <div class="cntButtons">
                 <ng-container *ngFor="let item of listSide">
-                    <a class="button" [routerLink]='item.link'>
+                    <a class="button" [routerLink]='item.link' routerLinkActive='active'>
                         {{item.label}}
                     </a>
                 </ng-container>
