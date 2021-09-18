@@ -9,14 +9,14 @@
             </div>
             <div class="cntButtons">
                 <ng-container *ngFor="let item of listSide">
-                    <a class="button" [routerLink]='item.link' routerLinkActive='active'>
+                    <a class="button" [routerLink]='item.link' routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}">
                         {{item.label}}
                     </a>
                 </ng-container>
             </div>
         </div>
         <div class="btnPerfil">
-            <div class="btn">
+            <div class="btn" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}">
                 Meu perfil
             </div>
         </div>

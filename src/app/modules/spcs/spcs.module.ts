@@ -7,6 +7,7 @@ import {MessagesModule} from 'primeng/messages';
 import { DialogModule } from 'primeng/components/dialog/dialog';
 import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { SpcsRoutingModule } from './spcs-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -17,12 +18,11 @@ import { MedicoDashComponent } from './pages/common/dashboard/medico/medico-dash
 import { EnfermeiroDashComponent } from './pages/common/dashboard/enfermeiro/enfermeiro-dash/enfermeiro-dash.component';
 import { AdminDashComponent } from './pages/common/dashboard/admin/admin-dash/admin-dash.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ToastService } from 'src/app/services/common-service/toast.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { DashInformationsComponent } from './components/dash-informations/dash-informations.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
-
+import { AddAddressComponent } from 'src/app/components/add-address/add-address.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +33,14 @@ import { PacientesComponent } from './pages/pacientes/pacientes.component';
     EnfermeiroDashComponent, 
     AdminDashComponent, 
     RegisterComponent, 
-    DashInformationsComponent, PacientesComponent
+    DashInformationsComponent, 
+    AddAddressComponent,
+    PacientesComponent
   ],
   imports: [
     CommonModule,
     SidebarModule,
+    TableModule,
     NgxMaskModule.forRoot({
       validation: true,
     }),

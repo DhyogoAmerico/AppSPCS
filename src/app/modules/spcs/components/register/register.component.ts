@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ToastService } from 'src/app/services/common-service/toast.service';
@@ -14,6 +14,8 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class RegisterComponent implements OnInit {
 
+  @Input() initial: any;
+  @Input() inputTypeUser: any;
   public typeUser: any;
   public objTypeUser = {
     id: '',
@@ -53,6 +55,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.activateRoute.queryParams.subscribe(
       param => {
         if(param['type']){
@@ -65,6 +68,7 @@ export class RegisterComponent implements OnInit {
               this.registerForm.get('senhaConfirmacao').disable();
               this.registerForm.get('crm').disable();
               this.registerForm.get('crm').disable();
+              this.registerForm.get('email').disable();
               this.registerForm.get('coren').disable();
               this.router
               break;
@@ -91,6 +95,10 @@ export class RegisterComponent implements OnInit {
 
       }
     )
+  }
+
+  onReturnAddress(event){
+    
   }
 
   submitForm(){

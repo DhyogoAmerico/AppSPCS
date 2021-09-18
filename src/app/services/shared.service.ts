@@ -19,4 +19,10 @@ export class SharedService {
     return this.httpClient.post(this.apiUrl + 'usuario/novo/' + typeUser, body, { headers });
   }
 
+  viaCep(cep: String) {
+    let request = `https://viacep.com.br/ws/${cep}/json/`;
+
+    return this.httpClient.get(request);
+  }
+
 }

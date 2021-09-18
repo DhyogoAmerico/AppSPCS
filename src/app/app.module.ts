@@ -10,6 +10,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {GrowlModule} from 'primeng/components/growl/growl';
 import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { ToastService } from './services/common-service/toast.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
+import { AddAddressComponent } from './components/add-address/add-address.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { CookieService } from 'ngx-cookie-service';
     RouterModule,
     SidebarModule,
     ButtonModule,
+    TableModule,
     DialogModule,
     BrowserAnimationsModule,
     MessagesModule,

@@ -16,7 +16,7 @@ const routes: Routes = [
         component: LayoutDashComponent
       },
       {
-        path:'paciente/register',
+        path:'pacientes/register',
         component: RegisterComponent,
         pathMatch: 'full'
       },

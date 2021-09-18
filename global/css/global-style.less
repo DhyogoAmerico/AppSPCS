@@ -1,8 +1,17 @@
 @import "https://use.fontawesome.com/releases/v5.3.1/css/all.css";
-
-
+@import url('./global-components.less');
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+    background-color: #dcdcdc !important;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9c9c9c !important;
+    border-radius: 8px;
 }
 
 body {
@@ -10,7 +19,7 @@ body {
     background: #f9f9f9 !important;
 }
 
-a :hover{
+a:hover {
     text-decoration: none;
 }
 
@@ -18,11 +27,12 @@ a :hover{
     display: flex;
     flex-direction: row;
     width: 100%;
+    flex-wrap: wrap;
     .group-input {
+        min-width: 200px;
         display: flex;
         flex-direction: column;
-        min-width: 275px;
-        width: 100%;
+        flex: 1;
         margin: 10px;
         .input-form {
             font-size: 16px;
@@ -45,15 +55,10 @@ label {
 }
 
 button {
-    &:disabled{
+    border: none;
+    &:disabled {
+        cursor: not-allowed;
         color: #656b88 !important;
         background-color: #cccccc !important;
     }
 }
-
-// .ui-dialog-content{
-
-//     &.ui-widget-content {
-//        background: red;
-//    }
-// }
