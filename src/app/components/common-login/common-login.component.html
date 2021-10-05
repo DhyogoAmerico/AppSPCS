@@ -1,16 +1,16 @@
 <div class="cntLogin">
-    <form [formGroup]='formLogin' (ngSubmit)="submitLogin()">
+    <form [formGroup]='formLogin' (ngSubmit)="loginUser()">
         <div class="form-group">
             <div class="group-input">
                 <label>Email:</label>
-                <input class="input-form" type="text" placeholder="Email" formControlName='email_use'>
+                <input class="input-form" type="text" placeholder="Email" maxlength="255" minlength="5" formControlName='email' pattern='^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?.(\.[a-z]{2,3}?)$'>
             </div>
         </div>
         <div class="form-group">
             <div class="group-input">
                 <label>Senha:</label>
-                <div  class="input-form inputPassword">
-                    <input class="password" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='password'>
+                <div  class="inputPassword">
+                    <input class="input-form" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha'>
                     <div class="clickType" (click)='alterTypePassword()'>
                             <i *ngIf="typePassword" class="far fa-eye"></i>
                             <i *ngIf="!typePassword" class="far fa-eye-slash"></i>

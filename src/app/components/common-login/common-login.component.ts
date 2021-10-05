@@ -2,35 +2,44 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { takeUntil } from 'rxjs/operators';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { ToastService } from 'src/app/services/common-service/toast.service';
+import { SharedService } from 'src/app/services/shared.service';
+
 
 @Component({
   selector: 'common-login-component',
   templateUrl: './common-login.component.html',
   styleUrls: ['./common-login.component.less']
 })
-export class CommonLoginComponent implements OnInit {
+export class CommonLoginComponent extends BaseComponent implements OnInit {
 
   public typePassword = false;
   public formLogin = new FormGroup ({
-    email_use: new FormControl (
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+    email: new FormControl (
+      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?.(\.[a-z]{2,3})$")])
     ),
-    password: new FormControl (
-      { value: '', disabled: false }, Validators.compose([Validators.required])
-    )
+    senha: new FormControl (
+      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.minLength(9)])
+    ),
+    grantType: new FormControl (
+      { value: 'password', disabled: false }
+    ),
+
   });
   constructor(
     private route: Router,
-    private cookieService: CookieService
-  ) { }
+    private sharedService:SharedService,
+    private cookieService: CookieService,
+    private toastService: ToastService
+  ) { 
+    super();
+  }
 
 
   ngOnInit() {
-  }
-
-  submitLogin() {
-    console.log(this.formLogin.value);
-    this.route.navigate(['/dashboard'])
+    
   }
 
   alterTypePassword() {
@@ -41,17 +50,33 @@ export class CommonLoginComponent implements OnInit {
     else {
       //text
       this.typePassword = true;
-      setTimeout(() => {
-        this.typePassword = false;
-      }, 500);
     }
   }
 
-  // testeCookie(){
-  //   let dateTeste = new Date();
-  //   dateTeste.setMinutes(dateTeste.getMinutes() + 30);//mais 30minutos
-  //   console.log(dateTeste);
-  //   this.cookieService.set('teste','teste',2);
-  // }
-
+  loginUser(){
+    if(this.formLogin.valid){
+      this.sharedService.loginUser(this.formLogin.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.cookieService.set('authenticatedSPCS',response.accessToken, 30);
+          
+          switch (response.usuarioToken.claims[0].type) {
+            case 'Medico':
+              this.cookieService.set('typeUserSPCS','7DBE420C-2297-411C-B9FA-AA97D49E2A53', 30);
+              break;
+            case 'Enfermeiro':
+              this.cookieService.set('typeUserSPCS','7D277147-A892-4312-A845-B5CA5A27BED6', 30);
+              break;
+            case 'Administrador':
+              this.cookieService.set('typeUserSPCS','D44B63A1-80D9-41E1-994A-D9C1C4D308E7', 30);
+              break;
+            default:
+              this.toastService.addToast('warn', 'Erro', 'Erro no tipo de usuario');
+              break;
+          }
+          this.route.navigate(["/dashboard"]);
+        }
+      );
+    }
+  }
 }

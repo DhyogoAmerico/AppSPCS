@@ -1,0 +1,176 @@
+<div class="cntRegister">
+    <div class="cntStep">
+        <app-steps-component [itemSteps]='listSteps' [currentStep]='currentStep'></app-steps-component>
+    </div>
+    <form [formGroup]='formDiagnostico'>
+        <ng-container [ngSwitch]="currentStep">
+            <ng-container *ngSwitchCase="0">
+                <div class="step0">
+                    <div class="endereco">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus dolor non sem mollis
+                        volutpat. Ut eget purus et est viverra fermentum. Praesent nulla sapien, hendrerit in congue a,
+                        facilisis sed orci.
+                    </div>
+                    <div class="form-group">
+                        <div class="group-input">
+                            <label>CEP</label>
+                            <input type="text" class="form-control" (blur)='viaCep()' required formControlName='cep' mask='00.000-000' placeholder="00.000-000">
+                        </div>
+                        <div class="group-input">
+                            <label>Municipio de trabalho</label>
+                            <input type="text" class="form-control" readonly formControlName='municipioTrabalho' maxlength="50">
+                        </div>
+                    </div>
+                    <div class="cntButton">
+                        <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="1">
+                <div class="step1">
+                    <div class="form-group form-group-bool">
+                        <div class="group-input">
+                            <label>Nome</label>
+                            <input class="form-control" type="text" readonly>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Sexo</label>
+                            <div>
+                                <p-radioButton name='boolSexo' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolSexo' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-bool">
+                        <div class="group-input-bool">
+                            <label>Gestante</label>
+                            <div>
+                                <p-radioButton name='boolGestantes' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolGestantes' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label>Data N.</label>
+                            <input class="form-control" type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="group-input">
+                            <label>Anos de estudo</label>
+                            <input class="form-control" type="text" mask='000'>
+                        </div>
+                    </div>
+                    <div class="form-group-bool">
+                        <div class="group-input-bool">
+                            <label>Tabagismo</label>
+                            <div>
+                                <p-radioButton name='boolTabagismo' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolTabagismo' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Tabagismo (Atual)</label>
+                            <div>
+                                <p-radioButton name='boolTabagimoAtual' formControlName='tabagismoAtual' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolTabagimoAtual' formControlName='tabagismoAtual' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Tabagismo (Antes)</label>
+                            <div>
+                                <p-radioButton name='boolTabagismoAntes' formControlName='tabagismoAnterior' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolTabagismoAntes' formControlName='tabagismoAnterior' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-bool">
+                        <div class="group-input-bool">
+                            <label>Etilismo</label>
+                            <div>
+                                <p-radioButton name='boolEtilismo' formControlName='etilismo' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolEtilismo' formControlName='etilismo' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Etilismo (Atual)</label>
+                            <div>
+                                <p-radioButton name='boolEtilismoAtual' formControlName='etilismoAtual' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolEtilismoAtual' formControlName='etilismoAtual' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Etilismo (Antes)</label>
+                            <div>
+                                <p-radioButton name='boolEtilismoAntes' formControlName='etilismoAnterior' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolEtilismoAntes' formControlName='etilismoAnterior' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="group-input">
+                            <label>Ingest Café</label>
+                            <div>
+                                <p-radioButton name='boolIngestCafe' formControlName='ingestaoCafe' value='sim' label='Sim'></p-radioButton>
+                                <p-radioButton name='boolIngestCafe' formControlName='ingestaoCafe' value='nao' label='Não'></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="group-input-bool">
+                            <label>Ml p/ dia</label>
+                            <input class="form-control" type="text" formControlName='cafeMlDia' mask='0000'>
+                        </div>
+                    </div>
+                    <div class="cntButton">
+                        <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                        <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="2">
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Relação de trabalho</label>
+                        <p-dropdown [options]='listOptRelacaoTrabalho' (blur)='blurRelacaoTrabalho()' formControlName='optionRelacaoTrabalho' placeholder='Selecione' optionLabel='label'></p-dropdown>
+                    </div>
+                    <div class="group-input">
+                        <label>Outro:</label>
+                        <input type="text" class="form-control" [disabled]='this.formDiagnostico.get("optionRelacaoTrabalho").value !== "Outro"' formControlName='relacaoTrabalho' maxlength="50" placeholder="Relação de trabalho">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Função de trabalho</label>
+                        <p-dropdown [options]='listOptFuncaoTrabalho' formControlName='funcaoTrabalho' placeholder='Selecione' optionLabel='label'></p-dropdown>
+                    </div>
+                    <!-- <div class="group-input">
+                        <label>Outro:</label>
+                        <input type="text" class="form-control" [disabled]='!this.formDiagnostico.get("optionRelacaoTrabalho").value.toString().includes("Outro")' formControlName='relacaoTrabalho' maxlength="50" placeholder="Relação de trabalho">
+                    </div> -->
+                </div>
+                <div class="cntButton">
+                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
+                </div>
+            </ng-container> 
+            <ng-container *ngSwitchCase="3">
+                <div class="cntButton">
+                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="4">
+                <div class="cntButton">
+                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="5">
+                <div class="cntButton">
+                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
+                </div>
+            </ng-container>
+    
+        </ng-container>
+    </form>
+
+</div>

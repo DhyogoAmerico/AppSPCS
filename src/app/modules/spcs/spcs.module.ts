@@ -8,6 +8,9 @@ import { DialogModule } from 'primeng/components/dialog/dialog';
 import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import {InputSwitch, InputSwitchModule} from 'primeng/inputswitch';
+import {RadioButtonModule} from 'primeng/radiobutton'
+import {DropdownModule} from 'primeng/dropdown';
 
 import { SpcsRoutingModule } from './spcs-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -23,10 +26,16 @@ import { NgxMaskModule } from 'ngx-mask';
 import { DashInformationsComponent } from './components/dash-informations/dash-informations.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { AddAddressComponent } from 'src/app/components/add-address/add-address.component';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { EnfermeirosComponent } from './pages/enfermeiros/enfermeiros.component';
+import { MedicosComponent } from './pages/medicos/medicos.component';
+import { DiagnosticosComponent } from './pages/diagnosticos/diagnosticos.component';
+import { RegisterDiagnosticoComponent } from './pages/register-diagnostico/register-diagnostico.component';
+import { StepsComponent } from 'src/app/components/steps-component/steps-component.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent,    
+    DashboardComponent,
     SideNavComponent, 
     LayoutDashComponent, 
     MedicoDashComponent, 
@@ -35,12 +44,21 @@ import { AddAddressComponent } from 'src/app/components/add-address/add-address.
     RegisterComponent, 
     DashInformationsComponent, 
     AddAddressComponent,
-    PacientesComponent
+    BaseComponent,
+    PacientesComponent,
+    EnfermeirosComponent,
+    MedicosComponent,
+    StepsComponent,
+    DiagnosticosComponent,
+    RegisterDiagnosticoComponent
   ],
   imports: [
     CommonModule,
     SidebarModule,
     TableModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    DropdownModule,
     NgxMaskModule.forRoot({
       validation: true,
     }),

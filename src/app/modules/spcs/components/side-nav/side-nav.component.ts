@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { CommonService } from 'src/app/services/common-service/common.service';
+import { ToastService } from 'src/app/services/common-service/toast.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,20 +13,35 @@ export class SideNavComponent implements OnInit {
   
   public displaySide = true;
   public listSide : any[];
+  public typeUser = '';
   constructor(
-    private messageService: MessageService
+    private toastService: ToastService,
+    private commonService: CommonService,
+    private router:Router,
+
   ) { }
 
   ngOnInit() {
+    this.typeUser = this.commonService.getTypeUser();
     this.mountSide();
   }
 
-  showSuccess() {
-    this.messageService.add({severity:'success', summary: 'Mensagem Teste', detail:'Order submitted'});
-  }
-
   mountSide(){
-    this.mountSideMaster(); 
+    switch (this.typeUser) {
+      case 'medico':
+        this.mountSideMedico();
+        break;
+      case 'enfermeiro':
+        this.mountSideEndermeira();
+        break;
+      case 'admin':
+        this.mountSideAdmin();
+        break;
+      default:
+        this.router.navigate(['/login']);
+        this.toastService.addToast('error','Não Autorizado','Você não está autorizado');
+        break;
+    }
   }
 
   mountSideMedico() {
@@ -35,7 +53,10 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/report-diagnostico'
+        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/enfermeiros'
+      },
+      {
+        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
       }
     ]
   }
@@ -57,7 +78,10 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
       },
       {
-        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/usuarios'
+        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/enfermeiros'
+      },
+      {
+        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/medicos'
       },
       {
         icon: 'fas fa-cogs', label:'Configuração', link: '/dashboard/settings'

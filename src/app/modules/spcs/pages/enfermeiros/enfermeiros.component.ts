@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
-  selector: 'app-pacientes',
-  templateUrl: './pacientes.component.html',
-  styleUrls: ['./pacientes.component.less']
+  selector: 'app-enfermeiros',
+  templateUrl: './enfermeiros.component.html',
+  styleUrls: ['./enfermeiros.component.less']
 })
-export class PacientesComponent implements OnInit {
+export class EnfermeirosComponent extends BaseComponent implements OnInit {
 
   public infoTable: any[];
   public visibleEdit = false;
@@ -16,37 +17,39 @@ export class PacientesComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router
-  ) { }
+  ) {
+    super();
+   }
 
   ngOnInit() {
     this.mountHeader();
     this.responsePacientes = [
       {
-        nome: 'Paciente Teste1',
+        nome: 'Enfermeiro Teste1',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste2',
+        nome: 'Enfermeiro Teste2',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste23',
+        nome: 'Enfermeiro Teste23',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste4',
+        nome: 'Enfermeiro Teste4',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste5',
+        nome: 'Enfermeiro Teste5',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
@@ -90,4 +93,5 @@ export class PacientesComponent implements OnInit {
   deleteUser(user) {
     console.log(user);
   }
+
 }

@@ -11,26 +11,31 @@
                 </div>
                 <div class="group-input">
                     <div class="form-label">CPF</div>
-                    <input type="text" class="form-control" maxlength="14" mask="000.000.000-00" formControlName='cpf'>
+                    <input type="text" class="form-control" (blur)="validCpf(this.registerForm.get('cpf').value)" maxlength="14" mask="000.000.000-00" formControlName='cpf'>
+                    <span class="errorInput" *ngIf="this.registerForm.get('cpf').hasError('invalidCpf')">CPF inválido</span>
                 </div>
             </div>
             <ng-container *ngIf="typeUser === 'paciente'">
                 <app-add-address (onReturn)='onReturnAddress($event)'></app-add-address>
             </ng-container>
-            <div class="form-group" *ngIf="typeUser !== 'paciente'">
-                <div class="group-input">
-                    <div class="form-label">Email</div>
-                    <input type="email" class="form-control" formControlName='email'>
+            <ng-container *ngIf="typeUser !== 'paciente'">
+                <div class="form-group">
+                    <div class="group-input">
+                        <div class="form-label">Email</div>
+                        <input type="email" class="form-control" formControlName='email'>
+                    </div>
                 </div>
-                <div class="group-input">
-                    <div class="form-label">Senha</div>
-                    <input type="password" class="form-control" formControlName='senha'>
+                <div class="form-group">
+                    <div class="group-input">
+                        <div class="form-label">Senha</div>
+                        <input type="password" class="form-control" formControlName='senha'>
+                    </div>
+                    <div class="group-input">
+                        <div class="form-label">Confirme sua Senha</div>
+                        <input type="password" class="form-control" formControlName='senhaConfirmacao'>
+                    </div>
                 </div>
-                <div class="group-input">
-                    <div class="form-label">Confirme sua Senha</div>
-                    <input type="password" class="form-control" formControlName='senhaConfirmacao'>
-                </div>
-            </div>
+            </ng-container>
             <div class="form-group" *ngIf="typeUser === 'medico'">
                 <div class="group-input">
                     <div class="form-label">CRM</div>

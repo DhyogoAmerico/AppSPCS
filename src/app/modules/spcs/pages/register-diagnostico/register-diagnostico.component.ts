@@ -1,0 +1,422 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { CommonService } from 'src/app/services/common-service/common.service';
+
+@Component({
+  selector: 'app-register-diagnostico',
+  templateUrl: './register-diagnostico.component.html',
+  styleUrls: ['./register-diagnostico.component.less']
+})
+export class RegisterDiagnosticoComponent extends BaseComponent implements OnInit {
+  public listSteps: any[];
+  public currentStep = 0;
+  public listOptRelacaoTrabalho: any [];
+  public listOptFuncaoTrabalho: any [];
+  public cepTrabalho = '';
+  public formDiagnostico = new FormGroup({
+    pacienteId: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    municipioTrabalho: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    cep: new FormControl(
+      { value: '', disabled: false },
+    ),
+    gestante: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tabagismo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tabagismoAtual: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tabagismoAnterior: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    etilismo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    etilismoAtual: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    etilismoAnterior: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ingestaoCafe: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    cafeMlDia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    relacaoTrabalho: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    optionRelacaoTrabalho: new FormControl(
+      { value: '', disabled: false }
+    ),
+    funcaoTrabalho: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    contatoPraguicida: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tempoContatoPraguicida: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    frequenciaContatoPraguicida: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ultimoContatoPraguicida: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    formaAplicacao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    viaExposicao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    adoeceu: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    qtdVezesAdoeceu: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    internado: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    qtdVezesInternado: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    quandoInterndo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tipoContato: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    equipamentoProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    roupaProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    botaProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    luvasProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    mascaraProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    oculosProtecao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    protetorAuricular: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    doencaCardioVascular: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    hipertensaoArterial: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    hipotensaoArterial: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    arritmia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    alteracaoSNervoso: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dorCabeca: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    fraquezaMuscular: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tremedeira: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tremorMuscular: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    visãoTurvaEmbacada: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    agitacaoIrritabilidade: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    vertigensTonturas: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    formigamento: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    incoordenacaoMotora: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    aparelhoDigestorio: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    colicasDorBarriga: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dorEstomago: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    aziaQueimacao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    nauseasEnjoo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    vomito: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    diarreia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    aparelhoRespiratorio: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    faltaDeAr: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    irritaçaoNasal: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    catarroEscarro: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    tosse: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    aparelhoAuditivo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    diminuicaoAudicao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    zumbido: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    peleMucosa: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dcSensibilizante: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dcIrritativa: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    irritacaoOcular: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    aparelhoUrinario: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    diminuicaoUrina: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    urinaescuraSangue: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    outro: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    exposicaoRaiox: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    quandodiasExposicao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    teveCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    sncCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    digestorioCcancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    respiratorioCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    reprodutorCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    glandularCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    peleOssoSangueCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    familiaCancer: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    sncCancerFamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    digestorioCancerfamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    respiratorioCancerfamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    reprodutorCancerfamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    glandularCancerfamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    peleOssoSangueCancerfamilia: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    edaRegiao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ch_t: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ch_e: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ch_p: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ast: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    alt: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    y_gt: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    creatinina: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    ambulatorio: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    habitoAlimentar: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    imc: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    circunferenciaAbdominal: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dificuldadeEngravidar: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    abortoEspontaneo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    temFilhos: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    filhoMaFormacao: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    medicamentoContinuo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    medicamento: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    remedioMicose: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    nomeRemedio: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    )
+  });
+
+  constructor(
+    private commonService: CommonService
+  ) { 
+    super();
+    this.mountIntensDropDown();
+    this.currentStep = 0;
+  }
+
+  ngOnInit() {
+    this.mountItensStep();
+  }
+
+  mountIntensDropDown(){
+    this.listOptRelacaoTrabalho = [
+      {label: 'Proprietário'},
+      {label: 'Assalariado'},
+      {label: 'Meeiro/Arrendatário'},
+      {label: 'Volante'},
+      {label: 'Outro'}
+    ];
+    this.listOptFuncaoTrabalho = [
+      { label: 'Administrativa' },
+      { label: 'Téc. Agricola/Agrônomo' },
+      { label: 'Aplicador na Pecuária' },
+      { label: 'Puxa Mangueira' },
+      { label: 'Aplicador/Preparador de Calda' },
+      { label: 'Agricultura Familiar' }
+    ]
+  }
+
+  mountItensStep() {
+    this.listSteps = [
+      {
+        icon: 'fas fa-map-marked-alt',
+        label: 'Endereço'
+      },
+      {
+        icon: 'fas fa-user-circle',
+        label: 'Perfil'
+      },
+      {
+        icon: 'fas fa-tools',
+        label: 'Trabalho'
+      },
+      {
+        icon: 'fas fa-viruses',
+        label: 'Praguicida'
+      },
+      {
+        icon: 'fas fa-id-badge',
+        label: 'Ficha'
+      },
+      {
+        icon: 'fas fa-search',
+        label: 'Avaliação'
+      }
+    ]
+  }
+
+  viaCep(){
+    if(this.formDiagnostico.get('cep').value.length === 8) {
+      this.commonService.viaCep(this.formDiagnostico.get('cep').value).subscribe(
+        (response : any) => {
+          if(response.erro) {
+            this.formDiagnostico.get('cep').setValue('');
+          }
+          else {
+            this.formDiagnostico.get('municipioTrabalho').setValue(response.localidade + ' - ' + response.uf);
+          }
+        }
+      );
+    }
+  }
+
+  blurRelacaoTrabalho(){
+    console.log(this.formDiagnostico.get("optionRelacaoTrabalho").value);
+    if(!(this.formDiagnostico.get("optionRelacaoTrabalho").value === "Outro")){
+      this.formDiagnostico.get('relacaoTrabalho').setValue(this.formDiagnostico.get('optionRelacaoTrabalho').value);
+    }
+  }
+
+}

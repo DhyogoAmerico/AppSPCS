@@ -1,0 +1,16 @@
+<div class="cntSteps">
+    <ng-container *ngFor="let item of itemSteps; let i = index">
+        <div class="container-step">
+            <div class="step">
+                <div class="trace" [ngClass]="{'active': i <= currentStep, 'pontasSteps': i === 0}" ></div>
+                <div class="circle" [ngClass]="{'active': i <= currentStep}">
+                    <i class=" {{item.icon}}"></i>
+                </div>
+                <div class="trace" [ngClass]="{'active': (i + 1) <= currentStep, 'pontasSteps': i === itemSteps.length -1}" ></div>
+            </div>
+            <div class="desc">
+                {{item.label}}
+            </div>
+        </div>
+    </ng-container>
+</div>

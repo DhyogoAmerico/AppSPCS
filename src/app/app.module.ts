@@ -10,6 +10,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {GrowlModule} from 'primeng/components/growl/growl';
 import {ButtonModule} from 'primeng/button';
+import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,9 @@ import { ToastService } from './services/common-service/toast.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { AddAddressComponent } from './components/add-address/add-address.component';
+import { CommonService } from './services/common-service/common.service';
+import { BaseComponent } from './services/common-service/base-component/base-component.component';
+import { StepsComponent } from './components/steps-component/steps-component.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
     RouterModule,
     SidebarModule,
     ButtonModule,
+    InputSwitchModule,
     TableModule,
     DialogModule,
     BrowserAnimationsModule,
@@ -59,6 +64,7 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
   providers: [
     MessageService,
     ToastService,
+    CommonService,
     CookieService,
     SharedService,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
-  selector: 'app-pacientes',
-  templateUrl: './pacientes.component.html',
-  styleUrls: ['./pacientes.component.less']
+  selector: 'app-medicos',
+  templateUrl: './medicos.component.html',
+  styleUrls: ['./medicos.component.less']
 })
-export class PacientesComponent implements OnInit {
+export class MedicosComponent extends BaseComponent implements OnInit {
 
   public infoTable: any[];
   public visibleEdit = false;
@@ -16,37 +17,39 @@ export class PacientesComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router
-  ) { }
+  ) { 
+    super();
+  }
 
   ngOnInit() {
     this.mountHeader();
     this.responsePacientes = [
       {
-        nome: 'Paciente Teste1',
+        nome: 'Medico Teste1',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste2',
+        nome: 'Medico Teste2',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste23',
+        nome: 'Medico Teste23',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste4',
+        nome: 'Medico Teste4',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
       },
       {
-        nome: 'Paciente Teste5',
+        nome: 'Medico Teste5',
         cpf: '15915915946',
         diagnostico: true,
         data_cadastro: '15/09/2021'
@@ -55,7 +58,7 @@ export class PacientesComponent implements OnInit {
   }
 
   byUrlRegister() {
-    this.router.navigate(['dashboard/pacientes/register'], { queryParams : { type: 'paciente'} })
+    this.router.navigate(['dashboard/pacientes/register'], { queryParams : { type: 'medico'} })
   }
   
   mountHeader(){

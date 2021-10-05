@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
-import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-add-address',
@@ -37,7 +37,7 @@ export class AddAddressComponent implements OnInit {
     )
   });
   constructor(
-    private sharedService: SharedService,
+    private commonService: CommonService,
     private toastService: ToastService
   ) { }
 
@@ -46,7 +46,7 @@ export class AddAddressComponent implements OnInit {
 
   viaCep(cep){
     if(cep.length === 8) {
-      this.sharedService.viaCep(cep).subscribe(
+      this.commonService.viaCep(cep).subscribe(
         (response : any) => {
           if(response.erro) {
             this.toastService.addToast('error','Erro!','Cep Invalido!');
