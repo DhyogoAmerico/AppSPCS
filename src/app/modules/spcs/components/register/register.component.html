@@ -9,12 +9,42 @@
                     <div class="form-label">Nome Completo</div>
                     <input class="form-control" type="text" formControlName='nome'>
                 </div>
+            </div>
+            <div class="form-group">
                 <div class="group-input">
                     <div class="form-label">CPF</div>
                     <input type="text" class="form-control" (blur)="validCpf(this.registerForm.get('cpf').value)" maxlength="14" mask="000.000.000-00" formControlName='cpf'>
                     <span class="errorInput" *ngIf="this.registerForm.get('cpf').hasError('invalidCpf')">CPF inválido</span>
                 </div>
+                <div class="group-input">
+                    <div class="form-label">Escolaridade</div>
+                    <input class="form-control" type="text" formControlName='escolaridade'>
+                </div>
             </div>
+            <div class="form-group">
+                <div class="group-input">
+                    <div class="form-label">Sexo</div>
+                    <div>
+                        <input type="radio" name="sexo" formControlName='sexo' value="Masculino" >
+                        <label>Masculino</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="sexo" formControlName='sexo' value="Feminino" >
+                        <label>Feminino</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group-input">
+                    <div class="form-label">Data Nasc</div>
+                    <input class="form-control" type="date" formControlName='dataNascimento'>
+                </div>
+                <div class="group-input">
+                    <div class="form-label">Telefone</div>
+                    <input class="form-control" type="text" [mask]="'(00) 0000-0000' || '(00) 00000-0000'" formControlName='telefone'>
+                </div>
+            </div>
+            <div (click)='consoleLog()'>Teste</div>
             <ng-container *ngIf="typeUser === 'paciente'">
                 <app-add-address (onReturn)='onReturnAddress($event)'></app-add-address>
             </ng-container>

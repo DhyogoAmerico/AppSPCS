@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { SharedService } from 'src/app/services/shared.service';
   templateUrl: './pacientes.component.html',
   styleUrls: ['./pacientes.component.less']
 })
-export class PacientesComponent implements OnInit {
+export class PacientesComponent extends BaseComponent implements OnInit {
 
   public infoTable: any[];
   public visibleEdit = false;
@@ -16,46 +18,27 @@ export class PacientesComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router
-  ) { }
+  ) {
+    super();
+   }
 
   ngOnInit() {
+    this.getAllPacientes();
     this.mountHeader();
-    this.responsePacientes = [
-      {
-        nome: 'Paciente Teste1',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Paciente Teste2',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Paciente Teste23',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Paciente Teste4',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Paciente Teste5',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      }
-    ]
+    
   }
 
   byUrlRegister() {
     this.router.navigate(['dashboard/pacientes/register'], { queryParams : { type: 'paciente'} })
+  }
+
+  getAllPacientes() {
+    this.sharedService.getAllPacientes().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        console.log(response);
+        this.responsePacientes = response || [];
+      }
+    )
   }
   
   mountHeader(){
@@ -69,12 +52,12 @@ export class PacientesComponent implements OnInit {
         field: 'cpf'
       },
       {
-        header: 'Diagnosticado',
-        field: 'diagnostico'
+        header: 'Sexo',
+        field: 'sexo'
       },
       {
-        header: 'Cadastro',
-        field: 'data_cadastro'
+        header: 'Telefone',
+        field: 'telefone'
       }
     ]
   }

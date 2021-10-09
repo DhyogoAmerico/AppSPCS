@@ -39,6 +39,18 @@ export class RegisterComponent implements OnInit {
     tipoUsuarioId: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
+    telefone: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    sexo: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    dataNascimento: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    escolaridade: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
     coren: new FormControl(
       { value: '', disabled: false }
     ),
@@ -113,13 +125,17 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.submitForm();
     }
-    console.log(event);
+    console.log(this.registerForm.value);
   }
 
   validCpf(input){
     if(input !== '' && !cpf.isValid(input)){
       this.registerForm.get('cpf').setErrors({invalidCpf :true});
     }
+  }
+
+  consoleLog(){
+    console.log(this.registerForm.value);
   }
 
   submitForm() {

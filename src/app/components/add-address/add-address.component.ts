@@ -29,7 +29,7 @@ export class AddAddressComponent implements OnInit {
     cep: new FormControl (
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    municipioResidencia: new FormControl (
+    cidade: new FormControl (
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     estado: new FormControl (
@@ -52,7 +52,7 @@ export class AddAddressComponent implements OnInit {
             this.toastService.addToast('error','Erro!','Cep Invalido!');
           }
           else {
-            this.formAddress.get('municipioResidencia').setValue(response.localidade);
+            this.formAddress.get('cidade').setValue(response.localidade);
             this.formAddress.get('estado').setValue(response.uf);
             this.formAddress.get('complemento').setValue(response.complemento);
             this.formAddress.get('bairro').setValue(response.bairro);
@@ -65,6 +65,9 @@ export class AddAddressComponent implements OnInit {
 
   submitForm(){
     if(this.formAddress.valid){
+      if(this.formAddress.get('id').value === ''){
+        this.formAddress.get('id').disable();
+      }
       this.onReturn.emit(this.formAddress.value);
     }
   }

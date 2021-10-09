@@ -27,11 +27,11 @@ export class SharedService {
       .set('Content-Type','application/json');
     return this.httpClient.post(this.apiUrl + 'auth/autenticar', objUser, { headers });
   }
-  
-  getAllUsers(){
+
+  getAllPacientes(){
     const headers = new HttpHeaders()
     .set('Content-Type','application/json')
     .set('authorization', this.commonService.getToken().toString());
-    return this.httpClient.get(this.apiUrl + 'usuario/obter-usuarios', { headers });
+    return this.httpClient.get(this.apiUrl + 'usuario/listar/pacientes', { headers });
   }
 }

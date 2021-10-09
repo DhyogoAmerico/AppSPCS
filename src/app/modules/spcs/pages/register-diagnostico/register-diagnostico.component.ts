@@ -13,6 +13,9 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   public currentStep = 0;
   public listOptRelacaoTrabalho: any [];
   public listOptFuncaoTrabalho: any [];
+  public listFormaAplicacao : any[];
+  public listViaExpocicao: any[];
+  public listPrincipioAtivo: any[];
   public cepTrabalho = '';
   public formDiagnostico = new FormGroup({
     pacienteId: new FormControl(
@@ -54,7 +57,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     relacaoTrabalho: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    optionRelacaoTrabalho: new FormControl(
+    option_relacaoTrabalho: new FormControl(
       { value: '', disabled: false }
     ),
     funcaoTrabalho: new FormControl(
@@ -74,6 +77,9 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     ),
     formaAplicacao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    option_formaAplicacao: new FormControl(
+      { value: '', disabled: false },
     ),
     viaExposicao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -343,7 +349,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   ) { 
     super();
     this.mountIntensDropDown();
-    this.currentStep = 0;
+    this.currentStep = 2;
   }
 
   ngOnInit() {
@@ -352,20 +358,43 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
   mountIntensDropDown(){
     this.listOptRelacaoTrabalho = [
-      {label: 'Proprietário'},
-      {label: 'Assalariado'},
-      {label: 'Meeiro/Arrendatário'},
-      {label: 'Volante'},
-      {label: 'Outro'}
+      'Proprietário',
+      'Assalariado',
+      'Meeiro/Arrendatário',
+      'Volante',
+      'Outro'
     ];
     this.listOptFuncaoTrabalho = [
-      { label: 'Administrativa' },
-      { label: 'Téc. Agricola/Agrônomo' },
-      { label: 'Aplicador na Pecuária' },
-      { label: 'Puxa Mangueira' },
-      { label: 'Aplicador/Preparador de Calda' },
-      { label: 'Agricultura Familiar' }
-    ]
+      'Administrativa',
+      'Téc. Agricola/Agrônomo',
+      'Aplicador na Pecuária',
+      'Puxa Mangueira',
+      'Aplicador/Preparador de Calda',
+      'Agricultura Familiar'
+    ];
+    this.listFormaAplicacao = [
+      'Bomba Costal(Mochila)',
+      'Mangueira',
+      'Trator sem cabine',
+      'Trator com cabine fechada',
+      'Não Informado'
+    ];
+    this.listViaExpocicao = [
+      'Cutânea',
+      'Digestiva',
+      'Respiratória',
+      'Outro'
+    ];
+    this.listPrincipioAtivo = [
+      "Glicina Substituida",
+      "Organoclorado",
+      "Organofosforado",
+      "Carbamato",
+      "Piretroide",
+      "Neonicotinoide",
+      "Triazol"
+    ];
+
   }
 
   mountItensStep() {
@@ -412,10 +441,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  blurRelacaoTrabalho(){
-    console.log(this.formDiagnostico.get("optionRelacaoTrabalho").value);
-    if(!(this.formDiagnostico.get("optionRelacaoTrabalho").value === "Outro")){
-      this.formDiagnostico.get('relacaoTrabalho').setValue(this.formDiagnostico.get('optionRelacaoTrabalho').value);
+  changeOutrosSelect(form: string){
+    console.log(this.formDiagnostico.get(form).value);
+    if(!(this.formDiagnostico.get(form).value === "Outro")){
+      form = form.replace('option_', '');
+      this.formDiagnostico.get(form).setValue(this.formDiagnostico.get(form).value);
     }
   }
 

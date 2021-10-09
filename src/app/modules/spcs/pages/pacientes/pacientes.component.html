@@ -14,7 +14,17 @@
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
             <tr>
                 <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
+                    <ng-container [ngSwitch]="col.field">
+                    <span *ngSwitchCase="'telefone'">
+                        {{rowData[col.field] | mask: rowData[col.field].length === 10 ? '(00) 0000-0000' : '(00) 00000-0000'}}
+                    </span>
+                    <span *ngSwitchCase="'cpf'">
+                        {{rowData[col.field] | mask: '000.000.000-00'}}
+                    </span>
+                    <span *ngSwitchDefault>
+                        {{rowData[col.field]}}
+                    </span>
+                    </ng-container>
                 </td>
                 <td style='width: 80px;'>
                     <div class="cntButtons">

@@ -13,11 +13,11 @@
         <div class="form-group">
             <div class="group-input">
                 <div class="form-label">Número</div>
-                <input class="form-control" mask='00000' type="text" formControlName='numero'>
+                <input class="form-control" maxlength="5" type="text" formControlName='numero'>
             </div>
             <div class="group-input">
                 <div class="form-label">Bairro</div>
-                <input class="form-control" type="text" maxlength="25" formControlName='bairro'>
+                <input class="form-control" type="text" maxlength="60" formControlName='bairro'>
             </div>
         </div>
         <div class="form-group">
@@ -29,7 +29,7 @@
         <div class="form-group">
             <div class="group-input">
                 <div class="form-label">Cidade</div>
-                <input class="form-control" type="text" readonly formControlName='municipioResidencia'>
+                <input class="form-control" type="text" readonly formControlName='cidade'>
             </div>
             <div class="group-input">
                 <div class="form-label">Estado</div>

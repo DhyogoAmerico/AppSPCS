@@ -21,11 +21,11 @@ export class DashboardComponent extends BaseComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.sharedService.getAllUsers().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (response: any) => {
-        console.log(response);
-      }
-    );
+    // this.sharedService.getAllUsers().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+    //   (response: any) => {
+    //     console.log(response);
+    //   }
+    // );
   }
 
   
