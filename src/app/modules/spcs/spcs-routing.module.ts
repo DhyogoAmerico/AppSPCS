@@ -33,7 +33,7 @@ const routes: Routes = [
         canActivate: [ AuthGuard ]
       },
       {
-        path:'pacientes/register',
+        path:'usuario/register',
         component: RegisterComponent,
         canActivate: [ AuthGuard ],
         pathMatch: 'full'

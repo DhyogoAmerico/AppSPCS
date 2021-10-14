@@ -58,7 +58,7 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   }
 
   byUrlRegister() {
-    this.router.navigate(['dashboard/pacientes/register'], { queryParams : { type: 'paciente'} })
+    this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'enfermeiro'} })
   }
   
   mountHeader(){

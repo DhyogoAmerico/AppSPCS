@@ -11,11 +11,12 @@ import { CommonService } from 'src/app/services/common-service/common.service';
 export class RegisterDiagnosticoComponent extends BaseComponent implements OnInit {
   public listSteps: any[];
   public currentStep = 0;
-  public listOptRelacaoTrabalho: any [];
-  public listOptFuncaoTrabalho: any [];
-  public listFormaAplicacao : any[];
+  public listOptRelacaoTrabalho: any[];
+  public listOptFuncaoTrabalho: any[];
+  public listFormaAplicacao: any[];
   public listViaExpocicao: any[];
   public listPrincipioAtivo: any[];
+  public listTiposCancer: any[];
   public cepTrabalho = '';
   public formDiagnostico = new FormGroup({
     pacienteId: new FormControl(
@@ -232,7 +233,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     outro: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false },
     ),
     exposicaoRaiox: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -346,17 +347,17 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
   constructor(
     private commonService: CommonService
-  ) { 
+  ) {
     super();
     this.mountIntensDropDown();
-    this.currentStep = 2;
+    this.currentStep = 3;
   }
 
   ngOnInit() {
     this.mountItensStep();
   }
 
-  mountIntensDropDown(){
+  mountIntensDropDown() {
     this.listOptRelacaoTrabalho = [
       'Proprietário',
       'Assalariado',
@@ -394,6 +395,15 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       "Neonicotinoide",
       "Triazol"
     ];
+    this.listTiposCancer = [
+      "SNC",
+      "Digestório",
+      "Respiratório",
+      "Reprodutor",
+      "Glandular",
+      "Pele_Osso_Sangue",
+      "Nenhum"
+    ];
 
   }
 
@@ -426,11 +436,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     ]
   }
 
-  viaCep(){
-    if(this.formDiagnostico.get('cep').value.length === 8) {
+  viaCep() {
+    if (this.formDiagnostico.get('cep').value.length === 8) {
       this.commonService.viaCep(this.formDiagnostico.get('cep').value).subscribe(
-        (response : any) => {
-          if(response.erro) {
+        (response: any) => {
+          if (response.erro) {
             this.formDiagnostico.get('cep').setValue('');
           }
           else {
@@ -441,9 +451,9 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  changeOutrosSelect(form: string){
+  changeOutrosSelect(form: string) {
     console.log(this.formDiagnostico.get(form).value);
-    if(!(this.formDiagnostico.get(form).value === "Outro")){
+    if (!(this.formDiagnostico.get(form).value === "Outro")) {
       form = form.replace('option_', '');
       this.formDiagnostico.get(form).setValue(this.formDiagnostico.get(form).value);
     }

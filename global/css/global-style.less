@@ -55,6 +55,40 @@ a:hover {
     }
 }
 
+input[type='radio']{
+    width: 12px !important;
+    color: red !important;
+    background: green !important;
+    height: 12px !important;
+    &:focus {
+        box-shadow: 0 0 0px 0px white !important;
+        color: red !important;
+    background: green !important;
+    }
+}
+
+input[type='radio']:checked{
+    width: 12px !important;
+    color: red !important;
+    background: green !important;
+    height: 12px !important;
+    &::before, &::after {
+        box-shadow: 0 0 20px 11px black !important;
+        border-radius: 50% !important;
+        &:focus {
+            box-shadow: 0 0 20px 11px black !important;
+            border-radius: 50% !important;
+    
+        }
+    }
+    
+    &::selection{ 
+        box-shadow: 0 0 20px 11px black !important;
+        border-radius: 50% !important;
+
+    }
+}
+
 .form-group-bool {
     display: flex;
     flex-direction: row;
@@ -72,6 +106,18 @@ a:hover {
             font-weight: 500;
             color: rgb(125, 121, 139);
             margin-right: 10px;
+        }
+        .group-radio {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            .input-radio {
+                display: flex;
+                align-items: baseline;
+                label {
+                    margin-left: 5px;
+                }
+            }
         }
         .input-form {
             font-size: 16px;

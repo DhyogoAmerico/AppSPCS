@@ -16,7 +16,7 @@ export class AdminDashComponent implements OnInit {
 
   mountDash() {
     this.listBtnDash = [
-      { icon: 'fas fa-user-plus', label: 'Cadastro de paciente', link: 'pacientes/register', queryParam: 'paciente'}
+      { icon: 'fas fa-user-plus', label: 'Cadastro de paciente', link: 'usuario/register', queryParam: 'paciente'}
     ]
   }
 

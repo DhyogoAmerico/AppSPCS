@@ -53,7 +53,7 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
       },
       {
-        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/enfermeiros'
+        icon: 'fas fa-users-cog', label:'Enfermeiros', link: '/dashboard/enfermeiros'
       },
       {
         icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'

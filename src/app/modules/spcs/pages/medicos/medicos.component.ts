@@ -58,7 +58,7 @@ export class MedicosComponent extends BaseComponent implements OnInit {
   }
 
   byUrlRegister() {
-    this.router.navigate(['dashboard/pacientes/register'], { queryParams : { type: 'medico'} })
+    this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'medico'} })
   }
   
   mountHeader(){
