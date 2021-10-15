@@ -933,10 +933,12 @@
                     </div>
                     <div class="group-input">
                         <label>Qual tipo</label>
-                        <select class="form-control" required > <!--(change)='changeOutrosSelect("option_formaAplicacao")'-->
-                            <option disabled value="">Selecione</option>
-                            <option *ngFor="let itemTipoCancer of listTiposCancer" [value]='itemTipoCancer'>{{itemTipoCancer}}</option>
-                        </select>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCcancer"]' label='Sistema Digestivo'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancer"]' label='Pele/Osso/Sangue'></p-checkbox>
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
@@ -953,10 +955,166 @@
                     </div>
                     <div class="group-input">
                         <label>Qual tipo</label>
-                        <select class="form-control" required > <!--(change)='changeOutrosSelect("option_formaAplicacao")'-->
-                            <option disabled value="">Selecione</option>
-                            <option *ngFor="let itemTipoCancer of listTiposCancer" [value]='itemTipoCancer'>{{itemTipoCancer}}</option>
-                        </select>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancerFamilia"]' label='Sistema Nervoso Central'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancerfamilia"]' label='Sistema Digestivo'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancerfamilia"]' label='Sistema Respiratório'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancerfamilia"]' label='Sistema Reprodutor'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancerfamilia"]' label='Glândula'></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancerfamilia"]' label='Pele/Osso/Sangue'></p-checkbox>
+                    </div>
+                </div>
+                <div class="form-group form-group-bool">
+                    <div class="group-input-bool">
+                        <label>É da região?</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='edaRegiao' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='edaRegiao' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Resultado do Exame de Colinesterase (Método de Ellman)</label>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Ch_t</label>
+                        <input class="form-control" type="text" formControlName="ch_t" placeholder="Ch_t">
+                    </div>
+                    <div class="group-input">
+                        <label>Ch_e</label>
+                        <input class="form-control" type="text" formControlName="ch_e" placeholder="Ch_e">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Ch_p</label>
+                        <input class="form-control" type="text" formControlName="ch_p" placeholder="Ch_p">
+                    </div>
+                    <div class="group-input">
+                        <label>Ast</label>
+                        <input class="form-control" type="text" formControlName="ast" placeholder="Ast">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Alt</label>
+                        <input class="form-control" type="text" formControlName="alt" placeholder="Alt">
+                    </div>
+                    <div class="group-input">
+                        <label>Y_gt</label>
+                        <input class="form-control" type="text" formControlName="y_gt" placeholder="Y_gt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Creatina</label>
+                        <input class="form-control" type="text" formControlName="creatinina">
+                    </div>
+                    <div class="group-input">
+                        <label>Ambulario</label>
+                        <input class="form-control" type="text" formControlName="ambulatorio">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Habito Alimentar</label>
+                        <input class="form-control" type="text" formControlName="habitoAlimentar">
+                    </div>
+                    <div class="group-input">
+                        <label>IMC</label>
+                        <input class="form-control" type="text" formControlName="imc">
+                    </div>
+                </div>
+                <div class="form-group form-group-bool">
+                    <div class="group-input">
+                        <label>Circunferência Abdominal</label>
+                        <input class="form-control" type="text" formControlName="circunferenciaAbdominal">
+                    </div>
+                    <div class="group-input-bool">
+                        <label>Você (ou sua esposa) teve dificuldade de engravidar</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='dificuldadeEngravidar' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='dificuldadeEngravidar' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group-bool">
+                    <div class="group-input-bool">
+                        <label>Você (ou sua esposa) teve aborto espontâneo</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='abortoEspontaneo' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='abortoEspontaneo' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-input-bool">
+                        <label>Tem filhos</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='temFilhos' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='temFilhos' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group-bool">
+                    <div class="group-input-bool">
+                        <label>Filhos com má formação (congênita)</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='filhoMaFormacao' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='filhoMaFormacao' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-input-bool">
+                        <label>Você faz uso de algum medicamento de uso contínuo</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='medicamentoContinuo' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='medicamentoContinuo' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-bool">
+                    <div class="group-input">
+                        <label>Qual medicamento:</label>
+                        <input class="form-control" type="text" formControlName='medicamento'>
+                    </div>
+                    <div class="group-input-bool">
+                        <label>Usou remédio para  micose nos últimos dois meses</label>
+                        <div class="group-radio">
+                            <div class="input-radio">
+                                <input formControlName='remedioMicose' type="radio" value='Sim'><label>Sim</label>
+                            </div>
+                            <div class="input-radio">
+                                <input formControlName='remedioMicose' type="radio" value='Não'><label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group-input">
+                        <label>Nome medicamento:</label>
+                        <input class="form-control" type="text" formControlName='nomeRemedio'>
                     </div>
                 </div>
                 <div class="cntButton">

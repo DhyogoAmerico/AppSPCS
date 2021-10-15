@@ -21,7 +21,7 @@ export class CommonLoginComponent extends BaseComponent implements OnInit {
       { value: '', disabled: false }, Validators.compose([Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?.(\.[a-z]{2,3})$")])
     ),
     senha: new FormControl (
-      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.minLength(9)])
+      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.minLength(6)])
     ),
     grantType: new FormControl (
       { value: 'password', disabled: false }

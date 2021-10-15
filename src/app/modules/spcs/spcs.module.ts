@@ -10,6 +10,7 @@ import {ButtonModule} from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {InputSwitch, InputSwitchModule} from 'primeng/inputswitch';
 import {RadioButtonModule} from 'primeng/radiobutton'
+import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 
 import { SpcsRoutingModule } from './spcs-routing.module';
@@ -58,6 +59,7 @@ import { StepsComponent } from 'src/app/components/steps-component/steps-compone
     TableModule,
     RadioButtonModule,
     InputSwitchModule,
+    CheckboxModule,
     DropdownModule,
     NgxMaskModule.forRoot({
       validation: true,

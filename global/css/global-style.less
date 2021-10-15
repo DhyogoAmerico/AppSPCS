@@ -55,7 +55,7 @@ a:hover {
     }
 }
 
-input[type='radio']{
+input[type='radio'] {
     width: 12px !important;
     color: red !important;
     background: green !important;
@@ -63,11 +63,11 @@ input[type='radio']{
     &:focus {
         box-shadow: 0 0 0px 0px white !important;
         color: red !important;
-    background: green !important;
+        background: green !important;
     }
 }
 
-input[type='radio']:checked{
+input[type='radio']:checked {
     width: 12px !important;
     color: red !important;
     background: green !important;
@@ -78,14 +78,11 @@ input[type='radio']:checked{
         &:focus {
             box-shadow: 0 0 20px 11px black !important;
             border-radius: 50% !important;
-    
         }
     }
-    
-    &::selection{ 
+    &::selection {
         box-shadow: 0 0 20px 11px black !important;
         border-radius: 50% !important;
-
     }
 }
 
@@ -169,5 +166,23 @@ button {
         cursor: not-allowed;
         color: #656b88 !important;
         background-color: #cccccc !important;
+    }
+}
+
+::ng-deep body .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
+    font-size: 12px !important;
+    margin: 3px;
+    font-weight: bold;
+}
+
+::ng-deep body .ui-chkbox {
+    .ui-chkbox-box {
+        .ui-chkbox-icon {
+            overflow: hidden;
+            position: relative;
+            font-size: 12px !important;
+            margin: 3px;
+            font-weight: bold;
+        }
     }
 }
