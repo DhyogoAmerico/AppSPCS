@@ -5,7 +5,41 @@
         font-weight: bold;
         text-transform: capitalize;
     }
-    .cntForm {}
+    .cntForm {
+        .form-group {
+            .group-input {
+                .inputPassword {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    padding: 0;
+                    position: relative;
+                    input {
+                        width: 100%;
+                    }
+                    &:focus {
+                        box-shadow: 0 0 4px #88a8ff;
+                        border-radius: 4px !important;
+                        outline: none;
+                    }
+                    .password {
+                        background: transparent;
+                        border: none;
+                        flex: 1;
+                        padding: 7px;
+                    }
+                    .clickType {
+                        display: flex;
+                        cursor: pointer;
+                        align-items: inherit;
+                        padding: 10px 15px;
+                        font-size: 18px;
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
     .cntButton {
         display: flex;
         justify-content: center;

@@ -14,7 +14,8 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   public infoTable: any[];
   public visibleEdit = false;
   public objUser: any;
-  public responsePacientes: any;
+  public searchPaciente = "";
+  public listPacientes: any;
   constructor(
     private sharedService: SharedService,
     private router: Router
@@ -29,14 +30,15 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   }
 
   byUrlRegister() {
-    this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'paciente'} })
+    // this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'paciente'} });
+    this.router.navigate(['dashboard/usuario/register/paciente']);
   }
 
   getAllPacientes() {
-    this.sharedService.getAllPacientes().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+    this.sharedService.getAllUsers('paciente').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         console.log(response);
-        this.responsePacientes = response || [];
+        this.listPacientes = response || [];
       }
     )
   }
@@ -72,5 +74,21 @@ export class PacientesComponent extends BaseComponent implements OnInit {
 
   deleteUser(user) {
     console.log(user);
+  }
+
+  searchByCpf(){
+    console.log(this.searchPaciente);
+    this.sharedService.findUserByCpf(this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        console.log(response);
+        this.listPacientes = [];
+        this.listPacientes.push(response);
+      }
+    )
+  }
+
+  limparList(){
+    this.listPacientes = [];
+    this.getAllPacientes();
   }
 }

@@ -7,30 +7,33 @@
             <div class="form-group">
                 <div class="group-input">
                     <div class="form-label">Nome Completo</div>
-                    <input class="form-control" type="text" formControlName='nome'>
+                    <input class="form-control" type="text" formControlName='nome' placeholder="Nome completo">
                 </div>
             </div>
             <div class="form-group">
                 <div class="group-input">
                     <div class="form-label">CPF</div>
-                    <input type="text" class="form-control" (blur)="validCpf(this.registerForm.get('cpf').value)" maxlength="14" mask="000.000.000-00" formControlName='cpf'>
+                    <input type="text" class="form-control" (keyup)="validCpf(this.registerForm.get('cpf').value)" maxlength="14" mask="000.000.000-00" formControlName='cpf' placeholder="000.000.000-000">
                     <span class="errorInput" *ngIf="this.registerForm.get('cpf').hasError('invalidCpf')">CPF inválido</span>
                 </div>
-                <div class="group-input">
+                <div class="group-input" *ngIf="typeUser === 'paciente'">
                     <div class="form-label">Escolaridade</div>
-                    <input class="form-control" type="text" formControlName='escolaridade'>
+                    <select class="form-control">
+                        <option disabled>Selecione</option>
+                        <option *ngFor="let itemEsc of listEscolaridade" [value]='itemEsc'>{{itemEsc}}</option>
+                    </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="group-input">
+            <div class="form-group-bool">
+                <div class="group-input-bool">
                     <div class="form-label">Sexo</div>
                     <div>
-                        <input type="radio" name="sexo" formControlName='sexo' value="Masculino" >
-                        <label>Masculino</label>
+                        <input type="radio" name="sexo" formControlName='sexo' value="Masculino" id='masculino'>
+                        <label for='masculino'>Masculino</label>
                     </div>
                     <div>
-                        <input type="radio" name="sexo" formControlName='sexo' value="Feminino" >
-                        <label>Feminino</label>
+                        <input type="radio" name="sexo" formControlName='sexo' value="Feminino" id='feminino'>
+                        <label for="feminino">Feminino</label>
                     </div>
                 </div>
             </div>
@@ -41,10 +44,9 @@
                 </div>
                 <div class="group-input">
                     <div class="form-label">Telefone</div>
-                    <input class="form-control" type="text" [mask]="'(00) 0000-0000' || '(00) 00000-0000'" formControlName='telefone'>
+                    <input class="form-control" type="text" [mask]="mascaraPhone" formControlName='telefone' (keyup)='inputMaskPhone()'>
                 </div>
             </div>
-            <div (click)='consoleLog()'>Teste</div>
             <ng-container *ngIf="typeUser === 'paciente'">
                 <app-add-address (onReturn)='onReturnAddress($event)'></app-add-address>
             </ng-container>
@@ -52,17 +54,23 @@
                 <div class="form-group">
                     <div class="group-input">
                         <div class="form-label">Email</div>
-                        <input type="email" class="form-control" formControlName='email'>
+                        <input type="email" class="form-control" formControlName='email' placeholder="endereco@email.com">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="group-input">
                         <div class="form-label">Senha</div>
-                        <input type="password" class="form-control" formControlName='senha'>
+                        <div  class=" inputPassword">
+                            <input class="form-control" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha'>
+                            <div class="clickType" (click)='alterTypePassword()'>
+                                    <i *ngIf="typePassword" class="far fa-eye"></i>
+                                    <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="group-input">
                         <div class="form-label">Confirme sua Senha</div>
-                        <input type="password" class="form-control" formControlName='senhaConfirmacao'>
+                        <input [type]="typePassword ? 'text' : 'password'" class="form-control" formControlName='senhaConfirmacao' placeholder="Confirme sua senha">
                     </div>
                 </div>
             </ng-container>

@@ -1,8 +1,15 @@
 <div class="cntPaciente">
-    <div class="cntFunc">
-        <button type="button" (click)='byUrlRegister()'>Adicionar</button>
+    <div class="cntFunc form-group">
+        <div class="group-input">
+            <label>Pesquisar por CPF</label>
+            <input type="text" class="form-control" mask="000.000.000-00" [(ngModel)]='searchPaciente' (keyup.enter)='searchByCpf()'>
+        </div>
+        <div class="cnt-buttons">
+            <button type="button" class="btn-adicionar" (click)='byUrlRegister()'>Adicionar</button>
+            <button type="button" class="btn-limpar" (click)='limparList()'>Limpar</button>
+        </div>
     </div>
-    <p-table [value]='responsePacientes' [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='listPacientes' [columns]='infoTable' [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">

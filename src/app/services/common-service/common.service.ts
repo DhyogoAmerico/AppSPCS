@@ -38,6 +38,23 @@ export class CommonService {
     }
   }
 
+  getIdUserByTypeUser(type){
+    switch (type) {
+      case 'medico':
+        return '7DBE420C-2297-411C-B9FA-AA97D49E2A53';
+        break;
+      case 'enfermeiro':
+        return '7D277147-A892-4312-A845-B5CA5A27BED6';
+        break;
+      case 'paciente':
+        return 'ff35ba72-38ac-4343-88f4-9bbda552bf59';
+        break;
+      default:
+        return 'false';
+        break;
+    }
+  }
+
   viaCep(cep: String) {
     let request = `https://viacep.com.br/ws/${cep}/json/`;
 

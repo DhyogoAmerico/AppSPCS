@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -13,7 +14,8 @@ export class MedicosComponent extends BaseComponent implements OnInit {
   public infoTable: any[];
   public visibleEdit = false;
   public objUser: any;
-  public responsePacientes: any;
+  public searchMed = '';
+  public responseMed: any;
   constructor(
     private sharedService: SharedService,
     private router: Router
@@ -23,42 +25,12 @@ export class MedicosComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.mountHeader();
-    this.responsePacientes = [
-      {
-        nome: 'Medico Teste1',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Medico Teste2',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Medico Teste23',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Medico Teste4',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      },
-      {
-        nome: 'Medico Teste5',
-        cpf: '15915915946',
-        diagnostico: true,
-        data_cadastro: '15/09/2021'
-      }
-    ]
+    this.getAllMedicos();
   }
 
   byUrlRegister() {
-    this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'medico'} })
+    // this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'medico'} })
+    this.router.navigate(['dashboard/usuario/register/medico']);
   }
   
   mountHeader(){
@@ -72,12 +44,12 @@ export class MedicosComponent extends BaseComponent implements OnInit {
         field: 'cpf'
       },
       {
-        header: 'Diagnosticado',
-        field: 'diagnostico'
+        header: 'Telefone',
+        field: 'telefone'
       },
       {
-        header: 'Cadastro',
-        field: 'data_cadastro'
+        header: 'CRM',
+        field: 'crm'
       }
     ]
   }
@@ -92,5 +64,27 @@ export class MedicosComponent extends BaseComponent implements OnInit {
 
   deleteUser(user) {
     console.log(user);
+  }
+
+  searchByCpf(){
+    console.log(this.searchMed);
+    this.sharedService.findUserByCpf(this.searchMed).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        this.responseMed = [];
+        this.responseMed.push(response);
+      }
+    )
+  }
+
+  limparList(){
+    this.responseMed = [];
+    this.getAllMedicos();
+  }
+  getAllMedicos() {
+    this.sharedService.getAllUsers('medico').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        this.responseMed = response || [];
+      }
+    )
   }
 }

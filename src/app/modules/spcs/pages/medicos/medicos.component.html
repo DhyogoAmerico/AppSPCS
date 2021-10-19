@@ -1,8 +1,15 @@
 <div class="cntPaciente">
-    <div class="cntFunc">
-        <button type="button" (click)='byUrlRegister()'>Adicionar</button>
+    <div class="cntFunc form-group">
+        <div class="group-input">
+            <label>Pesquisar por CPF</label>
+            <input type="text" class="form-control" mask="000.000.000-00" [(ngModel)]='searchMed' (keyup.enter)='searchByCpf()'>
+        </div>
+        <div class="cnt-buttons">
+            <button type="button" class="btn-adicionar" (click)='byUrlRegister()'>Adicionar</button>
+            <button type="button" class="btn-limpar" (click)='limparList()'>Limpar</button>
+        </div>
     </div>
-    <p-table [value]='responsePacientes' [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='responseMed' [columns]='infoTable' [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
@@ -14,7 +21,17 @@
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
             <tr>
                 <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
+                    <ng-container [ngSwitch]="col.field">
+                    <span *ngSwitchCase="'telefone'">
+                        {{rowData[col.field] | mask: rowData[col.field].length === 10 ? '(00) 0000-0000' : '(00) 00000-0000'}}
+                    </span>
+                    <span *ngSwitchCase="'cpf'">
+                        {{rowData[col.field] | mask: '000.000.000-00'}}
+                    </span>
+                    <span *ngSwitchDefault>
+                        {{rowData[col.field]}}
+                    </span>
+                    </ng-container>
                 </td>
                 <td style='width: 80px;'>
                     <div class="cntButtons">

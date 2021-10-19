@@ -5,6 +5,8 @@ import { ToastService } from 'src/app/services/common-service/toast.service';
 import { cpf } from 'cpf-cnpj-validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
+import { CommonService } from 'src/app/services/common-service/common.service';
+import { ValidatorService } from 'src/app/services/validator-service.service';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +19,9 @@ export class RegisterComponent implements OnInit {
   @Input() initial: any;
   @Input() inputTypeUser: any;
   public typeUser: any;
+  public mascaraPhone = '(00) 00000-0000';
+  public listEscolaridade = [];
+  public typePassword = true;
   public registerForm = new FormGroup({
     nome: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required, Validators.maxLength(70)])
@@ -28,7 +33,7 @@ export class RegisterComponent implements OnInit {
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     endereco: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     senha: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -49,7 +54,7 @@ export class RegisterComponent implements OnInit {
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     escolaridade: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     coren: new FormControl(
       { value: '', disabled: false }
@@ -61,24 +66,38 @@ export class RegisterComponent implements OnInit {
   constructor(
     private toastService: ToastService,
     private activateRoute: ActivatedRoute,
+    private commonService: CommonService,
     private router: Router,
     private sharedService: SharedService
   ) { }
 
   ngOnInit() {
+    this.listEscolaridade = [
+      "Fundamental - Incompleto",
+      "Fundamental - Completo",
+      "Médio - Incompleto",
+      "Médio - Completo",
+      "Superior - Incompleto",
+      "Superior - Completo",
+      "Pós-graduação - Incompleto",
+      "Pós-graduação - Completo",
+      "Mestrado - Incompleto",
+      "Mestrado - Completo",
+      "Doutorado - Incompleto",
+      "Doutorado - Completo"
+    ]
     if (!this.inputTypeUser) {
-      this.activateRoute.queryParams.subscribe(
+      this.activateRoute.params.subscribe(
         param => {
-          if (param['type']) {
-            this.invalidInput(param['type']);
+          if (param.type) {
+            this.invalidInput(param.type);
           }
           else {
             this.toastService.addToast('warn', 'Erro', 'Não há um tipo de usuário');
             this.router.navigateByUrl('/dashboard');
           }
-
         }
-      )
+      );
     }
     else {
       this.invalidInput(this.inputTypeUser);
@@ -90,9 +109,11 @@ export class RegisterComponent implements OnInit {
     this.typeUser = type;
     switch (this.typeUser) {
       case 'paciente':
-        this.registerForm.get('tipoUsuarioId').setValue('ff35ba72-38ac-4343-88f4-9bbda552bf59');
+        this.registerForm.get('tipoUsuarioId').setValue(this.commonService.getIdUserByTypeUser(this.typeUser));
         this.registerForm.get('senha').disable();
         this.registerForm.get('senhaConfirmacao').disable();
+        this.registerForm.get('endereco').setValidators(Validators.required);
+        this.registerForm.get('escolaridade').setValidators(Validators.required);
         this.registerForm.get('crm').disable();
         this.registerForm.get('crm').disable();
         this.registerForm.get('email').disable();
@@ -100,14 +121,14 @@ export class RegisterComponent implements OnInit {
         this.router
         break;
       case 'medico':
-        this.registerForm.get('tipoUsuarioId').setValue('7DBE420C-2297-411C-B9FA-AA97D49E2A53');
+        this.registerForm.get('tipoUsuarioId').setValue(this.commonService.getIdUserByTypeUser(this.typeUser));
         this.registerForm.get('coren').disable();
         this.registerForm.get('crm').setValidators(Validators.required);
         this.registerForm.get('crm').setValue('');
         this.registerForm.get('endereco').disable();
         break;
       case 'enfermeiro':
-        this.registerForm.get('tipoUsuarioId').setValue('7D277147-A892-4312-A845-B5CA5A27BED6');
+        this.registerForm.get('tipoUsuarioId').setValue(this.commonService.getIdUserByTypeUser(this.typeUser));
         this.registerForm.get('crm').disable();
         this.registerForm.get('coren').setValidators(Validators.required);
         this.registerForm.get('coren').setValue('');
@@ -128,13 +149,24 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.value);
   }
 
-  validCpf(input){
-    if(input !== '' && !cpf.isValid(input)){
-      this.registerForm.get('cpf').setErrors({invalidCpf :true});
+  validCpf(input) {
+    if (input !== '' && !cpf.isValid(input)) {
+      this.registerForm.get('cpf').setErrors({ invalidCpf: true });
     }
   }
 
-  consoleLog(){
+  alterTypePassword() {
+    if(this.typePassword){
+      //password
+      this.typePassword = false;
+    }
+    else {
+      //text
+      this.typePassword = true;
+    }
+  }
+
+  consoleLog() {
     console.log(this.registerForm.value);
   }
 
@@ -143,9 +175,21 @@ export class RegisterComponent implements OnInit {
       this.sharedService.registerUsuario(this.typeUser, this.registerForm.value).subscribe(
         (response: any) => {
           console.log(response);
-          this.router.navigate(['/dashboard/pacientes']);
+          this.toastService.addToast('success','Sucesso!','Usuário registrado com sucesso');
+          this.router.navigate(['/dashboard/'+ this.typeUser + 's']);
         }
       );
+    }
+  }
+
+  inputMaskPhone() {
+    switch (this.registerForm.get('telefone').value.length) {
+      case 11:
+        this.mascaraPhone = '(00) 00000-0000';
+        break;
+      case 10:
+        this.mascaraPhone = '(00) 0000-0000';
+        break;
     }
   }
 }

@@ -350,7 +350,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   ) {
     super();
     this.mountIntensDropDown();
-    this.currentStep = 4;
   }
 
   ngOnInit() {
