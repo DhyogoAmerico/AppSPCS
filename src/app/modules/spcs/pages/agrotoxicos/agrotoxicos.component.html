@@ -1,19 +1,18 @@
 <div class="cntDiagnostico">
     <div class="cntSearch">
-        <div class="form-group">
+        <!-- <div class="form-group">
+            <label>Pesquisar por </label>
             <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' placeholder="Nome do paciente">
-        </div>
-        <div class="cntButton">
-            <span>
+        </div> -->
+        <!-- <span>
                 <i class="fas fa-search"></i>
-            </span>
-            <span (click)='registerDiagnostico()'>
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
+            </span> -->
+        <span class="adicionar" (click)='registerDiagnostico()'>
+            Adicionar agrotóxico
+        </span>
 
     </div>
-    <p-table [value]='responseTable' [autoLayout]='true'  [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='responseTable' [autoLayout]='true' [columns]='infoTable' [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@env';
 import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment';
 import { CommonService } from './common-service/common.service';
 
 @Injectable({
@@ -41,5 +41,26 @@ export class SharedService {
     .set('Content-Type','application/json')
     .set('authorization', this.commonService.getToken().toString());
     return this.httpClient.get(this.apiUrl + 'usuario/listar/todos/' + idUser, { headers });
+  }
+  
+  GetAllAgrotoxico (){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', this.commonService.getToken().toString());
+    return this.httpClient.get(this.apiUrl + 'agrotoxico/listar', { headers });
+  }
+
+  InserirAgrotoxico (agrotoxico){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', this.commonService.getToken().toString());
+    return this.httpClient.post(this.apiUrl + 'agrotoxico/cadastrar', agrotoxico, { headers });
+  }
+
+  UpdateAgrotoxico (agrotoxico){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', this.commonService.getToken().toString());
+    return this.httpClient.post(this.apiUrl + 'agrotoxico/atualizar', agrotoxico, { headers });
   }
 }

@@ -81,16 +81,19 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
-      },
-      {
         icon: 'fas fa-users-cog', label:'Enfermeiros', link: '/dashboard/enfermeiros'
       },
       {
         icon: 'fas fa-users-cog', label:'Médicos', link: '/dashboard/medicos'
       },
       {
-        icon: 'fas fa-cogs', label:'Configuração', link: '/dashboard/settings'
+        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
+      },
+      {
+        icon: 'fas fa-stethoscope', label:'Ficha', link: '/dashboard/fichas'
+      },
+      {
+        icon: 'fas fa-cogs', label:'Agrotóxico', link: '/dashboard/agrotoxicos'
       }
     ]
   }

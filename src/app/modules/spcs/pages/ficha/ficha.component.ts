@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 
 @Component({
-  selector: 'app-diagnosticos',
-  templateUrl: './diagnosticos.component.html',
-  styleUrls: ['./diagnosticos.component.less']
+  selector: 'app-ficha',
+  templateUrl: './ficha.component.html',
+  styleUrls: ['./ficha.component.less']
 })
-export class DiagnosticosComponent extends BaseComponent implements OnInit {
+export class FichaComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public infoTable = []
   public responseTable : any;
@@ -37,10 +37,9 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
         field: 'cpf'
       },
       {
-        header: 'Cadastro',
-        field: 'data_cadastro'
+        header: 'Ação',
+        field: 'action'
       }
     ]
   }
-
 }

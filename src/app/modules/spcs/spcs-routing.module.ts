@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/services/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
+import { AgrotoxicosComponent } from './pages/agrotoxicos/agrotoxicos.component';
 import { LayoutDashComponent } from './pages/common/layout/layout-dash/layout-dash.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DiagnosticosComponent } from './pages/diagnosticos/diagnosticos.component';
 import { EnfermeirosComponent } from './pages/enfermeiros/enfermeiros.component';
+import { FichaComponent } from './pages/ficha/ficha.component';
 import { MedicosComponent } from './pages/medicos/medicos.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { RegisterDiagnosticoComponent } from './pages/register-diagnostico/register-diagnostico.component';
@@ -25,6 +27,16 @@ const routes: Routes = [
       {
         path: 'diagnosticos',
         component: DiagnosticosComponent,
+        canActivate: [ AuthGuard ]
+      },
+      {
+        path: 'fichas',
+        component: FichaComponent,
+        canActivate: [ AuthGuard ]
+      },
+      {
+        path: 'agrotoxicos',
+        component: AgrotoxicosComponent,
         canActivate: [ AuthGuard ]
       },
       {

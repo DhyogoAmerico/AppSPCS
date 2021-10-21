@@ -33,6 +33,9 @@ import { MedicosComponent } from './pages/medicos/medicos.component';
 import { DiagnosticosComponent } from './pages/diagnosticos/diagnosticos.component';
 import { RegisterDiagnosticoComponent } from './pages/register-diagnostico/register-diagnostico.component';
 import { StepsComponent } from 'src/app/components/steps-component/steps-component.component';
+import { FichaComponent } from './pages/ficha/ficha.component';
+import { AgrotoxicosComponent } from './pages/agrotoxicos/agrotoxicos.component';
+import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/register-agrotoxico.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { StepsComponent } from 'src/app/components/steps-component/steps-compone
     MedicosComponent,
     StepsComponent,
     DiagnosticosComponent,
-    RegisterDiagnosticoComponent
+    RegisterDiagnosticoComponent,
+    FichaComponent,
+    AgrotoxicosComponent,
+    RegisterAgrotoxicoComponent
   ],
   imports: [
     CommonModule,
