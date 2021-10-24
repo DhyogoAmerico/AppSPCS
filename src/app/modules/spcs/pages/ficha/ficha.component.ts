@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { EventEmitterService } from 'src/app/services/common-service/eventEmitterService';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-ficha',
@@ -12,13 +15,15 @@ export class FichaComponent extends BaseComponent implements OnInit {
   public infoTable = []
   public responseTable : any;
   constructor(
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { 
     super();
   }
 
   ngOnInit() {
     this.mountHeader();
+    this.getAllPacientes();
   }
 
   registerDiagnostico(){
@@ -41,5 +46,20 @@ export class FichaComponent extends BaseComponent implements OnInit {
         field: 'action'
       }
     ]
+  }
+
+  getAllPacientes(){
+    this.sharedService.getAllUsers('paciente').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response) => {
+        this.responseTable = response || [];
+      }
+    )
+  }
+
+  openRegisterFicha(objUser) {
+    console.log(objUser.cpf);
+    EventEmitterService.get('cpfPaciente').emit(objUser.cpf);
+
+    this.router.navigate(['dashboard/diagnosticos/cadastro']);
   }
 }

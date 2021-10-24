@@ -167,19 +167,18 @@
                 <div class="form-group">
                     <div class="group-input">
                         <label>Relação de trabalho</label>
-                        <select class="form-control" (change)='changeOutrosSelect("option_relacaoTrabalho")'
-                            formControlName='option_relacaoTrabalho'>
+                        <select class="form-control" required formControlName='relacaoTrabalho'>
                             <option disabled value="">Selecione</option>
                             <option *ngFor="let itemOptRel of listOptRelacaoTrabalho" [value]='itemOptRel'>
                                 {{itemOptRel}}</option>
                         </select>
                     </div>
-                    <div class="group-input">
+                    <!-- <div class="group-input">
                         <label>Outro:</label>
                         <input type="text" class="form-control"
                             [disabled]='this.formDiagnostico.get("option_relacaoTrabalho").value !== "Outro"'
                             formControlName='relacaoTrabalho' maxlength="50" placeholder="Relação de trabalho">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group form-group-bool">
                     <div class="group-input">
@@ -226,13 +225,13 @@
                             <input type="text" mask='000' class="form-control"
                                 formControlName='ultimoContatoPraguicida'>
                         </div>
-                        <!-- <div class="group-input">
-                            <label>Com qual produto teve contato pela última vez?</label>
+                        <div class="group-input">
+                            <label>Qual o tipo de agrotóxico?</label>
                             <select class="form-control">
                                 <option disabled value="">Selecione</option>
-                                <option *ngFor="let itemPrinAtiv of listPrincipioAtivo" [value]='itemPrinAtiv'>{{itemPrinAtiv}}</option>
+                                <option *ngFor="let itemAgro of listAgrotoxico" [value]='itemAgro'>{{itemAgro}}</option>
                             </select>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="group-input">
@@ -247,19 +246,17 @@
                     <div class="form-group">
                         <div class="group-input">
                             <label>Principal via de exposição</label>
-                            <select class="form-control" required (change)='changeOutrosSelect("option_formaAplicacao")'
-                                formControlName='option_formaAplicacao'>
+                            <select class="form-control" required formControlName='formaAplicacao'>
                                 <option disabled value="">Selecione</option>
                                 <option *ngFor="let itemForApl of listViaExpocicao" [value]='itemForApl'>{{itemForApl}}
                                 </option>
                             </select>
                         </div>
-                        <div class="group-input"
+                        <!-- <div class="group-input"
                             *ngIf="this.formDiagnostico.get('option_formaAplicacao').value === 'Outro'">
                             <label>Qual?</label>
                             <input type="text" maxlength="200" class="form-control" formControlName='formaAplicacao'>
-                            <!--FALTANDO-->
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <div class="form-group-bool"> -->
                     <!-- <div class="group-input-bool">

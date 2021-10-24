@@ -18,7 +18,7 @@
                 </div>
                 <div class="group-input" *ngIf="typeUser === 'paciente'">
                     <div class="form-label">Escolaridade</div>
-                    <select class="form-control">
+                    <select class="form-control" formControlName='escolaridade'>
                         <option disabled>Selecione</option>
                         <option *ngFor="let itemEsc of listEscolaridade" [value]='itemEsc'>{{itemEsc}}</option>
                     </select>

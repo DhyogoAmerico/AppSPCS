@@ -1,1 +1,27 @@
-<p>register-agrotoxico works!</p>
+<div class="cntAgro">
+    <form [formGroup]='formAgro' (submit)='submitAgro()'>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Nome do agrotóxico</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='nome'>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Tipo do agrotóxico</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='tipo'>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Principio Ativo</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='principioAtivo'>
+            </div>
+        </div>
+        <div class="cntButton">
+            <button [disabled]='!this.formAgro.valid' type="submit">
+                {{formAgro.get('id').value ? 'Atualizar' : 'Adicionar'}}
+            </button>
+        </div>
+    </form>
+</div>

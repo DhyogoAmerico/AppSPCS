@@ -7,7 +7,7 @@
         <!-- <span>
                 <i class="fas fa-search"></i>
             </span> -->
-        <span class="adicionar" (click)='registerDiagnostico()'>
+        <span class="adicionar" (click)='openInsertAgro()'>
             Adicionar agrotóxico
         </span>
 
@@ -18,15 +18,54 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                <th style='width: 80px;'></th>
+                <!-- <th style='width: 80px;'></th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
             <tr>
                 <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
+                    <ng-container [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'action'">
+                            <div class="btnAction">
+                                <button class="update" (click)='openUpdateAgro(rowData)'>Atualizar</button>
+                                <button class="delete" >Deletar</button>
+                            </div>
+                        </ng-container>
+                        <span *ngSwitchDefault>
+                            {{rowData[col.field]}}
+                        </span>
+    
+                    </ng-container>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+
+<p-dialog [(visible)]='visibleAgro' header='Agrotóxico' [modal]='true' [responsive]='true'>
+    <form [formGroup]='formAgro' (submit)='submitAgro()'>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Nome do agrotóxico</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='nome'>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Tipo do agrotóxico</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='tipo'>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Principio Ativo</label>
+                <input class="form-control" type="text" maxlength="35" formControlName='principioAtivo'>
+            </div>
+        </div>
+        <div class="cntButton">
+            <button [disabled]='!this.formAgro.valid' type="submit">
+                {{formAgro.get('id').value ? 'Atualizar' : 'Adicionar'}}
+            </button>
+        </div>
+    </form>
+</p-dialog>

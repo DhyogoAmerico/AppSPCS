@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { CommonService } from 'src/app/services/common-service/common.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-register-diagnostico',
@@ -17,6 +19,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   public listViaExpocicao: any[];
   public listPrincipioAtivo: any[];
   public listTiposCancer: any[];
+  public listAgrotoxico: any[];
   public cepTrabalho = '';
   public formDiagnostico = new FormGroup({
     pacienteId: new FormControl(
@@ -346,7 +349,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   });
 
   constructor(
-    private commonService: CommonService
+    private commonService: CommonService,
+    private sharedService: SharedService
   ) {
     super();
     this.mountIntensDropDown();
@@ -458,4 +462,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
+  listarTodosAgrotoxicos(){
+    this.sharedService.GetAllAgrotoxico().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        this.listAgrotoxico = response || [];
+      }
+    )
+  }
 }

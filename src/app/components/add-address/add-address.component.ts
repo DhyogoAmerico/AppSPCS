@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import validator from 'cpf-cnpj-validator';
 import { CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 
@@ -15,7 +16,7 @@ export class AddAddressComponent implements OnInit {
       { value: '', disabled: false },
     ),
     logradouro: new FormControl (
-      { value: '', disabled: false },
+      { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     numero: new FormControl (
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -33,7 +34,7 @@ export class AddAddressComponent implements OnInit {
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     estado: new FormControl (
-      { value: '', disabled: false },
+      { value: '', disabled: false }, Validators.compose([Validators.required])
     )
   });
   constructor(

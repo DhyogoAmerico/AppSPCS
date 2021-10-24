@@ -143,6 +143,9 @@ export class RegisterComponent implements OnInit {
 
   onReturnAddress(event) {
     this.registerForm.get('endereco').setValue(event);
+    console.log(this.registerForm.valid);
+    console.log(event);
+    console.log(this.registerForm.value);
     if (this.registerForm.valid) {
       this.submitForm();
     }
