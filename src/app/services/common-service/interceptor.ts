@@ -31,7 +31,8 @@ export class Interceptor implements HttpInterceptor {
         }
         else {
           if(err.status !== 200) {
-            this.toastService.addToast('error',err.status,err.message);
+            console.info(err.error.errors)
+            this.toastService.addToast('error',err.status,err.error.errors.Mensagens);
           }
         }
 

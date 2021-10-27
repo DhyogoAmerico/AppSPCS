@@ -5,18 +5,31 @@
     .cntStep {
         border-bottom: 1px solid #eee;
     }
-    .step0{
-
+    .step0 {
+        .data-perfil {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0;
+            border-bottom: 1px solid #e2e2e2;
+            .dadosPessoais {
+                display: flex;
+                flex-direction: column;
+                .dado-registro {
+                    margin: 3px 0;
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
     }
-
-    .form-group, .form-group-bool{
+    .form-group, .form-group-bool {
         border-bottom: 1px solid #e2e2e2;
         margin-bottom: 5px;
         .group-input {
             // justify-content: space-between;
         }
     }
-
 }
 
 .cntButton {
@@ -24,7 +37,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    button{
+    button {
         padding: 5px 20px;
         width: 110px;
         background: #2d74df;

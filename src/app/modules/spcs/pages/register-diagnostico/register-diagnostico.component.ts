@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { CommonService } from 'src/app/services/common-service/common.service';
+import { EventEmitterService } from 'src/app/services/common-service/eventEmitterService';
+import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -11,7 +14,9 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./register-diagnostico.component.less']
 })
 export class RegisterDiagnosticoComponent extends BaseComponent implements OnInit {
+  public cpfUser: any;
   public listSteps: any[];
+  public dataUser: any;
   public currentStep = 0;
   public listOptRelacaoTrabalho: any[];
   public listOptFuncaoTrabalho: any[];
@@ -82,7 +87,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     formaAplicacao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    option_formaAplicacao: new FormControl(
+    fichaAgros: new FormControl(
       { value: '', disabled: false },
     ),
     viaExposicao: new FormControl(
@@ -347,17 +352,56 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     )
   });
-
+  
   constructor(
     private commonService: CommonService,
-    private sharedService: SharedService
+    private activateRoute: ActivatedRoute,
+    private sharedService: SharedService,
+    private toastService: ToastService,
+    private router: Router
   ) {
     super();
     this.mountIntensDropDown();
+    if (!this.cpfUser) {
+
+      this.activateRoute.params.subscribe(
+        param => {
+          if (param.cpf) {
+            this.cpfUser = param.cpf;
+            this.findPacienteByCpf(this.cpfUser);
+          }
+          else {
+            this.toastService.addToast('warn', 'Erro', 'Não há um tipo de usuário');
+            this.router.navigateByUrl('/dashboard');
+          }
+        }
+      );
+    }
   }
 
+  
+
   ngOnInit() {
+    this.listarTodosAgrotoxicos();
     this.mountItensStep();
+    if(this.dataUser){
+      this.checkInitial();
+    }
+  }
+  checkInitial() {
+    this.formDiagnostico.get('pacienteId').setValue(this.dataUser.id);
+  }
+
+  cpfPaciente(_cpf){
+    this.cpfUser = _cpf;
+  }
+  
+  findPacienteByCpf(_cpf){
+    this.sharedService.findPacienteByCpf(_cpf).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any) => {
+        this.dataUser = response;
+      }
+    )
   }
 
   mountIntensDropDown() {
@@ -426,7 +470,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       },
       {
         icon: 'fas fa-viruses',
-        label: 'Praguicida'
+        label: 'Sintomas'
       },
       {
         icon: 'fas fa-id-badge',
@@ -454,19 +498,16 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  changeOutrosSelect(form: string) {
-    console.log(this.formDiagnostico.get(form).value);
-    if (!(this.formDiagnostico.get(form).value === "Outro")) {
-      form = form.replace('option_', '');
-      this.formDiagnostico.get(form).setValue(this.formDiagnostico.get(form).value);
-    }
-  }
-
   listarTodosAgrotoxicos(){
     this.sharedService.GetAllAgrotoxico().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.listAgrotoxico = response || [];
       }
     )
+  }
+
+  submitFicha(){
+    console.log(this.formDiagnostico.value);
+    console.log(this.formDiagnostico.valid);
   }
 }

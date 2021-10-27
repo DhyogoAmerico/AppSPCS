@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/services/auth.guard';
+import { TypeUserGuard } from 'src/app/services/type-user.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { AgrotoxicosComponent } from './pages/agrotoxicos/agrotoxicos.component';
 import { LayoutDashComponent } from './pages/common/layout/layout-dash/layout-dash.component';
@@ -22,60 +23,71 @@ const routes: Routes = [
       {
         path: '',
         component: LayoutDashComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['*'] }
       },
       {
         path: 'diagnosticos',
         component: DiagnosticosComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['medico','admin']}
       },
       {
         path: 'fichas',
         component: FichaComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['*'] }
       },
       {
         path: 'agrotoxicos',
         component: AgrotoxicosComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['medico','admin'] }
       },
       {
-        path: 'diagnosticos/cadastro',
+        path: 'diagnosticos/cadastro/:cpf',
         component: RegisterDiagnosticoComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['*'] }
       },
       {
         path:'usuario/register/:type',
         component: RegisterComponent,
-        canActivate: [ AuthGuard ],
-        pathMatch: 'full'
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        pathMatch: 'full',
+        data: { typeUser: ['*'] }
       },
       {
         path:'pacientes',
         component: PacientesComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['*'] }
       },
       {
         path:'medicos/register',
         component: RegisterComponent,
-        canActivate: [ AuthGuard ],
-        pathMatch: 'full'
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        pathMatch: 'full',
+        data: { typeUser: ['admin'] }
       },
       {
         path:'medicos',
         component: MedicosComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['admin'] }
       },
       {
         path:'enfermeiros/register',
         component: RegisterComponent,
-        canActivate: [ AuthGuard ],
-        pathMatch: 'full'
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        pathMatch: 'full',
+        data: { typeUser: ['medico','admin'] }
       },
       {
         path:'enfermeiros',
         component: EnfermeirosComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['medico','admin'] }
       }
     ]
   },

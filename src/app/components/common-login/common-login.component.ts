@@ -58,7 +58,8 @@ export class CommonLoginComponent extends BaseComponent implements OnInit {
       this.sharedService.loginUser(this.formLogin.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
         (response: any) => {
           console.log(response);
-          this.cookieService.set('authenticatedSPCS',response.accessToken, 30);
+          this.cookieService.set('authenticatedSPCS',(response.accessToken), 30);
+          this.cookieService.set('refreshSPCS',(response.refreshToken), 30);
           
           switch (response.usuarioToken.claims[0].type) {
             case 'Medico':

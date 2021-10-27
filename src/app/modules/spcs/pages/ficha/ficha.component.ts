@@ -13,11 +13,11 @@ import { SharedService } from 'src/app/services/shared.service';
 export class FichaComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public infoTable = []
-  public responseTable : any;
+  public responseTable: any;
   constructor(
     private router: Router,
     private sharedService: SharedService
-  ) { 
+  ) {
     super();
   }
 
@@ -26,12 +26,12 @@ export class FichaComponent extends BaseComponent implements OnInit {
     this.getAllPacientes();
   }
 
-  registerDiagnostico(){
+  registerDiagnostico() {
     this.router.navigate(['dashboard/diagnosticos/cadastro']);
 
   }
 
-  mountHeader(){
+  mountHeader() {
     this.infoTable = [
       {
         header: 'Nome',
@@ -48,7 +48,7 @@ export class FichaComponent extends BaseComponent implements OnInit {
     ]
   }
 
-  getAllPacientes(){
+  getAllPacientes() {
     this.sharedService.getAllUsers('paciente').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response) => {
         this.responseTable = response || [];
@@ -57,9 +57,8 @@ export class FichaComponent extends BaseComponent implements OnInit {
   }
 
   openRegisterFicha(objUser) {
-    console.log(objUser.cpf);
-    EventEmitterService.get('cpfPaciente').emit(objUser.cpf);
-
-    this.router.navigate(['dashboard/diagnosticos/cadastro']);
+    let cpf = objUser.cpf;
+    
+    this.router.navigate([`dashboard/diagnosticos/cadastro/${cpf}`]);
   }
 }

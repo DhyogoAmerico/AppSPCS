@@ -12,7 +12,7 @@ export class StepsComponent implements OnInit {
   }
   
   ngOnInit() {
-    console.log(this.itemSteps.length);
+
   }
 
 }

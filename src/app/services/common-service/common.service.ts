@@ -1,12 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@env';
 import { CookieService } from 'ngx-cookie-service';
+import { SharedService } from '../shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
+  public apiUrl = environment.urlApi;
   constructor(
     private cookieService: CookieService,
     private httpClient: HttpClient
@@ -15,7 +18,6 @@ export class CommonService {
   getTypeUser(){
     if(this.cookieService.check('typeUserSPCS')){
       let response : any = this.cookieService.get('typeUserSPCS');
-      console.log(response);
       let objResp = '';
       switch (response) {
         case '7DBE420C-2297-411C-B9FA-AA97D49E2A53':
@@ -61,12 +63,30 @@ export class CommonService {
     return this.httpClient.get(request);
   }
 
-  getToken(){
+  getTokenCookie(){
     if(this.cookieService.check('authenticatedSPCS')){
       return this.cookieService.get('authenticatedSPCS');
     }
     else {
       return false;
     }
+  }
+
+  getRefreshTokenCookie(){
+    if(this.cookieService.check('refreshSPCS')){
+      var token = this.cookieService.get('refreshSPCS');
+
+      return token;
+    }
+    else {
+      return 'false';
+    }
+  }
+    
+  refreshToken(){
+    const token: string = this.getRefreshTokenCookie();
+    const headers = new HttpHeaders()
+      .set('Content-Type','application/json');
+    return this.httpClient.post(this.apiUrl + 'auth/refresh-token', ('"' + token.toString() + '"'), { headers });
   }
 }
