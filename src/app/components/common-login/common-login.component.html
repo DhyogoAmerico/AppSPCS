@@ -3,14 +3,15 @@
         <div class="form-group">
             <div class="group-input">
                 <label>Email:</label>
-                <input class="input-form" type="text" placeholder="Email" maxlength="255" minlength="5" formControlName='email' pattern='^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?.(\.[a-z]{2,3}?)$'>
+                <input class="form-control" type="text" placeholder="Email" maxlength="255" minlength="5" formControlName='email'>
+                <small class="errorInput" *ngIf="this.formLogin.get('email').hasError('invalidEmail')">Email inválido</small>
             </div>
         </div>
         <div class="form-group">
             <div class="group-input">
                 <label>Senha:</label>
                 <div  class="inputPassword">
-                    <input class="input-form" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha'>
+                    <input class="form-control" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha'>
                     <div class="clickType" (click)='alterTypePassword()'>
                             <i *ngIf="typePassword" class="far fa-eye"></i>
                             <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
@@ -18,8 +19,10 @@
                 </div>
             </div>
         </div>
-        <button class="cntButton" [disabled]='!formLogin.valid'>
-            Entrar
-        </button>
+        <div class='cntButton'>
+            <button [disabled]='!formLogin.valid'>
+                Entrar
+            </button>
+        </div>
     </form>
 </div>

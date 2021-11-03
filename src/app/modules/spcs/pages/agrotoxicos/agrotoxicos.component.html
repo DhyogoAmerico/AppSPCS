@@ -15,7 +15,7 @@
     <p-table [value]='responseTable' [autoLayout]='true' [columns]='infoTable' [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th *ngFor="let col of columns">
+                <th *ngFor="let col of columns" [style]="col?.style">
                     {{col.header}}
                 </th>
                 <!-- <th style='width: 80px;'></th> -->
@@ -27,14 +27,18 @@
                     <ng-container [ngSwitch]="col.field">
                         <ng-container *ngSwitchCase="'action'">
                             <div class="btnAction">
-                                <button class="update" (click)='openUpdateAgro(rowData)'>Atualizar</button>
-                                <button class="delete" >Deletar</button>
+                                <span class="update" (click)='openUpdateAgro(rowData)'>
+                                    <i class="fas fa-user-edit"></i>
+                                </span>
+                                <span class="delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
                             </div>
                         </ng-container>
                         <span *ngSwitchDefault>
                             {{rowData[col.field]}}
                         </span>
-    
+
                     </ng-container>
                 </td>
             </tr>
@@ -53,13 +57,19 @@
         <div class="form-group">
             <div class="group-input">
                 <label>Tipo do agrotóxico</label>
-                <input class="form-control" type="text" maxlength="35" formControlName='tipo'>
+                <select class="form-control" formControlName='tipo'>
+                    <option disabled>Selecione</option>
+                    <option *ngFor="let item of listTipos" >{{item}}</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <div class="group-input">
                 <label>Principio Ativo</label>
-                <input class="form-control" type="text" maxlength="35" formControlName='principioAtivo'>
+                <select class="form-control" formControlName='principioAtivo'>
+                    <option disabled>Selecione</option>
+                    <option *ngFor="let item of listPrincipioAtivo" >{{item}}</option>
+                </select>
             </div>
         </div>
         <div class="cntButton">

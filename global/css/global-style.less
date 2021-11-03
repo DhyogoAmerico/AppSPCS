@@ -2,21 +2,22 @@
 @import url('./global-components.less');
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
 }
 
-::-webkit-scrollbar {
-    background-color: #dcdcdc !important;
-    width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #9c9c9c !important;
-    border-radius: 8px;
-}
 
 body {
     margin: 0;
     background: #f9f9f9 !important;
+    &::-webkit-scrollbar {
+        background-color: #dcdcdc !important;
+        width: 7px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #9c9c9c !important;
+        border-radius: 8px;
+    }
     overflow: hidden;
 }
 
@@ -43,7 +44,7 @@ a:hover {
         }
         input {
             &:disabled {
-                background: #999;
+                background: #d7d7d7;
             }
         }
         .input-form {
@@ -52,6 +53,15 @@ a:hover {
             padding: 7px;
             border: 1px solid #d0d0d0;
             transition: all 0.2s ease-out;
+        }
+        .form-control {
+            background: #f8f8f9;
+            // &:disabled {
+            // }
+            &[readonly] {
+                background-color: #e3e6e9 !important;
+                opacity: 1;
+            }
         }
     }
 }

@@ -21,13 +21,13 @@ export class RegisterComponent implements OnInit {
   public typeUser: any;
   public mascaraPhone = '(00) 00000-0000';
   public listEscolaridade = [];
-  public typePassword = true;
+  public typePassword = false;
   public registerForm = new FormGroup({
     nome: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required, Validators.maxLength(70)])
     ),
     email: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }, Validators.compose([Validators.required, ValidatorService.verifyEmail])
     ),
     cpf: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       { value: '', disabled: false }
     ),
     senha: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }, Validators.compose([Validators.required, ValidatorService.verifyPassword])
     ),
     senhaConfirmacao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -143,13 +143,9 @@ export class RegisterComponent implements OnInit {
 
   onReturnAddress(event) {
     this.registerForm.get('endereco').setValue(event);
-    console.log(this.registerForm.valid);
-    console.log(event);
-    console.log(this.registerForm.value);
     if (this.registerForm.valid) {
       this.submitForm();
     }
-    console.log(this.registerForm.value);
   }
 
   validCpf(input) {
@@ -186,13 +182,26 @@ export class RegisterComponent implements OnInit {
   }
 
   inputMaskPhone() {
-    switch (this.registerForm.get('telefone').value.length) {
-      case 11:
-        this.mascaraPhone = '(00) 00000-0000';
-        break;
-      case 10:
-        this.mascaraPhone = '(00) 0000-0000';
-        break;
+    setTimeout(() => {
+      switch (this.registerForm.get('telefone').value.length) {
+        case 11:
+          this.mascaraPhone = '(00) 00000-0000';
+          break;
+        case 10:
+          this.mascaraPhone = '(00) 0000-0000';
+          break;
+      }
+    }, 350);
+  }
+
+  differencePassword(){
+    if(this.registerForm.get('senha').value !== this.registerForm.get('senhaConfirmacao').value){
+      this.registerForm.get('senha').setErrors({ differencePassword: true });
+      this.registerForm.get('senhaConfirmacao').setErrors({ differencePassword: true });
+    }
+    else {
+      this.registerForm.get('senha').setErrors({ differencePassword: false });
+      this.registerForm.get('senhaConfirmacao').setErrors({ differencePassword: false });
     }
   }
 }

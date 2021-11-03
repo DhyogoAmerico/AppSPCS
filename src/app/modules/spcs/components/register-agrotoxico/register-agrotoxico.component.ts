@@ -49,7 +49,6 @@ export class RegisterAgrotoxicoComponent extends BaseComponent implements OnInit
   }
 
   submitAgro(){
-    console.log(this.formAgro.value);
     this.onReturn.emit(this.formAgro.value);
   }
 

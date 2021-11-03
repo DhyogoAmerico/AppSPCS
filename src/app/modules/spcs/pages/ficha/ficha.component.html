@@ -4,20 +4,18 @@
             <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' placeholder="Nome do paciente">
         </div>
         <div class="cntButton">
-            <span>
-                <i class="fas fa-search"></i>
-            </span>
-            <span (click)='registerDiagnostico()'>
+            <span pTooltip='Limpar' tooltipPosition='top'>
                 <i class="fas fa-search"></i>
             </span>
         </div>
 
     </div>
-    <p-table [value]='responseTable' [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='responseTable' [columns]='infoTable' [responsive]='true' [autoLayout]='true' [resizableColumns]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th *ngFor="let col of columns">
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                     {{col.header}}
+                    <p-sortIcon *ngIf="col.header !== 'Ação'" [field]="col.field"></p-sortIcon>
                 </th>
                 <!-- <th style='width: 80px;'></th> -->
             </tr>

@@ -89,17 +89,14 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   getAllEnfermeiros() {
     this.sharedService.getAllUsers('enfermeiro').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
-        console.log(response);
         this.listEnfermeiros = response || [];
       }
     )
   }
 
   editUser(user){
-    console.log(user);
     this.objUser = null;
     this.objUser = user;
-    console.log(this.objUser);
     this.visibleEdit = true;
   }
 
@@ -111,7 +108,6 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
     console.log(this.searchPaciente);
     this.sharedService.findPacienteByCpf(this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
-        console.log(response);
         this.listEnfermeiros = [];
         this.listEnfermeiros.push(response);
       }

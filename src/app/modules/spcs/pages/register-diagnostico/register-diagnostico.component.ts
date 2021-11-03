@@ -18,6 +18,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   public listSteps: any[];
   public dataUser: any;
   public currentStep = 0;
+  public listIdsAgrotoxicos: any[]
   public listOptRelacaoTrabalho: any[];
   public listOptFuncaoTrabalho: any[];
   public listFormaAplicacao: any[];
@@ -66,9 +67,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     relacaoTrabalho: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    option_relacaoTrabalho: new FormControl(
-      { value: '', disabled: false }
-    ),
     funcaoTrabalho: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
@@ -89,6 +87,9 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     ),
     fichaAgros: new FormControl(
       { value: '', disabled: false },
+    ),
+    listIdsAgroModel: new FormControl(
+      { value: [], disabled: false },
     ),
     viaExposicao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -247,49 +248,49 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     quandodiasExposicao: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     teveCancer: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     sncCancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     digestorioCcancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     respiratorioCancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     reprodutorCancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     glandularCancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     peleOssoSangueCancer: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     familiaCancer: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     sncCancerFamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     digestorioCancerfamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     respiratorioCancerfamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     reprodutorCancerfamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     glandularCancerfamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     peleOssoSangueCancerfamilia: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: false, disabled: false }
     ),
     edaRegiao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
@@ -337,19 +338,19 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     filhoMaFormacao: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     medicamentoContinuo: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     medicamento: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     remedioMicose: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     nomeRemedio: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     )
   });
   
@@ -400,8 +401,17 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.sharedService.findPacienteByCpf(_cpf).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {
         this.dataUser = response;
+        this.formDiagnostico.get('pacienteId').setValue(this.dataUser.id);
       }
     )
+  }
+
+  alterCurrentPage(){
+    this.currentStep++;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if(this.currentStep - 1 === 2){
+      this.alterFormAgro();
+    }
   }
 
   mountIntensDropDown() {
@@ -423,8 +433,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.listFormaAplicacao = [
       'Bomba Costal(Mochila)',
       'Mangueira',
-      'Trator sem cabine',
-      'Trator com cabine fechada',
+      'Trator Sem Cabine',
+      'Trator Com Cabine Fechada',
       'Não Informado'
     ];
     this.listViaExpocicao = [
@@ -501,13 +511,38 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   listarTodosAgrotoxicos(){
     this.sharedService.GetAllAgrotoxico().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
-        this.listAgrotoxico = response || [];
+        this.listIdsAgrotoxicos = [];
+        if(response) {
+          response.forEach( element => {
+            this.listIdsAgrotoxicos.push({ label: element.nome, value: { id: element.id } })
+          })
+        }
+        else {
+          this.listIdsAgrotoxicos = [];
+        }
+        console.log(this.listIdsAgrotoxicos)
+
+
       }
     )
+  }
+
+  alterFormAgro(){
+    console.log(this.formDiagnostico.get('listIdsAgroModel').value);
+    // this.formDiagnostico.get('listIdsAgroModel').value.forEach(element => {
+      
+    // });
+    this.formDiagnostico.get('fichaAgros').setValue(this.formDiagnostico.get('listIdsAgroModel').value);
   }
 
   submitFicha(){
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
+
+    this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any) => {
+        console.log(response)
+      }
+    )
   }
 }

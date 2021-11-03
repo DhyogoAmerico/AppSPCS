@@ -14,6 +14,8 @@ export class AgrotoxicosComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public infoTable = []
   public responseTable: any[];
+  public listPrincipioAtivo: any[];
+  public listTipos: any[];
   public visibleAgro = false;
   public formAgro = new FormGroup({
     id: new FormControl(
@@ -57,8 +59,27 @@ export class AgrotoxicosComponent extends BaseComponent implements OnInit {
       },
       {
         header: 'Ação',
-        field: 'action'
+        field: 'action',
+        style: 'width: 115px'
       }
+    ];
+    this.listPrincipioAtivo = [
+      "Glicina Substituida",
+      "Organoclorado",
+      "Organofosforado",
+      "Carbamato",
+      "Piretroide",
+      "Neonicotinoide",
+      "Triazol"
+    ];
+    this.listTipos = [
+      "Inseticidas",
+      "Fungicidas",
+      "Acaricidas",
+      "Nematicidas",
+      "Herbicidads",
+      "Bactericidas",
+      "Vermifugos"
     ]
   }
 

@@ -39,17 +39,15 @@
                     <div class="form-group">
                         <div class="group-input">
                             <label>CEP</label>
-                            <input type="text" class="form-control" (blur)='viaCep()' required formControlName='cep'
-                                mask='00.000-000' placeholder="00.000-000">
+                            <input type="text" class="form-control" (blur)='viaCep()' required formControlName='cep' mask='00.000-000' placeholder="00.000-000">
                         </div>
                         <div class="group-input">
                             <label>Municipio de trabalho</label>
-                            <input type="text" class="form-control" readonly formControlName='municipioTrabalho'
-                                maxlength="50">
+                            <input type="text" class="form-control" readonly formControlName='municipioTrabalho' maxlength="50">
                         </div>
                     </div>
                     <div class="cntButton">
-                        <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                        <button (click)='alterCurrentPage()'>Próximo</button>
                     </div>
                 </div>
             </ng-container>
@@ -60,18 +58,18 @@
                             <label>Gestante</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='gestante' type="radio" value='Sim' id='simGestante'><label
-                                        for='simGestante'>Sim</label>
+                                    <input formControlName='gestante' type="radio" value='Sim' id='simGestante'>
+                                    <label for='simGestante'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='gestante' type="radio" value='Não' id='naoGestante'><label
-                                        for="naoGestante">Não</label>
+                                    <input formControlName='gestante' type="radio" value='Não' id='naoGestante'>
+                                    <label for="naoGestante">Não</label>
                                 </div>
                             </div>
                         </div>
                         <div class="group-input">
                             <label>Anos de estudo</label>
-                            <input class="form-control" type="text" mask='000'>
+                            <input class="form-control" pKeyFilter='int' type="text" maxlength="3">
                         </div>
                     </div>
                     <div class="form-group-bool">
@@ -79,10 +77,12 @@
                             <label>Tabagismo</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input type="radio" formControlName='tabagismo' value='Sim'><label>Sim</label>
+                                    <input type="radio" formControlName='tabagismo' value='Sim'>
+                                    <label>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input type="radio" formControlName='tabagismo' value='Não'><label>Não</label>
+                                    <input type="radio" formControlName='tabagismo' value='Não'>
+                                    <label>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +90,12 @@
                             <label>Tabagismo (Atual)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAtual' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='tabagismoAtual' type="radio" value='Sim'>
+                                    <label>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAtual' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='tabagismoAtual' type="radio" value='Não'>
+                                    <label>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -101,12 +103,12 @@
                             <label>Tabagismo (Antes)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAnterior' type="radio"
-                                        value='Sim'><label>Sim</label>
+                                    <input formControlName='tabagismoAnterior' type="radio" value='Sim'>
+                                    <label>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAnterior' type="radio"
-                                        value='Não'><label>Não</label>
+                                    <input formControlName='tabagismoAnterior' type="radio" value='Não'>
+                                    <label>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -116,10 +118,12 @@
                             <label>Etilismo</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='etilismo' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='etilismo' type="radio" value='Sim'>
+                                    <label>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='etilismo' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='etilismo' type="radio" value='Não'>
+                                    <label>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -127,10 +131,12 @@
                             <label>Etilismo (Atual)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAtual' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='etilismoAtual' type="radio" value='Sim'>
+                                    <label>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAtual' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='etilismoAtual' type="radio" value='Não'>
+                                    <label>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -162,11 +168,11 @@
                         </div>
                         <div class="group-input">
                             <label>Ml p/ dia</label>
-                            <input class="form-control" type="text" formControlName='cafeMlDia' mask='0000'>
+                            <input class="form-control" type="text" formControlName='cafeMlDia' pKeyFilter='int' maxlength="4">
                         </div>
                     </div>
                     <div class="cntButton">
-                        <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                        <button (click)='alterCurrentPage()'>Próximo</button>
                         <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                     </div>
                 </div>
@@ -219,7 +225,7 @@
                     <div class="form-group">
                         <div class="group-input">
                             <label>Há quanto tempo tem contato com praguicidas (venenos)?</label>
-                            <input type="text" mask='00' class="form-control" formControlName='tempoContatoPraguicida'>
+                            <input type="text" pKeyFilter='int' maxlength="3" class="form-control" formControlName='tempoContatoPraguicida'>
                         </div>
                         <!-- <div class="group-input">
                             <label>Frequência de contato com praguicidas (multiplicação de ano/mês/dia)</label>
@@ -233,10 +239,11 @@
                         </div>
                         <div class="group-input">
                             <label>Qual o tipo de agrotóxico?</label>
-                            <select class="form-control" formControlName='fichaAgros'>
+                            <!-- <select class="form-control" formControlName='fichaAgros'>
                                 <option disabled value="">Selecione</option>
                                 <option *ngFor="let itemAgro of listAgrotoxico" [value]='itemAgro.id'>{{itemAgro.nome}}</option>
-                            </select>
+                            </select> -->
+                            <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '150px'}"></p-multiSelect>
                         </div>
                     </div>
                     <div class="form-group">
@@ -379,7 +386,7 @@
                     </div>
                     <div class="form-group-bool">
                         <div class="group-input-bool">
-                            <label>Bota aprppriada</label>
+                            <label>Bota apropriada</label>
                             <div class="group-radio">
                                 <div class="input-radio">
                                     <input formControlName='botaProtecao' type="radio" value='Sim'><label>Sim</label>
@@ -425,18 +432,26 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group-bool">
+                    <div class="form-group-bool">
                         <div class="group-input-bool">
                             <label>Protetor Auricular</label>
                             <div>
-                                <p-radioButton formControlName='protetorAuricular' value='Sim' label='Sim'></p-radioButton>
-                                <p-radioButton formControlName='protetorAuricular' value='Não' label='Não'></p-radioButton>
+                                <div class="group-radio">
+                                    <div class="input-radio">
+                                        <input formControlName='protetorAuricular' type="radio" value='Sim'>
+                                        <label>Sim</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='protetorAuricular' type="radio" value='Não'>
+                                        <label>Não</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </ng-container>
                 <div class="cntButton">
-                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <button (click)='alterCurrentPage()'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>
@@ -809,8 +824,7 @@
                 </div>
                 <div class="form-group-bool">
                     <div class="group-input-bool">
-                        <label>A coceira veio depois de algum tempo que o sr(a) começou a trabalhar com o
-                            produto?</label>
+                        <label>A coceira veio depois de algum tempo que o sr(a) começou a trabalhar com o produto (dcSensibilizante)?</label>
                         <div class="group-radio">
                             <div class="input-radio">
                                 <input formControlName='dcSensibilizante' type="radio" value='Sim'><label>Sim</label>
@@ -821,7 +835,7 @@
                         </div>
                     </div>
                     <div class="group-input-bool">
-                        <label>Ou ela aparece logo que usa/prepara o produto?</label>
+                        <label>Ou ela aparece logo que usa/prepara o produto (dcIrritativa)?</label>
                         <div class="group-radio">
                             <div class="input-radio">
                                 <input formControlName='dcIrritativa' type="radio" value='Sim'><label>Sim</label>
@@ -913,7 +927,7 @@
                     </div>
                 </div>
                 <div class="cntButton">
-                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <button (click)='alterCurrentPage()'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>
@@ -1116,7 +1130,7 @@
                 <div class="form-group">
                     <div class="group-input">
                         <label>Nome medicamento:</label>
-                        <input class="form-control" type="text" formControlName='nomeRemedio'>
+                        <input class="form-control" type="text" formControlName='nomeRemedio' maxlength="50">
                     </div>
                 </div>
                 <div class="cntButton">
@@ -1126,7 +1140,7 @@
             </ng-container>
             <ng-container *ngSwitchCase="5">
                 <div class="cntButton">
-                    <button (click)='currentStep = currentStep + 1'>Próximo</button>
+                    <button (click)='alterCurrentPage()'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>

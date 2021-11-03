@@ -21,10 +21,9 @@ canActivate(
   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if(this.cookieService.check('authenticatedSPCS') && this.cookieService.check('refreshSPCS')){
+      this.cookieService.deleteAll();
       this.commonService.refreshToken().subscribe(
         (response: any) => {
-          console.log(response);
-          this.cookieService.deleteAll();
           this.cookieService.set('authenticatedSPCS',response.accessToken, 30);
           this.cookieService.set('refreshSPCS',(response.refreshToken), 30);
           
@@ -41,8 +40,11 @@ canActivate(
             default:
               this.toastService.addToast('warn', 'Erro', 'Erro no tipo de usuario');
               break;
-          }
-          this.route.navigate(["/dashboard"]);
+            }
+            this.route.navigate(["/dashboard"]);
+          },
+          (err: any) => {
+            this.toastService.addToast('warn', 'Erro', 'Problema ao atualizar o cookie');
         }
       )
     }

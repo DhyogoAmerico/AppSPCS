@@ -61,6 +61,13 @@ export class SharedService {
     const headers = new HttpHeaders()
     .set('Content-Type','application/json')
     .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
-    return this.httpClient.post(this.apiUrl + 'agrotoxico/atualizar', agrotoxico, { headers });
+    return this.httpClient.put(this.apiUrl + 'agrotoxico/atualizar', agrotoxico, { headers });
+  }
+
+  InsertFichaPaciente(ficha){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
+    return this.httpClient.post(this.apiUrl + 'ficha/cadastrar', ficha, { headers });
   }
 }

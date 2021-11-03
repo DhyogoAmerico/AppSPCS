@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { ValidatorService } from 'src/app/services/validator-service.service';
 
 
 @Component({
@@ -18,10 +19,10 @@ export class CommonLoginComponent extends BaseComponent implements OnInit {
   public typePassword = false;
   public formLogin = new FormGroup ({
     email: new FormControl (
-      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)?.(\.[a-z]{2,3})$")])
+      { value: '', disabled: false }, Validators.compose([Validators.required, ValidatorService.verifyEmail])
     ),
     senha: new FormControl (
-      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.minLength(6)])
+      { value: '', disabled: false }, Validators.compose([Validators.required, Validators.minLength(8)])
     ),
     grantType: new FormControl (
       { value: 'password', disabled: false }
@@ -57,7 +58,6 @@ export class CommonLoginComponent extends BaseComponent implements OnInit {
     if(this.formLogin.valid){
       this.sharedService.loginUser(this.formLogin.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
         (response: any) => {
-          console.log(response);
           this.cookieService.set('authenticatedSPCS',(response.accessToken), 30);
           this.cookieService.set('refreshSPCS',(response.refreshToken), 30);
           

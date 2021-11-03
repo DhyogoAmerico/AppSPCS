@@ -37,7 +37,6 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   getAllPacientes() {
     this.sharedService.getAllUsers('paciente').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
-        console.log(response);
         this.listPacientes = response || [];
       }
     )
@@ -65,10 +64,8 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   }
 
   editUser(user){
-    console.log(user);
     this.objUser = null;
     this.objUser = user;
-    console.log(this.objUser);
     this.visibleEdit = true;
   }
 

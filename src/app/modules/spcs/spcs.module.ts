@@ -9,8 +9,11 @@ import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {InputSwitch, InputSwitchModule} from 'primeng/inputswitch';
+import {TooltipModule} from 'primeng/tooltip';
+import {MultiSelectModule} from 'primeng/multiselect';
 import {RadioButtonModule} from 'primeng/radiobutton'
 import {CheckboxModule} from 'primeng/checkbox';
+import {KeyFilterModule} from 'primeng/keyfilter';
 import {DropdownModule} from 'primeng/dropdown';
 
 import { SpcsRoutingModule } from './spcs-routing.module';
@@ -66,6 +69,9 @@ import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/re
     RadioButtonModule,
     InputSwitchModule,
     CheckboxModule,
+    MultiSelectModule,
+    TooltipModule,
+    KeyFilterModule,
     DropdownModule,
     NgxMaskModule.forRoot({
       validation: true,

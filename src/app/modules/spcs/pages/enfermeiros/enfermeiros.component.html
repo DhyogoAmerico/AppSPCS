@@ -6,7 +6,9 @@
         </div>
         <div class="cnt-buttons">
             <button type="button" class="btn-adicionar" (click)='byUrlRegister()'>Adicionar</button>
-            <button type="button" class="btn-limpar" (click)='limparList()'>Limpar</button>
+            <button type="button" class="btn-limpar" (click)='limparList()' pTooltip='Limpar' tooltipPosition='top'>
+                <i class="fas fa-broom"></i>
+            </button>
         </div>
     </div>
     <p-table [value]='listEnfermeiros' [columns]='infoTable' [responsive]='true'>
@@ -15,7 +17,7 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                <th style='width: 80px;'></th>
+                <th style='width: 115px;'></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns='columns'>

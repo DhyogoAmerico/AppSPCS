@@ -23,22 +23,30 @@
     }
     .btnAction {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-evenly;
         align-items: center;
-        button {
-            // padding: 0 0px;
-            height: 24px;
-            margin: 3px 0;
-            max-width: 90px;
+        min-width: 56px;
+        span {
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
         }
         .update {
-            background: #2aa02f;
-            color: white;
+            background: transparent;
+            color: #2aa02f;
+            border-radius: 50%;
+            border: 2px solid #2aa02f;
         }
         .delete {
-            background: #cc1a1a;
-            color: white;
+            background: transparent;
+            color: #cc1a1a;
+            border-radius: 50%;
+            border: 2px solid #cc1a1a;
         }
     }
 }
