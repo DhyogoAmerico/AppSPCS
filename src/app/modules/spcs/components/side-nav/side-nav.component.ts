@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
@@ -16,6 +18,7 @@ export class SideNavComponent implements OnInit {
   public typeUser = '';
   constructor(
     private toastService: ToastService,
+    private cookieService: CookieService,
     private commonService: CommonService,
     private router:Router,
 
@@ -87,10 +90,10 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-users-cog', label:'Médicos', link: '/dashboard/medicos'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
+        icon: 'fas fa-stethoscope', label:'Ficha', link: '/dashboard/fichas'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Ficha', link: '/dashboard/fichas'
+        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
       },
       {
         icon: 'fas fa-cogs', label:'Agrotóxico', link: '/dashboard/agrotoxicos'
@@ -133,5 +136,12 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-stethoscope', label:'Diagnóstico', link: '/dashboard/report-diagnostico'
       }
     ]
+  }
+
+  logoutUser(){
+    if(this.cookieService.get('authenticatedSPCS')){
+      this.cookieService.deleteAll('/');
+      this.router.navigate(["/login"]);
+    }
   }
 }

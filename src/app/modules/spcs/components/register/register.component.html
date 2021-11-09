@@ -73,7 +73,7 @@
                     </div>
                     <div class="group-input">
                         <div class="form-label">Confirme sua Senha</div>
-                        <input [type]="typePassword ? 'text' : 'password'" class="form-control" formControlName='senhaConfirmacao' placeholder="Confirme sua senha" (keyup)='differencePassword()'>
+                        <input [type]="typePassword ? 'text' : 'password'" class="form-control" formControlName='senhaConfirmacao' placeholder="Confirme sua senha" (blur)='differencePassword()'>
                         <small class="errorInput" *ngIf="registerForm.get('senhaConfirmacao').hasError('differencePassword')">As senhas não conferem</small>
                     </div>
                 </div>

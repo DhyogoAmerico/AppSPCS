@@ -16,13 +16,24 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                <th style='width: 80px;'></th>
+                
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
             <tr>
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
+                <td *ngFor="let col of columns" [style]="col.style || ''">
+                    <ng-container [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'action'">
+                            <div class="cntBtn">
+                                <span class="impressao" (click)='impressaoFicha(rowData[col.field])'>
+                                    <i class="fas fa-file-pdf"></i>
+                                </span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            {{rowData[col.field]}}
+                        </ng-container>
+                    </ng-container>
                 </td>
             </tr>
         </ng-template>

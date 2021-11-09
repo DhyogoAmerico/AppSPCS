@@ -187,12 +187,6 @@
                                 {{itemOptRel}}</option>
                         </select>
                     </div>
-                    <!-- <div class="group-input">
-                        <label>Outro:</label>
-                        <input type="text" class="form-control"
-                            [disabled]='this.formDiagnostico.get("option_relacaoTrabalho").value !== "Outro"'
-                            formControlName='relacaoTrabalho' maxlength="50" placeholder="Relação de trabalho">
-                    </div> -->
                 </div>
                 <div class="form-group form-group-bool">
                     <div class="group-input">
@@ -216,33 +210,21 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="group-input">
-                        <label>Outro:</label>
-                        <input type="text" class="form-control" [disabled]='!this.formDiagnostico.get("optionRelacaoTrabalho").value.toString().includes("Outro")' formControlName='relacaoTrabalho' maxlength="50" placeholder="Relação de trabalho">
-                    </div> -->
                 </div>
-                <ng-container *ngIf="formDiagnostico.get('contatoPraguicida').value === 'Sim'">
+                <ng-container *ngIf="formDiagnostico.get('contatoPraguicida').value === 'Sim'" >
                     <div class="form-group">
                         <div class="group-input">
                             <label>Há quanto tempo tem contato com praguicidas (venenos)?</label>
                             <input type="text" pKeyFilter='int' maxlength="3" class="form-control" formControlName='tempoContatoPraguicida'>
                         </div>
-                        <!-- <div class="group-input">
-                            <label>Frequência de contato com praguicidas (multiplicação de ano/mês/dia)</label>
-                            <input type="text" mask='00000' class="form-control" formControlName='frequenciaContatoPraguicida'>
-                        </div> -->
                     </div>
                     <div class="form-group">
                         <div class="group-input">
                             <label>Quando foi a última vez que teve contato (em dias) com um praguicida?</label>
-                            <input type="text" mask='000' class="form-control" formControlName='ultimoContatoPraguicida'>
+                            <input type="text" pKeyFilter='int' maxlength="2" class="form-control" formControlName='ultimoContatoPraguicida'>
                         </div>
                         <div class="group-input">
                             <label>Qual o tipo de agrotóxico?</label>
-                            <!-- <select class="form-control" formControlName='fichaAgros'>
-                                <option disabled value="">Selecione</option>
-                                <option *ngFor="let itemAgro of listAgrotoxico" [value]='itemAgro.id'>{{itemAgro.nome}}</option>
-                            </select> -->
                             <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '150px'}"></p-multiSelect>
                         </div>
                     </div>
@@ -278,7 +260,6 @@
                         </div>
                     </div>
                     <div class="form-group-bool form-group">
-                        
                         <div class="group-input-bool">
                             <label>Quantas vezes você ficou doente por causa do veneno?</label>
                             <div class="group-radio">
@@ -921,9 +902,11 @@
                 <div class="form-group">
                     <div class="group-input">
                         <label>Data da última exposição</label>
-                        <div class="group-input">
-                            <input formControlName='quandodiasExposicao' mask='000' type="text" class="form-control">
-                        </div>
+                        <select class="form-control" required formControlName='quandodiasExposicao'>
+                            <option disabled value="">Selecione</option>
+                            <option *ngFor="let itemRaio of listRaioX" [value]='itemRaio'>{{itemRaio}}
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="cntButton">

@@ -26,6 +26,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   public listPrincipioAtivo: any[];
   public listTiposCancer: any[];
   public listAgrotoxico: any[];
+  public listRaioX: any[];
+
   public cepTrabalho = '';
   public formDiagnostico = new FormGroup({
     pacienteId: new FormControl(
@@ -74,9 +76,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     tempoContatoPraguicida: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
-    ),
-    frequenciaContatoPraguicida: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     ultimoContatoPraguicida: new FormControl(
@@ -461,6 +460,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       "Pele_Osso_Sangue",
       "Nenhum"
     ];
+    this.listRaioX = [
+      "De 1 a 7 dias",
+      "De 8 a 15 dias",
+      "Mais de 15 dias"
+    ]
 
   }
 
@@ -538,6 +542,19 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   submitFicha(){
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
+
+  this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("digestorioCcancer").setValue(this.formDiagnostico.get("digestorioCcancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value ? "Sim" : "Não");
+  this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value ? "Sim" : "Não");
+  this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value ? "Sim" : "Não");
+  this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value ? "Sim" : "Não");
+  this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value ? "Sim" : "Não");
+  this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value ? "Sim" : "Não");
+  this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value ? "Sim" : "Não");
 
     this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {

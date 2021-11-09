@@ -51,14 +51,14 @@
         <div class="form-group">
             <div class="group-input">
                 <label>Nome do agrotóxico</label>
-                <input class="form-control" type="text" maxlength="35" formControlName='nome'>
+                <input class="form-control" type="text" maxlength="35" formControlName='nome' placeholder="Nome">
             </div>
         </div>
         <div class="form-group">
             <div class="group-input">
                 <label>Tipo do agrotóxico</label>
                 <select class="form-control" formControlName='tipo'>
-                    <option disabled>Selecione</option>
+                    <option disabled [value]="'' || null">Selecione</option>
                     <option *ngFor="let item of listTipos" >{{item}}</option>
                 </select>
             </div>
@@ -67,7 +67,7 @@
             <div class="group-input">
                 <label>Principio Ativo</label>
                 <select class="form-control" formControlName='principioAtivo'>
-                    <option disabled>Selecione</option>
+                    <option disabled [value]="'' || null">Selecione</option>
                     <option *ngFor="let item of listPrincipioAtivo" >{{item}}</option>
                 </select>
             </div>

@@ -16,9 +16,15 @@
             </div>
         </div>
         <div class="btnPerfil">
-            <div class="btn" routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}">
+            <div class="btn" routerLinkActive='active' (click)='op.toggle($event)' [routerLinkActiveOptions]="{exact: true}">
                 Meu perfil
             </div>
+            <p-overlayPanel #op [dismissable]="true">
+                <div class="overPanelLogout" (click)='logoutUser()'>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </div>
+            </p-overlayPanel>
         </div>
     </div>
 </div>

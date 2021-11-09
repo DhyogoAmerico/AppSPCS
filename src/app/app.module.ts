@@ -31,13 +31,15 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
 import { CommonService } from './services/common-service/common.service';
 import { BaseComponent } from './services/common-service/base-component/base-component.component';
 import { StepsComponent } from './components/steps-component/steps-component.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    CommonLoginComponent
+    CommonLoginComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     ReactiveFormsModule,

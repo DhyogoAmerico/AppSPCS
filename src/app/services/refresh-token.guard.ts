@@ -21,7 +21,7 @@ canActivate(
   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if(this.cookieService.check('authenticatedSPCS') && this.cookieService.check('refreshSPCS')){
-      this.cookieService.deleteAll();
+      this.cookieService.deleteAll('/');
       this.commonService.refreshToken().subscribe(
         (response: any) => {
           this.cookieService.set('authenticatedSPCS',response.accessToken, 30);

@@ -163,6 +163,7 @@ export class RegisterComponent implements OnInit {
       //text
       this.typePassword = true;
     }
+    console.log(this.registerForm.get('senha'));
   }
 
   consoleLog() {
@@ -200,8 +201,8 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('senhaConfirmacao').setErrors({ differencePassword: true });
     }
     else {
-      this.registerForm.get('senha').setErrors({ differencePassword: false });
-      this.registerForm.get('senhaConfirmacao').setErrors({ differencePassword: false });
+      this.registerForm.get('senha').setErrors(null);
+      this.registerForm.get('senhaConfirmacao').setErrors(null);
     }
   }
 }

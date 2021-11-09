@@ -77,7 +77,7 @@ export class AgrotoxicosComponent extends BaseComponent implements OnInit {
       "Fungicidas",
       "Acaricidas",
       "Nematicidas",
-      "Herbicidads",
+      "Herbicidas",
       "Bactericidas",
       "Vermifugos"
     ]

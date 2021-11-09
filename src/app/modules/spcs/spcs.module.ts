@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import {InputSwitch, InputSwitchModule} from 'primeng/inputswitch';
 import {TooltipModule} from 'primeng/tooltip';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {RadioButtonModule} from 'primeng/radiobutton'
 import {CheckboxModule} from 'primeng/checkbox';
 import {KeyFilterModule} from 'primeng/keyfilter';
@@ -71,6 +72,7 @@ import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/re
     CheckboxModule,
     MultiSelectModule,
     TooltipModule,
+    OverlayPanelModule,
     KeyFilterModule,
     DropdownModule,
     NgxMaskModule.forRoot({

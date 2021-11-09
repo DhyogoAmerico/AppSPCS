@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-diagnosticos',
@@ -10,20 +12,16 @@ import { BaseComponent } from 'src/app/services/common-service/base-component/ba
 export class DiagnosticosComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public infoTable = []
-  public responseTable : any;
+  public responseTable : any[];
   constructor(
-    private router: Router
+    private sharedService: SharedService
   ) { 
     super();
   }
 
   ngOnInit() {
     this.mountHeader();
-  }
-
-  registerDiagnostico(){
-    this.router.navigate(['dashboard/diagnosticos/cadastro']);
-
+    this.ListarFichas();
   }
 
   mountHeader(){
@@ -38,9 +36,26 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
       },
       {
         header: 'Cadastro',
-        field: 'data_cadastro'
+        field: 'dataCadastro'
+      },
+      {
+        header: 'Ação',
+        field: 'action',
+        style: 'max-width: 80px'
       }
     ]
+  }
+
+  impressaoFicha(obj){
+    console.warn(obj)
+  }
+
+  ListarFichas(){
+    this.sharedService.ListarFichaPaciente().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (response: any[]) => {
+        this.responseTable = response || [];
+      }
+    )
   }
 
 }
