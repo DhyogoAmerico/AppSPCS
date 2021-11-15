@@ -46,7 +46,7 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]='visibleAgro' header='Agrotóxico' [modal]='true' [responsive]='true'>
+<p-dialog [(visible)]='visibleAgro' header='Agrotóxico' [style]="{width: '350px', minWidth: '200px'}" [modal]='true' [responsive]='true'>
     <form [formGroup]='formAgro' (submit)='submitAgro()'>
         <div class="form-group">
             <div class="group-input">

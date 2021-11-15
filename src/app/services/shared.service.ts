@@ -77,4 +77,12 @@ export class SharedService {
     .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
     return this.httpClient.get(this.apiUrl + 'ficha/listar', { headers });
   }
+
+  QuantPacientes(){
+    let url  = this.apiUrl.replace("api/","");
+
+    const headers = new HttpHeaders()
+      .set('Content-Type','application/json');
+    return this.httpClient.get(url + 'dashboard/obter-rel-dashboard', { headers });
+  }
 }

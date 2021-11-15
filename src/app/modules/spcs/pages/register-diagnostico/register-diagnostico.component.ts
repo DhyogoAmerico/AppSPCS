@@ -16,6 +16,7 @@ import { SharedService } from 'src/app/services/shared.service';
 export class RegisterDiagnosticoComponent extends BaseComponent implements OnInit {
   public cpfUser: any;
   public listSteps: any[];
+  public visibleConfirmation = false;
   public dataUser: any;
   public currentStep = 0;
   public listIdsAgrotoxicos: any[]
@@ -26,8 +27,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   public listPrincipioAtivo: any[];
   public listTiposCancer: any[];
   public listAgrotoxico: any[];
+  public listLavoura: any[];
   public listRaioX: any[];
-
   public cepTrabalho = '';
   public formDiagnostico = new FormGroup({
     pacienteId: new FormControl(
@@ -81,10 +82,16 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     ultimoContatoPraguicida: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
+    produtoContatoUltimaVez: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
     formaAplicacao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    fichaAgros: new FormControl(
+    cultura: new FormControl(
+      { value: '', disabled: false }, Validators.compose([Validators.required])
+    ),
+    agrotoxicos: new FormControl(
       { value: '', disabled: false },
     ),
     listIdsAgroModel: new FormControl(
@@ -352,7 +359,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }
     )
   });
-  
+
   constructor(
     private commonService: CommonService,
     private activateRoute: ActivatedRoute,
@@ -379,12 +386,12 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  
+
 
   ngOnInit() {
     this.listarTodosAgrotoxicos();
     this.mountItensStep();
-    if(this.dataUser){
+    if (this.dataUser) {
       this.checkInitial();
     }
   }
@@ -392,25 +399,27 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.formDiagnostico.get('pacienteId').setValue(this.dataUser.id);
   }
 
-  cpfPaciente(_cpf){
+  cpfPaciente(_cpf) {
     this.cpfUser = _cpf;
   }
-  
-  findPacienteByCpf(_cpf){
+
+  findPacienteByCpf(_cpf) {
     this.sharedService.findPacienteByCpf(_cpf).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {
         this.dataUser = response;
+        // this.dataUser.dataNascimento = this.dataUser.dataNascimento.toLocaleDateString('pt-br');
         this.formDiagnostico.get('pacienteId').setValue(this.dataUser.id);
       }
     )
   }
 
-  alterCurrentPage(){
+  alterCurrentPage() {
     this.currentStep++;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if(this.currentStep - 1 === 2){
-      this.alterFormAgro();
-    }
+    console.log(this.formDiagnostico.value);
+    // if (this.currentStep - 1 === 2) {
+    //   this.alterFormAgro();
+    // }
   }
 
   mountIntensDropDown() {
@@ -464,6 +473,14 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       "De 1 a 7 dias",
       "De 8 a 15 dias",
       "Mais de 15 dias"
+    ];
+    this.listLavoura = [
+      "Café",
+      "Milho",
+      "Soja",
+      "Arroz",
+      "Feijão",
+      "Outros"
     ]
 
   }
@@ -491,8 +508,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         label: 'Ficha'
       },
       {
-        icon: 'fas fa-search',
-        label: 'Avaliação'
+        icon: 'fas fa-check',
+        label: 'Conclusão'
       }
     ]
   }
@@ -512,13 +529,13 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  listarTodosAgrotoxicos(){
+  listarTodosAgrotoxicos() {
     this.sharedService.GetAllAgrotoxico().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.listIdsAgrotoxicos = [];
-        if(response) {
-          response.forEach( element => {
-            this.listIdsAgrotoxicos.push({ label: element.nome, value: { id: element.id } })
+        if (response) {
+          response.forEach(element => {
+            this.listIdsAgrotoxicos.push({ label: element.nome, value: { agrotoxicoId:  element.id } })
           })
         }
         else {
@@ -531,35 +548,84 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     )
   }
 
-  alterFormAgro(){
-    console.log(this.formDiagnostico.get('listIdsAgroModel').value);
-    // this.formDiagnostico.get('listIdsAgroModel').value.forEach(element => {
-      
-    // });
-    this.formDiagnostico.get('fichaAgros').setValue(this.formDiagnostico.get('listIdsAgroModel').value);
+  alterFormAgro() {
+    this.formDiagnostico.get('agrotoxicos').setValue(this.formDiagnostico.get('listIdsAgroModel').value);
+    console.log(this.formDiagnostico.get('agrotoxicos').value);
   }
 
-  submitFicha(){
+  casoNaoPraguicida(obj) {
+    console.log(this.formDiagnostico.get('contatoPraguicida').value)
+    if (obj === 'Não') {
+      this.formDiagnostico.get('tempoContatoPraguicida').setValue(0);
+      this.formDiagnostico.get('ultimoContatoPraguicida').setValue(0);
+      this.formDiagnostico.get('listIdsAgroModel').setValue({ agrotoxicoId: 0 });
+      this.formDiagnostico.get('formaAplicacao').setValue('Não Informado');
+      this.formDiagnostico.get('viaExposicao').setValue('Nenhum');
+      this.formDiagnostico.get('adoeceu').setValue('Não');
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('Nenhuma vez');
+      this.formDiagnostico.get('internado').setValue('Não');
+      this.formDiagnostico.get('qtdVezesInternado').setValue('Nenhuma vez');
+      this.formDiagnostico.get('quandoInterndo').setValue('Nenhuma vez');
+      this.formDiagnostico.get('tipoContato').setValue('Sem contato');
+      this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
+      this.formDiagnostico.get('roupaProtecao').setValue('Não');
+      this.formDiagnostico.get('botaProtecao').setValue('Não');
+      this.formDiagnostico.get('luvasProtecao').setValue('Não');
+      this.formDiagnostico.get('mascaraProtecao').setValue('Não');
+      this.formDiagnostico.get('oculosProtecao').setValue('Não');
+      this.formDiagnostico.get('protetorAuricular').setValue('Não');
+      console.log(this.formDiagnostico.value)
+    }
+    else {
+      this.formDiagnostico.get('tempoContatoPraguicida').setValue('');
+      this.formDiagnostico.get('ultimoContatoPraguicida').setValue('');
+      this.formDiagnostico.get('listIdsAgroModel').setValue('');
+      this.formDiagnostico.get('formaAplicacao').setValue('');
+      this.formDiagnostico.get('viaExposicao').setValue('');
+      this.formDiagnostico.get('adoeceu').setValue('');
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('');
+      this.formDiagnostico.get('internado').setValue('');
+      this.formDiagnostico.get('qtdVezesInternado').setValue('');
+      this.formDiagnostico.get('quandoInterndo').setValue('');
+      this.formDiagnostico.get('tipoContato').setValue('');
+      this.formDiagnostico.get('equipamentoProtecao').setValue('');
+      this.formDiagnostico.get('roupaProtecao').setValue('');
+      this.formDiagnostico.get('botaProtecao').setValue('');
+      this.formDiagnostico.get('luvasProtecao').setValue('');
+      this.formDiagnostico.get('mascaraProtecao').setValue('');
+      this.formDiagnostico.get('oculosProtecao').setValue('');
+      this.formDiagnostico.get('protetorAuricular').setValue('');
+      console.log(this.formDiagnostico.value)
+    }
+  }
+
+  submitFicha() {
+    this.alterFormAgro();
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
 
-  this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("digestorioCcancer").setValue(this.formDiagnostico.get("digestorioCcancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value ? "Sim" : "Não");
-  this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value ? "Sim" : "Não");
-  this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value ? "Sim" : "Não");
-  this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value ? "Sim" : "Não");
-  this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value ? "Sim" : "Não");
-  this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value ? "Sim" : "Não");
-  this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("digestorioCcancer").setValue(this.formDiagnostico.get("digestorioCcancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value ? "Sim" : "Não");
+    this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value ? "Sim" : "Não");
 
     this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {
         console.log(response)
+        this.currentStep++;
       }
     )
+  }
+
+  continueConclusao(){
+    this.router.navigate(["/dashboard/diagnosticos"])
   }
 }

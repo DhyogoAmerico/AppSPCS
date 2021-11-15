@@ -30,6 +30,21 @@
             // justify-content: space-between;
         }
     }
+    .cntConcluido {
+        display: flex;
+        flex-direction: column;
+        .iconConcluido {
+            font-size: 45px;
+            color: white;
+            background: #0c910c;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+        }
+    }
 }
 
 .cntButton {
@@ -48,6 +63,55 @@
         cursor: pointer;
         &:hover {
             text-decoration: underline;
+        }
+    }
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    .icon {
+        color: #ede726;
+        font-size: 100px;
+    }
+    .description {
+        margin: 7px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .titleDesc {
+            text-align: center;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        .desc {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+    }
+    .cntButton {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        flex-direction: row;
+        button {
+            height: 35px;
+            font-size: 16px;
+            padding: 0;
+        }
+        .btnSim {
+            color: white;
+            background: #0c910c;
+        }
+        .btnNao {
+            color: white;
+            background: #d71313;
         }
     }
 }

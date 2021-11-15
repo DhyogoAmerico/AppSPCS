@@ -3,7 +3,7 @@
         <div class="form-group">
             <div class="group-input">
                 <label>Email:</label>
-                <input class="form-control" type="text" placeholder="Email" maxlength="255" minlength="5" formControlName='email'>
+                <input class="form-control" type="text" placeholder="Email" maxlength="255" minlength="5" required formControlName='email'>
                 <small class="errorInput" *ngIf="this.formLogin.get('email').hasError('invalidEmail')">Email inválido</small>
             </div>
         </div>

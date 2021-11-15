@@ -31,15 +31,15 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
 import { CommonService } from './services/common-service/common.service';
 import { BaseComponent } from './services/common-service/base-component/base-component.component';
 import { StepsComponent } from './components/steps-component/steps-component.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    CommonLoginComponent,
-    ConfirmDialogComponent
+    CommonLoginComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -51,6 +51,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     DialogModule,
     BrowserAnimationsModule,
     MessagesModule,
+    NgbModalModule,
     NgxMaskModule.forRoot({
       validation: true,
     }),
@@ -71,6 +72,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     SharedService,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

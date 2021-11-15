@@ -32,17 +32,29 @@ a:hover {
     .group-input {
         min-width: 175px;
         display: flex;
-        flex-direction: column;
         flex: 1;
-        margin: 10px;
+        flex-direction: column;
+        margin: 5px 10px;
+        position: relative;
         label {
             font-size: 13px;
             font-weight: 500;
             color: rgb(125, 121, 139);
         }
+        .errorInput {
+            margin-top: 0.2rem;
+            color: #f10000;
+            font-size: .75rem;
+            font-weight: 400;
+            line-height: 1rem;
+        }
         input {
             &:disabled {
                 background: #d7d7d7;
+            }
+            &:focus-visible {
+                border: none;
+                // box-shadow: 0 0 8px 1px #585858;
             }
         }
         .input-form {
@@ -56,6 +68,7 @@ a:hover {
             background: #f8f8f9;
             // &:disabled {
             // }
+            position: relative;
             &[readonly] {
                 background-color: #e3e6e9 !important;
                 opacity: 1;
@@ -65,11 +78,12 @@ a:hover {
 }
 
 input[type='radio'] {
-    width: 12px !important;
+    width: 14px !important;
     color: red !important;
     background: green !important;
-    height: 12px !important;
+    height: 14px !important;
     margin-right: 5px;
+    cursor: pointer;
     &:focus {
         box-shadow: 0 0 0px 0px white !important;
         color: red !important;
@@ -78,10 +92,10 @@ input[type='radio'] {
 }
 
 input[type='radio']:checked {
-    width: 12px !important;
+    width: 14px !important;
     color: red !important;
     background: green !important;
-    height: 12px !important;
+    height: 14px !important;
     &::before, &::after {
         box-shadow: 0 0 20px 11px black !important;
         border-radius: 50% !important;
@@ -152,21 +166,13 @@ input {
     }
 }
 
-.errorInput {
-    color: #ff0500;
-    margin-top: 5px;
-    font-size: 12px;
-}
-
 .has-visited.ng-invalid:not {
     border-left: 6px solid #ff0500 !important;
     /* red */
 }
-
 label {
     margin-bottom: 4px;
 }
-
 button {
     border: none;
     border-radius: 5px !important;
@@ -176,7 +182,6 @@ button {
         background-color: #cccccc !important;
     }
 }
-
 .ui-chkbox {
     .ui-chkbox-box {
         .ui-chkbox-icon {
@@ -188,7 +193,6 @@ button {
         }
     }
 }
-
 .ui-overlaypanel {
     .ui-overlaypanel-content {
         padding: 0.571em 1em;

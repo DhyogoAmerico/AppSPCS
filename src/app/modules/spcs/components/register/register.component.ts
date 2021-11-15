@@ -183,16 +183,26 @@ export class RegisterComponent implements OnInit {
   }
 
   inputMaskPhone() {
-    setTimeout(() => {
-      switch (this.registerForm.get('telefone').value.length) {
-        case 11:
-          this.mascaraPhone = '(00) 00000-0000';
-          break;
-        case 10:
-          this.mascaraPhone = '(00) 0000-0000';
-          break;
-      }
-    }, 350);
+    let number = this.registerForm.get('telefone').value;
+
+    let listNumber = number.split("");
+    
+    if(listNumber[2] === 9){
+      this.mascaraPhone = '(00) 00000-0000';
+    }
+    else {
+      this.mascaraPhone = '(00) 0000-0000';
+    }
+    // setTimeout(() => {
+    //   switch (this.registerForm.get('telefone').value.length) {
+    //     case 11:
+    //       this.mascaraPhone = '(00) 00000-0000';
+    //       break;
+    //     case 10:
+    //       this.mascaraPhone = '(00) 0000-0000';
+    //       break;
+    //   }
+    // }, 350);
   }
 
   differencePassword(){

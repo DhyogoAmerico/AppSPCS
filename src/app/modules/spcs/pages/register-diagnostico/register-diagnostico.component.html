@@ -18,7 +18,7 @@
                             </div>
                             <div class="dado-registro">
                                 <span>Data de Nascimento: </span>
-                                <label>{{dataUser?.dataNascimento | mask: '00/00/0000'}}</label>
+                                <label>{{dataUser?.dataNascimento | date: 'dd/MM/yyyy'}}</label>
                             </div>
                             <div class="dado-registro">
                                 <span>Escolaridade: </span>
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <div class="group-input">
                             <label>CEP</label>
-                            <input type="text" class="form-control" (blur)='viaCep()' required formControlName='cep' mask='00.000-000' placeholder="00.000-000">
+                            <input type="text" class="form-control" (keyup)='viaCep()' required formControlName='cep' mask='00.000-000' placeholder="00.000-000">
                         </div>
                         <div class="group-input">
                             <label>Municipio de trabalho</label>
@@ -201,11 +201,11 @@
                         <label>Contato com praguicidas</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input name='contatoPraguicida' formControlName='contatoPraguicida' type="radio"
+                                <input name='contatoPraguicida' (click)="casoNaoPraguicida('Sim')" formControlName='contatoPraguicida' type="radio"
                                     value='Sim'><label>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input name='contatoPraguicida' formControlName='contatoPraguicida' type="radio"
+                                <input name='contatoPraguicida' (click)="casoNaoPraguicida('Não')" formControlName='contatoPraguicida' type="radio"
                                     value='Não'><label>Não</label>
                             </div>
                         </div>
@@ -224,8 +224,28 @@
                             <input type="text" pKeyFilter='int' maxlength="2" class="form-control" formControlName='ultimoContatoPraguicida'>
                         </div>
                         <div class="group-input">
-                            <label>Qual o tipo de agrotóxico?</label>
-                            <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '150px'}"></p-multiSelect>
+                            <label  (click)='alterFormAgro()'>Qual o agrotóxico que teve contato pela última vez?</label>
+                            <select class="form-control" formControlName='produtoContatoUltimaVez' >
+                                <option disabled value="">Selecione</option>
+                                <option *ngFor="let itemValueAgro of listIdsAgrotoxicos" [value]='itemValueAgro.value.agrotoxicoId' >{{itemValueAgro.label}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="group-input">
+                            <label>Tipo de Lavoura</label>
+                            <select class="form-control" formControlName='cultura'>
+                                <option disabled value="">Selecione</option>
+                                <option *ngFor="let itemLavoura of listLavoura" [value]='itemLavoura'>{{itemLavoura}}</option>
+                            </select>
+                        </div>
+                        <div class="group-input">
+                            <label>Agrotóxicos que já teve contato</label>
+                            <!-- <select class="form-control" formControlName='listIdsAgroModel' >
+                                <option disabled value="">Selecione</option>
+                                <option *ngFor="let itemValueAgro of listIdsAgrotoxicos" [value]='itemValueAgro.value' >{{itemValueAgro.label}}</option>
+                            </select> -->
+                            <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '250px'}"></p-multiSelect>
                         </div>
                     </div>
                     <div class="form-group">
@@ -1117,11 +1137,27 @@
                     </div>
                 </div>
                 <div class="cntButton">
-                    <button (click)='submitFicha()'>Próximo</button>
+                    <button (click)='visibleConfirmation = true'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>
             <ng-container *ngSwitchCase="5">
+                <div class="cntConcluido">
+                    <div class="iconConcluido">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="descricao">
+                        <span>Cadastro da ficha concluída.</span>
+                    </div>
+                    <div class="cntBtnConclusao">
+                        <button>
+                            Imprimir
+                        </button>
+                        <button (click)='continueConclusao()'>
+                            Sair
+                        </button>
+                    </div>
+                </div>
                 <div class="cntButton">
                     <button (click)='alterCurrentPage()'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
@@ -1130,5 +1166,24 @@
 
         </ng-container>
     </form>
-
 </div>
+
+<p-dialog [(visible)]='visibleConfirmation' [modal]='true' [showHeader]='false'>
+    <span class="dialog">
+        <div class="icon">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="description">
+            <span class="titleDesc">Atenção</span>
+            <span class="desc">Você deseja mesmo enviar estes dados? Após aceitar não será mais possível aceitar.</span>
+        </div>
+        <div class="cntButton">
+            <button (click)='submitFicha()' class='btnSim'>
+                Sim
+            </button>
+            <button (click)='visibleConfirmation = false' class="btnNao">
+                Não
+            </button>
+        </div>
+    </span>
+</p-dialog>
