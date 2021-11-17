@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="typeUSer">
+    <ng-container *ngSwitchCase="'medico'">
+        <app-medico-dash></app-medico-dash>
+    </ng-container>
+    <ng-container *ngSwitchCase="'enfermeiro'">
+        <app-enfermeiro-dash></app-enfermeiro-dash>
+    </ng-container>
+    <ng-container *ngSwitchCase="'admin'">
+        <app-admin-dash></app-admin-dash>
+    </ng-container>
+</ng-container>

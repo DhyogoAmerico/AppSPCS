@@ -1,0 +1,55 @@
+.cntLogin {
+    padding: 15px;
+    .group-input {
+        flex: 1;
+        label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 40px !important;
+        }
+        .inputPassword {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 0;
+            input {
+                width: 100%;
+            }
+            &:focus {
+                box-shadow: 0 0 4px #88a8ff;
+                border-radius: 4px !important;
+                outline: none;
+            }
+            .password {
+                background: transparent;
+                border: none;
+                flex: 1;
+                padding: 7px;
+            }
+            .clickType {
+                display: flex;
+                cursor: pointer;
+                align-items: inherit;
+                padding: 10px 15px;
+                font-size: 18px;
+                position: absolute;
+            }
+        }
+    }
+    .cntButton {
+        text-align: center;
+        border: none;
+        margin: 15px 0 0;
+        button {
+            text-transform: uppercase;
+            padding: 6px 0;
+            width: 100%;
+            border-radius: 55px !important;
+            background: #0fca1d;
+            cursor: pointer;
+            color: white;
+        }
+    }
+}

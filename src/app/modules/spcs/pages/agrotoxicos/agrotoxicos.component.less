@@ -1,0 +1,63 @@
+.cntDiagnostico {
+    display: flex;
+    flex-direction: column;
+    .cntSearch {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        min-height: 60px;
+        .form-group {
+            flex: 2;
+        }
+        .adicionar {
+            height: 35px;
+            padding: 0 10px;
+            background: #65bf5f;
+            color: white;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+    .btnAction {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        min-width: 56px;
+        span {
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .update {
+            background: transparent;
+            color: #2aa02f;
+            border-radius: 50%;
+            border: 2px solid #2aa02f;
+        }
+        .delete {
+            background: transparent;
+            color: #cc1a1a;
+            border-radius: 50%;
+            border: 2px solid #cc1a1a;
+        }
+    }
+}
+
+.cntButton {
+    padding: 15px 0;
+    text-align: center;
+    button {
+        min-width: 85px;
+        height: 30px;
+        color: white;
+        background: #5abd59;
+    }
+}

@@ -1,0 +1,28 @@
+<div class="cntLogin">
+    <form [formGroup]='formLogin' (ngSubmit)="loginUser()">
+        <div class="form-group">
+            <div class="group-input">
+                <label>Email:</label>
+                <input class="form-control" type="text" placeholder="Email" maxlength="255" minlength="5" formControlName='email'>
+                <small class="errorInput" *ngIf="this.formLogin.get('email').hasError('invalidEmail')">Email inválido</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="group-input">
+                <label>Senha:</label>
+                <div  class="inputPassword">
+                    <input class="form-control" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha'>
+                    <div class="clickType" (click)='alterTypePassword()'>
+                            <i *ngIf="typePassword" class="far fa-eye"></i>
+                            <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='cntButton'>
+            <button [disabled]='!formLogin.valid'>
+                Entrar
+            </button>
+        </div>
+    </form>
+</div>

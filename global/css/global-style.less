@@ -1,0 +1,202 @@
+@import "https://use.fontawesome.com/releases/v5.15.4/css/all.css";
+@import url('./global-components.less');
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
+
+body {
+    margin: 0;
+    background: #f9f9f9 !important;
+    &::-webkit-scrollbar {
+        background-color: #dcdcdc !important;
+        width: 7px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #9c9c9c !important;
+        border-radius: 8px;
+    }
+    overflow: hidden;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 4px !important;
+    .group-input {
+        min-width: 175px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin: 10px;
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgb(125, 121, 139);
+        }
+        input {
+            &:disabled {
+                background: #d7d7d7;
+            }
+        }
+        .input-form {
+            font-size: 16px;
+            border-radius: 4px;
+            padding: 7px;
+            border: 1px solid #d0d0d0;
+            transition: all 0.2s ease-out;
+        }
+        .form-control {
+            background: #f8f8f9;
+            // &:disabled {
+            // }
+            &[readonly] {
+                background-color: #e3e6e9 !important;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+input[type='radio'] {
+    width: 12px !important;
+    color: red !important;
+    background: green !important;
+    height: 12px !important;
+    margin-right: 5px;
+    &:focus {
+        box-shadow: 0 0 0px 0px white !important;
+        color: red !important;
+        background: green !important;
+    }
+}
+
+input[type='radio']:checked {
+    width: 12px !important;
+    color: red !important;
+    background: green !important;
+    height: 12px !important;
+    &::before, &::after {
+        box-shadow: 0 0 20px 11px black !important;
+        border-radius: 50% !important;
+        &:focus {
+            box-shadow: 0 0 20px 11px black !important;
+            border-radius: 50% !important;
+        }
+    }
+    &::selection {
+        box-shadow: 0 0 20px 11px black !important;
+        border-radius: 50% !important;
+    }
+}
+
+.form-group-bool {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    .group-input-bool {
+        min-width: 175px;
+        display: flex;
+        flex-direction: column;
+        // align-items: flex-start;
+        flex: 1;
+        margin: 10px;
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgb(125, 121, 139);
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .group-radio {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            .input-radio {
+                display: flex;
+                align-items: baseline;
+                label {
+                    margin-left: 5px;
+                }
+            }
+        }
+        .input-form {
+            font-size: 16px;
+            border-radius: 4px;
+            padding: 7px;
+            border: 1px solid #d0d0d0;
+            transition: all 0.2s ease-out;
+        }
+    }
+}
+
+input {
+    &:focus {
+        box-shadow: 0 0 2px 3px #88a8ff;
+        outline: none;
+    }
+    &.ng-touched.ng-invalid:not(form) {
+        border-left: 6px solid #ff0500 !important;
+        /* red */
+    }
+    &.ng-valid:not(form) {
+        border-left: 6px solid #16e422 !important;
+        /* green */
+    }
+}
+
+.errorInput {
+    color: #ff0500;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.has-visited.ng-invalid:not {
+    border-left: 6px solid #ff0500 !important;
+    /* red */
+}
+
+label {
+    margin-bottom: 4px;
+}
+
+button {
+    border: none;
+    border-radius: 5px !important;
+    &:disabled {
+        cursor: not-allowed;
+        color: #656b88 !important;
+        background-color: #cccccc !important;
+    }
+}
+
+.ui-chkbox {
+    .ui-chkbox-box {
+        .ui-chkbox-icon {
+            overflow: hidden;
+            position: relative;
+            font-size: 12px !important;
+            margin: 3px;
+            font-weight: bold;
+        }
+    }
+}
+
+.ui-overlaypanel {
+    .ui-overlaypanel-content {
+        padding: 0.571em 1em;
+        width: 100%;
+        max-width: 300px;
+        min-width: 160px;
+        min-height: 45px;
+        display: flex;
+        align-items: center;
+    }
+}

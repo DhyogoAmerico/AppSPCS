@@ -1,0 +1,42 @@
+<div class="cntDiagnostico">
+    <div class="cntSearch">
+        <div class="form-group">
+            <label>Pesquisar por Nome</label>
+            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' >
+        </div>
+        <div class="cntButton">
+            <span pTooltip='Limpar' tooltipPosition='top'>
+                <i class="fas fa-broom"></i>
+            </span>
+        </div>
+
+    </div>
+    <p-table [value]='responseTable' [autoLayout]='true'  [columns]='infoTable' [responsive]='true'>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns='columns'>
+            <tr>
+                <td *ngFor="let col of columns" [style]="col.style || ''">
+                    <ng-container [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'action'">
+                            <div class="cntBtn">
+                                <span class="impressao" (click)='impressaoFicha(rowData[col.field])'>
+                                    <i class="fas fa-file-pdf"></i>
+                                </span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            {{rowData[col.field]}}
+                        </ng-container>
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

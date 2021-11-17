@@ -1,0 +1,56 @@
+.cntRegister {
+    padding: 4px;
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    .cntForm {
+        .form-group {
+            .group-input {
+                .inputPassword {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    padding: 0;
+                    position: relative;
+                    input {
+                        width: 100%;
+                    }
+                    &:focus {
+                        box-shadow: 0 0 4px #88a8ff;
+                        border-radius: 4px !important;
+                        outline: none;
+                    }
+                    .password {
+                        background: transparent;
+                        border: none;
+                        flex: 1;
+                        padding: 7px;
+                    }
+                    .clickType {
+                        display: flex;
+                        cursor: pointer;
+                        align-items: inherit;
+                        padding: 10px 15px;
+                        font-size: 18px;
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+    .cntButton {
+        display: flex;
+        justify-content: center;
+        button {
+            min-width: 200px;
+            padding: 3px 0;
+            color: white;
+            background: #1cb521;
+            border: none;
+            border-radius: 4px;
+            font-size: 17px;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.cntPaciente {
+    display: flex;
+    flex-direction: column;
+    .cntFunc {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .cnt-buttons{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: end;
+            margin-bottom: 5px;
+            min-height: 65px;
+            button {
+                padding: 0 8px;
+                height: 35px;
+                max-width: 100px;
+                margin: 0 3px;
+            }
+            .btn-limpar {
+                background: #377bd3;
+                color: white;
+            }
+            .btn-adicionar {
+                background: #15ab15;
+                color: white;
+            }
+        }
+    }
+    .cntButtons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        span {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            margin: 0 5px;
+            justify-content: center;
+            align-items: center;
+        }
+        .edit {
+            color: #15ab15;
+            border-radius: 50%;
+            border: 2px solid #15ab15;
+        }
+        .delete {
+            color: red;
+            border-radius: 50%;
+            border: 2px solid red;
+        }
+    }
+}
