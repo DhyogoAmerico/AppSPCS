@@ -2,7 +2,7 @@
     <div class="cntFunc form-group">
         <div class="group-input">
             <label>Pesquisar por CPF</label>
-            <input type="text" class="form-control" mask="000.000.000-00" [(ngModel)]='searchPaciente' (keyup.enter)='searchByCpf()'>
+            <input type="text" class="form-control" mask="000.000.000-00" [(ngModel)]='searchPaciente' (keyup.enter)='searchByCpf()'  placeholder="000.000.000-00">
         </div>
         <div class="cnt-buttons">
             <button type="button" class="btn-adicionar" (click)='byUrlRegister()'>Adicionar</button>

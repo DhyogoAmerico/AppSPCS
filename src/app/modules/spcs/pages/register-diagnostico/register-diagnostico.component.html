@@ -77,12 +77,12 @@
                             <label>Tabagismo</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input type="radio" formControlName='tabagismo' value='Sim'>
-                                    <label>Sim</label>
+                                    <input type="radio" formControlName='tabagismo' value='Sim' id='simtabagismo'>
+                                    <label for="simtabagismo">Sim </label>
                                 </div>
                                 <div class="input-radio">
-                                    <input type="radio" formControlName='tabagismo' value='Não'>
-                                    <label>Não</label>
+                                    <input type="radio" formControlName='tabagismo' value='Não' id='naotabagismo'>
+                                    <label for="naotabagismo">Não</label>
                                 </div>
                             </div>
                         </div>
@@ -90,12 +90,12 @@
                             <label>Tabagismo (Atual)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAtual' type="radio" value='Sim'>
-                                    <label>Sim</label>
+                                    <input formControlName='tabagismoAtual' type="radio" value='Sim' id="simtabagismoAtual">
+                                    <label for="simtabagismoAtual">Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAtual' type="radio" value='Não'>
-                                    <label>Não</label>
+                                    <input formControlName='tabagismoAtual' type="radio" value='Não' id='naotabagismoAtual'>
+                                    <label for="naotabagismoAtual">Não</label>
                                 </div>
                             </div>
                         </div>
@@ -103,12 +103,12 @@
                             <label>Tabagismo (Antes)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAnterior' type="radio" value='Sim'>
-                                    <label>Sim</label>
+                                    <input formControlName='tabagismoAnterior' type="radio" value='Sim' id='simtabagismoAnterior'>
+                                    <label for="simtabagismoAnterior">Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tabagismoAnterior' type="radio" value='Não'>
-                                    <label>Não</label>
+                                    <input formControlName='tabagismoAnterior' type="radio" value='Não' id='naotabagismoAnterior'>
+                                    <label for="naotabagismoAnterior">Não</label>
                                 </div>
                             </div>
                         </div>
@@ -118,12 +118,12 @@
                             <label>Etilismo</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='etilismo' type="radio" value='Sim'>
-                                    <label>Sim</label>
+                                    <input formControlName='etilismo' type="radio" value='Sim' id='simetilismo'>
+                                    <label for='simetilismo'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='etilismo' type="radio" value='Não'>
-                                    <label>Não</label>
+                                    <input formControlName='etilismo' type="radio" value='Não' id='naoetilismo'>
+                                    <label for='naoetilismo'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -131,12 +131,12 @@
                             <label>Etilismo (Atual)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAtual' type="radio" value='Sim'>
-                                    <label>Sim</label>
+                                    <input formControlName='etilismoAtual' type="radio" value='Sim' id='simetilismoAtual'>
+                                    <label for='simetilismoAtual'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAtual' type="radio" value='Não'>
-                                    <label>Não</label>
+                                    <input formControlName='etilismoAtual' type="radio" value='Não' id='naoetilismoAtual'>
+                                    <label for='naoetilismoAtual'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -144,31 +144,36 @@
                             <label>Etilismo (Antes)</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAnterior' type="radio"
-                                        value='Sim'><label>Sim</label>
+                                    <input formControlName='etilismoAnterior' type="radio" value='Sim' id='simetilismoAnterior'>
+                                    <label for='simetilismoAnterior'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='etilismoAnterior' type="radio"
-                                        value='Não'><label>Não</label>
+                                    <input formControlName='etilismoAnterior' type="radio" value='Não' id='naoetilismoAnterior'>
+                                    <label for='naoetilismoAnterior'>Não</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group form-group-bool">
                         <div class="group-input-bool">
-                            <label>Ingest Café</label>
+                            <label>Ingestão de Café</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='ingestaoCafe' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='ingestaoCafe' type="radio" value='Sim'id='simingestaoCafe'>
+                                    <label for='simingestaoCafe'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='ingestaoCafe' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='ingestaoCafe' type="radio" value='Não' id='naoingestaoCafe'>
+                                    <label for='naoingestaoCafe'>Não</label>
                                 </div>
                             </div>
                         </div>
+
                         <div class="group-input">
-                            <label>Ml p/ dia</label>
-                            <input class="form-control" type="text" formControlName='cafeMlDia' pKeyFilter='int' maxlength="4">
+                            <ng-container *ngIf="formDiagnostico.get('ingestaoCafe').value === 'Sim'" >
+                                <label>Ml p/ dia</label>
+                                <input class="form-control" type="text" formControlName='cafeMlDia' pKeyFilter='int' maxlength="4">
+                            </ng-container>
                         </div>
                     </div>
                     <div class="cntButton">
@@ -201,12 +206,12 @@
                         <label>Contato com praguicidas</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input name='contatoPraguicida' (click)="casoNaoPraguicida('Sim')" formControlName='contatoPraguicida' type="radio"
-                                    value='Sim'><label>Sim</label>
+                                <input name='contatoPraguicida' id="simContatoPraguicida" (click)="casoNaoPraguicida('Sim')" formControlName='contatoPraguicida' type="radio" value='Sim'>
+                                <label for="simContatoPraguicida">Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input name='contatoPraguicida' (click)="casoNaoPraguicida('Não')" formControlName='contatoPraguicida' type="radio"
-                                    value='Não'><label>Não</label>
+                                <input name='contatoPraguicida' id="naoContatoPraguicida" (click)="casoNaoPraguicida('Não')" formControlName='contatoPraguicida' type="radio" value='Não'>
+                                <label for="naoContatoPraguicida">Não</label>
                             </div>
                         </div>
                     </div>
@@ -271,86 +276,107 @@
                             <label>Já ficou doente por causa do veneno?</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='adoeceu' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='adoeceu' type="radio" value='Sim' id='simadoeceu'>
+                                    <label for='simadoeceu'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='adoeceu' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='adoeceu' type="radio" value='Não' id='naoadoeceu'>
+                                    <label for='naoadoeceu'>Não</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group-bool form-group">
-                        <div class="group-input-bool">
-                            <label>Quantas vezes você ficou doente por causa do veneno?</label>
-                            <div class="group-radio">
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesAdoeceu' type="radio" value='Uma única vez'><label>Uma única vez</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesAdoeceu' type="radio" value='Mais de uma vez'><label>Mais de uma vez</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesAdoeceu' type="radio" value='Nenhuma vez'><label>Nenhuma vez</label>
+                    <ng-container *ngIf="formDiagnostico.get('adoeceu').value === 'Sim'" >
+                        <div class="form-group-bool form-group">
+                            <div class="group-input-bool">
+                                <label>Quantas vezes você ficou doente por causa do veneno?</label>
+                                <div class="group-radio">
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Uma única vez' id='unicavezqtdVezesAdoeceu'>
+                                        <label for='unicavezqtdVezesAdoeceu'>Uma única vez</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesAdoeceu'>
+                                        <label for='maisdeumaqtdVezesAdoeceu'>Mais de uma vez</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesAdoeceu'>
+                                        <label for='nenhumaqtdVezesAdoeceu'>Nenhuma vez</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                     <div class="form-group-bool">
                         <div class="group-input-bool">
                             <label>Alguma vez teve que ser internado?</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='internado' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='internado' type="radio" value='Sim' id='siminternado'>
+                                    <label for='siminternado'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='internado' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='internado' type="radio" value='Não' id='naointernado'>
+                                    <label for='naointernado'>Não</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="group-input-bool">
-                            <label>Quantas vezes?</label>
-                            <div class="group-radio">
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesInternado' type="radio" value='Uma única vez'><label>Uma única vez</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesInternado' type="radio" value='Mais de uma vez'><label>Mais de uma vez</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='qtdVezesInternado' type="radio" value='Nenhuma vez'><label>Nenhuma vez</label>
+                        <ng-container *ngIf="formDiagnostico.get('internado').value === 'Sim'" >
+                            <div class="group-input-bool">
+                                <label>Quantas vezes?</label>
+                                <div class="group-radio">
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Uma única vez' id='unicavezqtdVezesInternado'>
+                                        <label for='unicavezqtdVezesInternado'>Uma única vez</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesInternado'>
+                                        <label for='maisdeumaqtdVezesInternado'>Mais de uma vez</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesInternado'>
+                                        <label for='nenhumaqtdVezesInternado'>Nenhuma vez</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </ng-container>
+
                     </div>
                     <div class="form-group-bool">
-                        <div class="group-input-bool">
-                            <label>Há quanto tempo isto aconteceu?</label>
-                            <div class="group-radio">
-                                <div class="input-radio">
-                                    <input formControlName='quandoInterndo' type="radio" value='Há menos de 10 anos'><label>Há menos de 10 anos</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='quandoInterndo' type="radio" value='Há mais de 10 anos'><label>Há mais de 10 anos</label>
-                                </div>
-                                <div class="input-radio">
-                                    <input formControlName='quandoInterndo' type="radio" value='Nenhuma vez'><label>Nenhuma vez</label>
+                        <ng-container *ngIf="formDiagnostico.get('internado').value === 'Sim'" >
+                            <div class="group-input-bool">
+                                <label>Há quanto tempo isto aconteceu?</label>
+                                <div class="group-radio">
+                                    <div class="input-radio">
+                                        <input formControlName='quandoInterndo' type="radio" value='Há menos de 10 anos' id='menosdedezquandoInterndo'>
+                                        <label for='menosdedezquandoInterndo'>Há menos de 10 anos</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='quandoInterndo' type="radio" value='Há mais de 10 anos' id='maisdedezquandoInterndo'>
+                                        <label for='maisdedezquandoInterndo'>Há mais de 10 anos</label>
+                                    </div>
+                                    <div class="input-radio">
+                                        <input formControlName='quandoInterndo' type="radio" value='Nenhuma vez' id='nenhumquandoInterndo'>
+                                        <label for='nenhumquandoInterndo'>Nenhuma vez</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </ng-container>
+  
                         <div class="group-input-bool">
                             <label>Tipo de contato</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='tipoContato' type="radio"
-                                        value='Direto'><label>Direto</label>
+                                    <input formControlName='tipoContato' type="radio" value='Direto' id='diretotipoContato'>
+                                    <label for='diretotipoContato'>Direto</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tipoContato' type="radio"
-                                        value='Indeiro'><label>Indeiro</label>
+                                    <input formControlName='tipoContato' type="radio" value='Indeiro' id='indiretotipoContato'>
+                                    <label for='indiretotipoContato'>Indeiro</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='tipoContato' type="radio" value='Sem contato'><label>Sem
-                                        contato</label>
+                                    <input formControlName='tipoContato' type="radio" value='Sem contato' id='semtipoContato'>
+                                    <label for='semtipoContato'>Sem contato</label>
                                 </div>
                             </div>
                         </div>
@@ -360,16 +386,16 @@
                             <label>Utiliza equipamentos de proteção individual (EPI)?</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='equipamentoProtecao' type="radio"
-                                        value='Completo'><label>Completo</label>
+                                    <input formControlName='equipamentoProtecao' type="radio" value='Completo' id='completoequipamentoProtecao'>
+                                    <label for='completoequipamentoProtecao'>Completo</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='equipamentoProtecao' type="radio"
-                                        value='Incompleto'><label>Incompleto</label>
+                                    <input formControlName='equipamentoProtecao' type="radio" value='Incompleto' id='incompletoequipamentoProtecao'>
+                                    <label for='incompletoequipamentoProtecao'>Incompleto</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='equipamentoProtecao' type="radio"
-                                        value='Não'><label>Não</label>
+                                    <input formControlName='equipamentoProtecao' type="radio" value='Não' id='naoequipamentoProtecao'>
+                                    <label for='naoequipamentoProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -377,10 +403,12 @@
                             <label>Roupa Ipermeável apropriada</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='roupaProtecao' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='roupaProtecao' type="radio" value='Sim' id='simroupaProtecao'>
+                                    <label for='simroupaProtecao'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='roupaProtecao' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='roupaProtecao' type="radio" value='Não' id='naoroupaProtecao'>
+                                    <label for='naoroupaProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -390,10 +418,12 @@
                             <label>Bota apropriada</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='botaProtecao' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='botaProtecao' type="radio" value='Sim' id='simbotaProtecao'>
+                                    <label for='simbotaProtecao'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='botaProtecao' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='botaProtecao' type="radio" value='Não' id='naobotaProtecao'>
+                                    <label for='naobotaProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -401,10 +431,12 @@
                             <label>Luvas</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='luvasProtecao' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='luvasProtecao' type="radio" value='Sim' id='simluvasProtecao'>
+                                    <label for='simluvasProtecao'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='luvasProtecao' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='luvasProtecao' type="radio" value='Não' id='naoluvasProtecao'>
+                                    <label for='naoluvasProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -414,10 +446,12 @@
                             <label>Máscara</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='mascaraProtecao' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='mascaraProtecao' type="radio" value='Sim' id='simmascaraProtecao'>
+                                    <label for='simmascaraProtecao'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='mascaraProtecao' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='mascaraProtecao' type="radio" value='Não' id='naomascaraProtecao'>
+                                    <label for='naomascaraProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -425,10 +459,12 @@
                             <label>Óculos de Proteção</label>
                             <div class="group-radio">
                                 <div class="input-radio">
-                                    <input formControlName='oculosProtecao' type="radio" value='Sim'><label>Sim</label>
+                                    <input formControlName='oculosProtecao' type="radio" value='Sim' id='simoculosProtecao'>
+                                    <label for='simoculosProtecao'>Sim</label>
                                 </div>
                                 <div class="input-radio">
-                                    <input formControlName='oculosProtecao' type="radio" value='Não'><label>Não</label>
+                                    <input formControlName='oculosProtecao' type="radio" value='Não' id='naooculosProtecao'>
+                                    <label for='naooculosProtecao'>Não</label>
                                 </div>
                             </div>
                         </div>
@@ -439,12 +475,12 @@
                             <div>
                                 <div class="group-radio">
                                     <div class="input-radio">
-                                        <input formControlName='protetorAuricular' type="radio" value='Sim'>
-                                        <label>Sim</label>
+                                        <input formControlName='protetorAuricular' type="radio" value='Sim' id='simprotetorAuricular'>
+                                        <label for='simprotetorAuricular'>Sim</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='protetorAuricular' type="radio" value='Não'>
-                                        <label>Não</label>
+                                        <input formControlName='protetorAuricular' type="radio" value='Não' id='naoprotetorAuricular'>
+                                        <label for='naoprotetorAuricular'>Não</label>
                                     </div>
                                 </div>
                             </div>
@@ -462,12 +498,12 @@
                         <label>Apresenta Doença Cardiovascular</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='doencaCardioVascular' type="radio"
-                                    value='Sim'><label>Sim</label>
+                                <input formControlName='doencaCardioVascular' type="radio" value='Sim' id='simdoencaCardioVascular'>
+                                    <label for='simdoencaCardioVascular'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='doencaCardioVascular' type="radio"
-                                    value='Não'><label>Não</label>
+                                <input formControlName='doencaCardioVascular' type="radio" value='Não' id='naodoencaCardioVascular'>
+                                <label for='naodoencaCardioVascular'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -475,10 +511,12 @@
                         <label>Hipertensão Arterial</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='hipertensaoArterial' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='hipertensaoArterial' type="radio" value='Sim' id='simhipertensaoArterial'>
+                                <label for='simhipertensaoArterial'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='hipertensaoArterial' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='hipertensaoArterial' type="radio" value='Não' id='naohipertensaoArterial'>
+                                <label for='naohipertensaoArterial'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -488,10 +526,12 @@
                         <label>Hipotensão Arterial</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='hipotensaoArterial' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='hipotensaoArterial' type="radio" value='Sim' id='simhipotensaoArterial'>
+                                <label for='simhipotensaoArterial'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='hipotensaoArterial' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='hipotensaoArterial' type="radio" value='Não' id='naohipotensaoArterial'>
+                                <label for='naohipotensaoArterial'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -499,10 +539,12 @@
                         <label>Arritmia</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='arritmia' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='arritmia' type="radio" value='Sim' id='simarritmia'>
+                                <label for='simarritmia'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='arritmia' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='arritmia' type="radio" value='Não' id='naoarritmia'>
+                                <label for='naoarritmia'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -512,10 +554,12 @@
                         <label>Apresenta algum sinal/sintoma referente ao Sistema Nervoso</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='alteracaoSNervoso' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='alteracaoSNervoso' type="radio" value='Sim' id='simalteracaoSNervoso'>
+                                <label for='simalteracaoSNervoso'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='alteracaoSNervoso' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='alteracaoSNervoso' type="radio" value='Não' id='naoalteracaoSNervoso'>
+                                <label for='naoalteracaoSNervoso'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -523,10 +567,12 @@
                         <label>Dor de Cabeça</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='dorCabeca' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='dorCabeca' type="radio" value='Sim' id='simdorCabeca'>
+                                <label for='simdorCabeca'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='dorCabeca' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='dorCabeca' type="radio" value='Não' id='naodorCabeca'>
+                                <label for='naodorCabeca'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -536,10 +582,12 @@
                         <label>Fraqueza Muscular</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='fraquezaMuscular' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='fraquezaMuscular' type="radio" value='Sim' id='simfraquezaMuscular'>
+                                <label for='simfraquezaMuscular'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='fraquezaMuscular' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='fraquezaMuscular' type="radio" value='Não' id='naofraquezaMuscular'>
+                                <label for='naofraquezaMuscular'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -547,10 +595,12 @@
                         <label>Tremedeira</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='tremedeira' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='tremedeira' type="radio" value='Sim' id='simtremedeira'>
+                                <label for='simtremedeira'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='tremedeira' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='tremedeira' type="radio" value='Não' id='naotremedeira'>
+                                <label for='naotremedeira'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -560,10 +610,12 @@
                         <label>Tremor muscular</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='tremorMuscular' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='tremorMuscular' type="radio" value='Sim' id='simtremorMuscular'>
+                                <label for='simtremorMuscular'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='tremorMuscular' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='tremorMuscular' type="radio" value='Não' id='naotremorMuscular'>
+                                <label for='naotremorMuscular'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -571,10 +623,12 @@
                         <label>Visão Turva</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='visãoTurvaEmbacada' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='visãoTurvaEmbacada' type="radio" value='Sim' id='simvisãoTurvaEmbacada'>
+                                <label for='simvisãoTurvaEmbacada'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='visãoTurvaEmbacada' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='visãoTurvaEmbacada' type="radio" value='Não' id='naovisãoTurvaEmbacada'>
+                                <label for='naovisãoTurvaEmbacada'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -584,12 +638,12 @@
                         <label>Agitação/Irritabilidade</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='agitacaoIrritabilidade' type="radio"
-                                    value='Sim'><label>Sim</label>
+                                <input formControlName='agitacaoIrritabilidade' type="radio" value='Sim' id='simagitacaoIrritabilidade'>
+                                <label for='simagitacaoIrritabilidade'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='agitacaoIrritabilidade' type="radio"
-                                    value='Não'><label>Não</label>
+                                <input formControlName='agitacaoIrritabilidade' type="radio" value='Não' id='naoagitacaoIrritabilidade'>
+                                <label for='naoagitacaoIrritabilidade'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -597,10 +651,12 @@
                         <label>Vertigem</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='vertigensTonturas' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='vertigensTonturas' type="radio" value='Sim' id='simvertigensTonturas'>
+                                <label for='simvertigensTonturas'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='vertigensTonturas' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='vertigensTonturas' type="radio" value='Não' id='naovertigensTonturas'>
+                                <label for='naovertigensTonturas'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -610,10 +666,12 @@
                         <label>Formigamento em MMSS</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='formigamento' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='formigamento' type="radio" value='Sim' id='simformigamento'>
+                                <label for='simformigamento'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='formigamento' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='formigamento' type="radio" value='Não' id='naoformigamento'>
+                                <label for='naoformigamento'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -621,10 +679,12 @@
                         <label>Incoordenação Motora</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='incoordenacaoMotora' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='incoordenacaoMotora' type="radio" value='Sim' id='simincoordenacaoMotora'>
+                                <label for='simincoordenacaoMotora'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='incoordenacaoMotora' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='incoordenacaoMotora' type="radio" value='Não' id='naoincoordenacaoMotora'>
+                                <label for='naoincoordenacaoMotora'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -634,10 +694,12 @@
                         <label>Aparelho Digestório</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='aparelhoDigestorio' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='aparelhoDigestorio' type="radio" value='Sim' id='simaparelhoDigestorio'>
+                                <label for='simaparelhoDigestorio'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='aparelhoDigestorio' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='aparelhoDigestorio' type="radio" value='Não' id='naoaparelhoDigestorio'>
+                                <label for='naoaparelhoDigestorio'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -645,10 +707,12 @@
                         <label>Colicas/Dor de Barriga</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='colicasDorBarriga' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='colicasDorBarriga' type="radio" value='Sim' id='simcolicasDorBarriga'>
+                                <label for='simcolicasDorBarriga'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='colicasDorBarriga' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='colicasDorBarriga' type="radio" value='Não' id='naocolicasDorBarriga'>
+                                <label for='naocolicasDorBarriga'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -658,10 +722,12 @@
                         <label>Dor de Estômago</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='dorEstomago' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='dorEstomago' type="radio" value='Sim' id='simdorEstomago'>
+                                <label for='simdorEstomago'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='dorEstomago' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='dorEstomago' type="radio" value='Não' id='naodorEstomago'>
+                                <label for='naodorEstomago'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -669,10 +735,12 @@
                         <label>Azia/Queimação</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='aziaQueimacao' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='aziaQueimacao' type="radio" value='Sim' id='simaziaQueimacao'>
+                                <label for='simaziaQueimacao'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='aziaQueimacao' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='aziaQueimacao' type="radio" value='Não' id='naoaziaQueimacao'>
+                                <label for='naoaziaQueimacao'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -682,10 +750,12 @@
                         <label>Náuseas/Enjoo</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='nauseasEnjoo' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='nauseasEnjoo' type="radio" value='Sim' id='simnauseasEnjoo'>
+                                <label for='simnauseasEnjoo'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='nauseasEnjoo' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='nauseasEnjoo' type="radio" value='Não' id='naonauseasEnjoo'>
+                                <label for='naonauseasEnjoo'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -693,10 +763,12 @@
                         <label>Vomito</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='vomito' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='vomito' type="radio" value='Sim'id='simvomito'>
+                                <label for='simvomito'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='vomito' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='vomito' type="radio" value='Não' id='naovomito'>
+                                <label for='naovomito'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -706,10 +778,12 @@
                         <label>Diarreia</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='diarreia' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='diarreia' type="radio" value='Sim' id='simdiarreia'>
+                                <label for='simdiarreia'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='diarreia' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='diarreia' type="radio" value='Não' id='naodiarreia'>
+                                <label for='naodiarreia'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -717,12 +791,12 @@
                         <label>Aparelho Respiratório</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='aparelhoRespiratorio' type="radio"
-                                    value='Sim'><label>Sim</label>
+                                <input formControlName='aparelhoRespiratorio' type="radio" value='Sim' id='simaparelhoRespiratorio'>
+                                <label for='simaparelhoRespiratorio'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='aparelhoRespiratorio' type="radio"
-                                    value='Não'><label>Não</label>
+                                <input formControlName='aparelhoRespiratorio' type="radio" value='Não' id='naoaparelhoRespiratorio'>
+                                <label for='naoaparelhoRespiratorio'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -732,10 +806,12 @@
                         <label>Falta de ar</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='faltaDeAr' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='faltaDeAr' type="radio" value='Sim' id='simfaltaDeAr'>
+                                <label for='simfaltaDeAr'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='faltaDeAr' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='faltaDeAr' type="radio" value='Não' id='naofaltaDeAr'>
+                                <label for='naofaltaDeAr'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -743,10 +819,12 @@
                         <label>Irritação Nasal (coceira/ardência)</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='irritaçaoNasal' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='irritaçaoNasal' type="radio" value='Sim' id='simirritaçaoNasal'>
+                                <label for='simirritaçaoNasal'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='irritaçaoNasal' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='irritaçaoNasal' type="radio" value='Não' id='naoirritaçaoNasal'>
+                                <label for='naoirritaçaoNasal'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -756,10 +834,12 @@
                         <label>Catarro ou escarro</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='catarroEscarro' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='catarroEscarro' type="radio" value='Sim' id='simcatarroEscarro'>
+                                <label for='simcatarroEscarro'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='catarroEscarro' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='catarroEscarro' type="radio" value='Não' id='naocatarroEscarro'>
+                                <label for='naocatarroEscarro'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -767,10 +847,12 @@
                         <label>Tosse</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='tosse' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='tosse' type="radio" value='Sim' id='simtosse'>
+                                <label for='simtosse'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='tosse' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='tosse' type="radio" value='Não' id='naotosse'>
+                                <label for='naotosse'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -780,10 +862,12 @@
                         <label>Aparelho Auditivo</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='aparelhoAuditivo' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='aparelhoAuditivo' type="radio" value='Sim' id='simaparelhoAuditivo'>
+                                <label for='simaparelhoAuditivo'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='aparelhoAuditivo' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='aparelhoAuditivo' type="radio" value='Não' id='naoaparelhoAuditivo'>
+                                <label for='naoaparelhoAuditivo'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -791,10 +875,12 @@
                         <label>Diminuição da audição</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='diminuicaoAudicao' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='diminuicaoAudicao' type="radio" value='Sim' id='simdiminuicaoAudicao'>
+                                <label for='simdiminuicaoAudicao'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='diminuicaoAudicao' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='diminuicaoAudicao' type="radio" value='Não' id='naodiminuicaoAudicao'>
+                                <label for='naodiminuicaoAudicao'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -804,10 +890,12 @@
                         <label>Zumbido</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='zumbido' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='zumbido' type="radio" value='Sim' id='simzumbido'>
+                                <label for='simzumbido'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='zumbido' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='zumbido' type="radio" value='Não' id='naozumbido'>
+                                <label for='naozumbido'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -815,10 +903,12 @@
                         <label>Pele e mucosa</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='peleMucosa' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='peleMucosa' type="radio" value='Sim'id='simpeleMucosa'>
+                                <label for='simpeleMucosa'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='peleMucosa' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='peleMucosa' type="radio" value='Não' id='naopeleMucosa'>
+                                <label for='naopeleMucosa'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -828,10 +918,12 @@
                         <label>A coceira veio depois de algum tempo que o sr(a) começou a trabalhar com o produto (dcSensibilizante)?</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='dcSensibilizante' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='dcSensibilizante' type="radio" value='Sim' id='simdcSensibilizante'>
+                                <label for='simdcSensibilizante'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='dcSensibilizante' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='dcSensibilizante' type="radio" value='Não' id='naodcSensibilizante'>
+                                <label for='naodcSensibilizante'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -839,10 +931,12 @@
                         <label>Ou ela aparece logo que usa/prepara o produto (dcIrritativa)?</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='dcIrritativa' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='dcIrritativa' type="radio" value='Sim' id='simdcIrritativa'>
+                                <label for='simdcIrritativa'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='dcIrritativa' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='dcIrritativa' type="radio" value='Não' id='naodcIrritativa'>
+                                <label for='naodcIrritativa'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -852,21 +946,25 @@
                         <label>O Sr (a) tem irritação ocular (coceira, vermelhidão...), por causa do produto?</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='irritacaoOcular' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='irritacaoOcular' type="radio" value='Sim' id='simirritacaoOcular'>
+                                <label for='simirritacaoOcular'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='irritacaoOcular' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='irritacaoOcular' type="radio" value='Não' id='naoirritacaoOcular'>
+                                <label for='naoirritacaoOcular'>Não</label>
                             </div>
                         </div>
                     </div>
                     <div class="group-input-bool">
-                        <label>Aparelho Usinário</label>
+                        <label>Aparelho Urinário</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='aparelhoUrinario' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='aparelhoUrinario' type="radio" value='Sim'id='simaparelhoUrinario'>
+                                <label for='simaparelhoUrinario'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='aparelhoUrinario' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='aparelhoUrinario' type="radio" value='Não' id='naoaparelhoUrinario'>
+                                <label for='naoaparelhoUrinario'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -876,10 +974,12 @@
                         <label>Diminuição Urinária</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='diminuicaoUrina' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='diminuicaoUrina' type="radio" value='Sim' id='simdiminuicaoUrina'>
+                                <label for='simdiminuicaoUrina'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='diminuicaoUrina' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='diminuicaoUrina' type="radio" value='Não' id='naodiminuicaoUrina'>
+                                <label for='naodiminuicaoUrina'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -887,10 +987,12 @@
                         <label>Urina escura/com sangue</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='urinaescuraSangue' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='urinaescuraSangue' type="radio" value='Sim' id='simurinaescuraSangue'>
+                                <label for='simurinaescuraSangue'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='urinaescuraSangue' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='urinaescuraSangue' type="radio" value='Não' id='naourinaescuraSangue'>
+                                <label for='naourinaescuraSangue'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -900,10 +1002,12 @@
                         <label>Outro</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='outro' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='outro' type="radio" value='Sim' id='simoutro'>
+                                <label for='simoutro'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='outro' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='outro' type="radio" value='Não' id='naooutro'>
+                                <label for='naooutro'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -911,23 +1015,27 @@
                         <label>Exposição a Raio-X</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='exposicaoRaiox' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='exposicaoRaiox' type="radio" value='Sim' id='simexposicaoRaiox'>
+                                <label for='simexposicaoRaiox'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='exposicaoRaiox' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='exposicaoRaiox' type="radio" value='Não' id='naoexposicaoRaiox'>
+                                <label for='naoexposicaoRaiox'>Não</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="group-input">
-                        <label>Data da última exposição</label>
-                        <select class="form-control" required formControlName='quandodiasExposicao'>
-                            <option disabled value="">Selecione</option>
-                            <option *ngFor="let itemRaio of listRaioX" [value]='itemRaio'>{{itemRaio}}
-                            </option>
-                        </select>
-                    </div>
+                    <ng-container *ngIf="formDiagnostico.get('exposicaoRaiox').value === 'Sim'" >
+                        <div class="group-input">
+                            <label>Data da última exposição ao Raio-X</label>
+                            <select class="form-control" required formControlName='quandodiasExposicao'>
+                                <option disabled value="">Selecione</option>
+                                <option *ngFor="let itemRaio of listRaioX" [value]='itemRaio'>{{itemRaio}}
+                                </option>
+                            </select>
+                        </div>
+                    </ng-container>
                 </div>
                 <div class="cntButton">
                     <button (click)='alterCurrentPage()'>Próximo</button>
@@ -940,22 +1048,26 @@
                         <label>Tem/Teve câncer</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='teveCancer' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='teveCancer' type="radio" value='Sim' id='simteveCancer'>
+                                <label for='simteveCancer'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='teveCancer' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='teveCancer' type="radio" value='Não' id='naoteveCancer'>
+                                <label for='naoteveCancer'>Não</label>
                             </div>
                         </div>
                     </div>
                     <div class="group-input">
-                        <label>Qual tipo</label>
-                        <!-- Mudar disabled -> attr.disabled -->
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancer"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <ng-container *ngIf="formDiagnostico.get('teveCancer').value === 'Sim'" >
+                            <label>Qual tipo</label>
+                            <!-- Mudar disabled -> attr.disabled -->
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCcancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancer"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        </ng-container>
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
@@ -963,21 +1075,26 @@
                         <label>Tem/Teve câncer na família</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='familiaCancer' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='familiaCancer' type="radio" value='Sim' id='simfamiliaCancer'>
+                                <label for='simfamiliaCancer'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='familiaCancer' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='familiaCancer' type="radio" value='Não' id='naofamiliaCancer'>
+                                <label for='naofamiliaCancer'>Não</label>
                             </div>
                         </div>
                     </div>
                     <div class="group-input">
+                         <ng-container *ngIf="formDiagnostico.get('familiaCancer').value === 'Sim'" >
                         <label>Qual tipo</label>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancerFamilia"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancerfamilia"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancerfamilia"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancerfamilia"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancerfamilia"]' label='Glândula' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancerfamilia"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancerFamilia"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancerfamilia"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancerfamilia"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancerfamilia"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancerfamilia"]' label='Glândula' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancerfamilia"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        </ng-container>
+
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
@@ -985,10 +1102,12 @@
                         <label>É da região?</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='edaRegiao' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='edaRegiao' type="radio" value='Sim' id='simedaRegiao'>
+                                <label for='simedaRegiao'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='edaRegiao' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='edaRegiao' type="radio" value='Não' id='naoedaRegiao'>
+                                <label for='naoedaRegiao'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -999,31 +1118,31 @@
                 <div class="form-group">
                     <div class="group-input">
                         <label>Ch_t</label>
-                        <input class="form-control" type="text" formControlName="ch_t" placeholder="Ch_t">
+                        <input class="form-control" type="text" formControlName="ch_t">
                     </div>
                     <div class="group-input">
                         <label>Ch_e</label>
-                        <input class="form-control" type="text" formControlName="ch_e" placeholder="Ch_e">
+                        <input class="form-control" type="text" formControlName="ch_e">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="group-input">
                         <label>Ch_p</label>
-                        <input class="form-control" type="text" formControlName="ch_p" placeholder="Ch_p">
+                        <input class="form-control" type="text" formControlName="ch_p">
                     </div>
                     <div class="group-input">
                         <label>Ast</label>
-                        <input class="form-control" type="text" formControlName="ast" placeholder="Ast">
+                        <input class="form-control" type="text" formControlName="ast">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="group-input">
                         <label>Alt</label>
-                        <input class="form-control" type="text" formControlName="alt" placeholder="Alt">
+                        <input class="form-control" type="text" formControlName="alt">
                     </div>
                     <div class="group-input">
                         <label>Y_gt</label>
-                        <input class="form-control" type="text" formControlName="y_gt" placeholder="Y_gt">
+                        <input class="form-control" type="text" formControlName="y_gt">
                     </div>
                 </div>
                 <div class="form-group">
@@ -1055,12 +1174,12 @@
                         <label>Você (ou sua esposa) teve dificuldade de engravidar</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='dificuldadeEngravidar' type="radio"
-                                    value='Sim'><label>Sim</label>
+                                <input formControlName='dificuldadeEngravidar' type="radio" value='Sim' id='simdificuldadeEngravidar'>
+                                <label for='simdificuldadeEngravidar'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='dificuldadeEngravidar' type="radio"
-                                    value='Não'><label>Não</label>
+                                <input formControlName='dificuldadeEngravidar' type="radio" value='Não' id='naodificuldadeEngravidar'>
+                                <label for='naodificuldadeEngravidar'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -1070,10 +1189,12 @@
                         <label>Você (ou sua esposa) teve aborto espontâneo</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='abortoEspontaneo' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='abortoEspontaneo' type="radio" value='Sim' id='simabortoEspontaneo'>
+                                <label for='simabortoEspontaneo'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='abortoEspontaneo' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='abortoEspontaneo' type="radio" value='Não' id='naoabortoEspontaneo'>
+                                <label for='naoabortoEspontaneo'>Não</label>
                             </div>
                         </div>
                     </div>
@@ -1081,60 +1202,75 @@
                         <label>Tem filhos</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='temFilhos' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='temFilhos' type="radio" value='Sim' id='simtemFilhos'>
+                                <label for='simtemFilhos'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='temFilhos' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='temFilhos' type="radio" value='Não' id='naotemFilhos'>
+                                <label for='naotemFilhos'>Não</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group-bool">
-                    <div class="group-input-bool">
-                        <label>Filhos com má formação (congênita)</label>
-                        <div class="group-radio">
-                            <div class="input-radio">
-                                <input formControlName='filhoMaFormacao' type="radio" value='Sim'><label>Sim</label>
-                            </div>
-                            <div class="input-radio">
-                                <input formControlName='filhoMaFormacao' type="radio" value='Não'><label>Não</label>
+                    <ng-container *ngIf="formDiagnostico.get('temFilhos').value === 'Sim'" >
+                        <div class="group-input-bool">
+                            <label>Filhos com má formação (congênita)</label>
+                            <div class="group-radio">
+                                <div class="input-radio">
+                                    <input formControlName='filhoMaFormacao' type="radio" value='Sim' id='simfilhoMaFormacao'>
+                                    <label for='simfilhoMaFormacao'>Sim</label>
+                                </div>
+                                <div class="input-radio">
+                                    <input formControlName='filhoMaFormacao' type="radio" value='Não' id='naofilhoMaFormacao'>
+                                    <label for='naofilhoMaFormacao'>Não</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                     <div class="group-input-bool">
                         <label>Você faz uso de algum medicamento de uso contínuo</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='medicamentoContinuo' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='medicamentoContinuo' type="radio" value='Sim' id='simmedicamentoContinuo'>
+                                <label for='simmedicamentoContinuo'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='medicamentoContinuo' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='medicamentoContinuo' type="radio" value='Não' id='naomedicamentoContinuo'>
+                                <label for='naomedicamentoContinuo'>Não</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
-                    <div class="group-input">
-                        <label>Qual medicamento:</label>
-                        <input class="form-control" type="text" formControlName='medicamento'>
-                    </div>
+                    <ng-container *ngIf="formDiagnostico.get('medicamentoContinuo').value === 'Sim'" >
+                        <div class="group-input">
+                            <label>Qual medicamento:</label>
+                            <input class="form-control" type="text" formControlName='medicamento'>
+                        </div>
+                    </ng-container>
                     <div class="group-input-bool">
                         <label>Usou remédio para micose nos últimos dois meses</label>
                         <div class="group-radio">
                             <div class="input-radio">
-                                <input formControlName='remedioMicose' type="radio" value='Sim'><label>Sim</label>
+                                <input formControlName='remedioMicose' type="radio" value='Sim' id='simremedioMicose'>
+                                <label for='simremedioMicose'>Sim</label>
                             </div>
                             <div class="input-radio">
-                                <input formControlName='remedioMicose' type="radio" value='Não'><label>Não</label>
+                                <input formControlName='remedioMicose' type="radio" value='Não' id='naoremedioMicose'>
+                                <label for='naoremedioMicose'>Não</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="group-input">
-                        <label>Nome medicamento:</label>
-                        <input class="form-control" type="text" formControlName='nomeRemedio' maxlength="50">
-                    </div>
+                    <ng-container *ngIf="formDiagnostico.get('remedioMicose').value === 'Sim'" >
+                        <div class="group-input">
+                            <label>Nome medicamento para Micose:</label>
+                            <input class="form-control" type="text" formControlName='nomeRemedio' maxlength="50">
+                        </div>
+                    </ng-container>
+
                 </div>
                 <div class="cntButton">
                     <button (click)='visibleConfirmation = true'>Próximo</button>
