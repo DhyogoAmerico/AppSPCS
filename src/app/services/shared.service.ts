@@ -75,7 +75,7 @@ export class SharedService {
     const headers = new HttpHeaders()
     .set('Content-Type','application/json')
     .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
-    return this.httpClient.get(this.apiUrl + 'ficha/listar', { headers });
+    return this.httpClient.get(this.apiUrl + 'ficha/fichas-pacientes', { headers });
   }
 
   QuantPacientes(){
@@ -85,4 +85,6 @@ export class SharedService {
       .set('Content-Type','application/json');
     return this.httpClient.get(url + 'dashboard/obter-rel-dashboard', { headers });
   }
+
+  
 }

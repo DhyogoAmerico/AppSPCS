@@ -951,7 +951,7 @@
                         <label>Qual tipo</label>
                         <!-- Mudar disabled -> attr.disabled -->
                         <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCcancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
                         <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
                         <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
                         <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
@@ -1150,17 +1150,13 @@
                         <span>Cadastro da ficha concluída.</span>
                     </div>
                     <div class="cntBtnConclusao">
-                        <button>
+                        <button class="imprimir">
                             Imprimir
                         </button>
-                        <button (click)='continueConclusao()'>
+                        <button class="sair" (click)='continueConclusao()'>
                             Sair
                         </button>
                     </div>
-                </div>
-                <div class="cntButton">
-                    <button (click)='alterCurrentPage()'>Próximo</button>
-                    <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>
 

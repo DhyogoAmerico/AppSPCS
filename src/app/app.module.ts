@@ -72,7 +72,6 @@ import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdro
     SharedService,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
-
   bootstrap: [AppComponent]
 })
 export class AppModule { }

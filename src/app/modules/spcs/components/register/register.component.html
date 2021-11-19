@@ -13,8 +13,10 @@
             <div class="form-group">
                 <div class="group-input">
                     <div class="form-label">CPF</div>
-                    <input type="text" class="form-control" (keyup)="validCpf(this.registerForm.get('cpf').value)" maxlength="14" mask="000.000.000-00" formControlName='cpf' placeholder="000.000.000-000">
-                    <span class="errorInput" *ngIf="this.registerForm.get('cpf').hasError('invalidCpf')">CPF inválido</span>
+                    <input type="text" class="form-control" (keyup)="validCpf(this.registerForm.get('cpf').value)"
+                        maxlength="14" mask="000.000.000-00" formControlName='cpf' placeholder="000.000.000-000">
+                    <span class="errorFormField" *ngIf="this.registerForm.get('cpf').hasError('invalidCpf')">CPF
+                        inválido</span>
                 </div>
                 <div class="group-input" *ngIf="typeUser === 'paciente'">
                     <div class="form-label">Escolaridade</div>
@@ -44,7 +46,8 @@
                 </div>
                 <div class="group-input">
                     <div class="form-label">Telefone</div>
-                    <input class="form-control" type="text" [mask]="mascaraPhone" formControlName='telefone' (keyup)='inputMaskPhone()'>
+                    <input class="form-control" type="text" [mask]="mascaraPhone" formControlName='telefone'
+                        (keyup)='inputMaskPhone()'>
                 </div>
             </div>
             <ng-container *ngIf="typeUser === 'paciente'">
@@ -54,27 +57,43 @@
                 <div class="form-group">
                     <div class="group-input">
                         <div class="form-label">Email</div>
-                        <input type="email" class="form-control" formControlName='email' placeholder="endereco@email.com">
-                        <small class="errorInput" *ngIf="this.registerForm.get('email').hasError('invalidEmail')">Email inválido</small>
+                        <input type="email" class="form-control" formControlName='email'
+                            placeholder="endereco@email.com">
+                        <small class="errorFormField"
+                            *ngIf="this.registerForm.get('email').hasError('invalidEmail')">Email inválido</small>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="group-input">
                         <div class="form-label">Senha</div>
-                        <div  class=" inputPassword">
-                            <input class="form-control" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha' (blur)='differencePassword()'>
+                        <div class=" inputPassword">
+                            <input class="form-control" [type]="typePassword ? 'text' : 'password'" placeholder="Senha" formControlName='senha' (focus)='blurSugestaoSenha = true' (blur)='differencePassword(); blurSugestaoSenha = false'>
                             <div class="clickType" (click)='alterTypePassword()'>
-                                    <i *ngIf="typePassword" class="far fa-eye"></i>
-                                    <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
+                                <i *ngIf="typePassword" class="far fa-eye"></i>
+                                <i *ngIf="!typePassword" class="far fa-eye-slash"></i>
                             </div>
                         </div>
-                        <small class="errorInput" *ngIf="registerForm.get('senha').hasError('invalidPassword')">Senha inválida</small>
-                        <small class="errorInput" *ngIf="!registerForm.get('senha').hasError('invalidPassword') && registerForm.get('senha').hasError('differencePassword')">As senhas não conferem</small>
+                        <div class="boxOverpanel" [ngStyle]="{'display': blurSugestaoSenha ? 'flex' : 'none'}">
+                            <span class="title">A senha deve conter:</span>
+                            <span>- Mínimo 6 caractéres</span>
+                            <span>- Conter 1 caracter especial</span>
+                            <span>- Conter 1 letra maiúscula</span>
+                            <span>- Conter 1 letra minúscula</span>
+                        </div>
+                        <small class="errorFormField"
+                            *ngIf="registerForm.get('senha').hasError('invalidPassword')">Senha inválida</small>
+                        <small class="errorFormField"
+                            *ngIf="!registerForm.get('senha').hasError('invalidPassword') && registerForm.get('senha').hasError('differencePassword')">As
+                            senhas não conferem</small>
                     </div>
                     <div class="group-input">
                         <div class="form-label">Confirme sua Senha</div>
-                        <input [type]="typePassword ? 'text' : 'password'" class="form-control" formControlName='senhaConfirmacao' placeholder="Confirme sua senha" (blur)='differencePassword()'>
-                        <small class="errorInput" *ngIf="registerForm.get('senhaConfirmacao').hasError('differencePassword')">As senhas não conferem</small>
+                        <input [type]="typePassword ? 'text' : 'password'" class="form-control"
+                            formControlName='senhaConfirmacao' placeholder="Confirme sua senha"
+                            (blur)='differencePassword()'>
+                        <small class="errorFormField"
+                            *ngIf="registerForm.get('senhaConfirmacao').hasError('differencePassword')">As senhas não
+                            conferem</small>
                     </div>
                 </div>
             </ng-container>

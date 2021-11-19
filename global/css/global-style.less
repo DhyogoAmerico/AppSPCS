@@ -31,22 +31,13 @@ a:hover {
     margin-bottom: 4px !important;
     .group-input {
         min-width: 175px;
-        display: flex;
         flex: 1;
-        flex-direction: column;
         margin: 5px 10px;
         position: relative;
         label {
             font-size: 13px;
             font-weight: 500;
             color: rgb(125, 121, 139);
-        }
-        .errorInput {
-            margin-top: 0.2rem;
-            color: #f10000;
-            font-size: .75rem;
-            font-weight: 400;
-            line-height: 1rem;
         }
         input {
             &:disabled {
@@ -73,6 +64,14 @@ a:hover {
                 background-color: #e3e6e9 !important;
                 opacity: 1;
             }
+        }
+        .errorFormField {
+            margin-top: 2px;
+            color: #f10000;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1rem;
+            position: absolute;
         }
     }
 }
@@ -170,9 +169,11 @@ input {
     border-left: 6px solid #ff0500 !important;
     /* red */
 }
+
 label {
     margin-bottom: 4px;
 }
+
 button {
     border: none;
     border-radius: 5px !important;
@@ -182,6 +183,7 @@ button {
         background-color: #cccccc !important;
     }
 }
+
 .ui-chkbox {
     .ui-chkbox-box {
         .ui-chkbox-icon {
@@ -193,6 +195,8 @@ button {
         }
     }
 }
+
+
 .ui-overlaypanel {
     .ui-overlaypanel-content {
         padding: 0.571em 1em;

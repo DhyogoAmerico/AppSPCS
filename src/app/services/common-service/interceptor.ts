@@ -24,15 +24,28 @@ export class Interceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(
       (err) => {
-        if (err.status === 401) {
-          this.toastService.addToast('error','Erro 401','Você não está autorizado a executar essa ação.');
-          this._router.navigate(['/login']);
-        }
-        else {
-          if(err.status !== 200) {
+        switch (err.status) {
+          case 401:
+            this.toastService.addToast('error','Erro 401','Você não está autorizado a executar essa ação.');
+            this._router.navigate(['/login']);
+            break;
+          case 500:
+            this.toastService.addToast('error','Erro 500','API.');
+            break;
+          case 200:
+            break;
+          default:
             this.toastService.addToast('error',err.status,err.error.errors.Mensagens);
-          }
+            break;
         }
+        // if (err.status === 401) {
+          
+        // }
+        // else {
+        //   if(err.status !== 200) {
+        //     this.toastService.addToast('error',err.status,err.error.errors.Mensagens);
+        //   }
+        // }
 
         return throwError(err);
       }

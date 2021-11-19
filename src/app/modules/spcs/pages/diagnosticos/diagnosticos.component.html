@@ -1,7 +1,8 @@
 <div class="cntDiagnostico">
     <div class="cntSearch">
         <div class="form-group">
-            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' placeholder="Nome do paciente">
+            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch'
+                placeholder="Nome do paciente">
         </div>
         <div class="cntButton">
             <span pTooltip='Limpar' tooltipPosition='top'>
@@ -10,13 +11,13 @@
         </div>
 
     </div>
-    <p-table [value]='responseTable' [autoLayout]='true'  [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='responseTable' [autoLayout]='true' [columns]='infoTable' [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                
+
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
@@ -25,10 +26,13 @@
                     <ng-container [ngSwitch]="col.field">
                         <ng-container *ngSwitchCase="'action'">
                             <div class="cntBtn">
-                                <span class="impressao" (click)='impressaoFicha(rowData[col.field])'>
+                                <span class="impressao" (click)='impressaoFicha(rowData)'>
                                     <i class="fas fa-file-pdf"></i>
                                 </span>
                             </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'dataCadastro'">
+                            {{rowData[col.field] | date: 'dd/MM/yyyy'}}
                         </ng-container>
                         <ng-container *ngSwitchDefault>
                             {{rowData[col.field]}}
@@ -39,3 +43,17 @@
         </ng-template>
     </p-table>
 </div>
+
+<p-dialog [(visible)]='visiblePDF' header='Ficha' [style]="{minWidth: '400px', padding: '0'}"  [modal]='true' [responsive]='true'>
+    <div class="print">
+        <div class="folha">
+            <div id="content">
+                <h2 style="font-size: 20px;">Ficha Paciente</h2>
+                <div>
+                    <label>{{datePaciente?.pacienteId || 0}}</label>
+                    <label>{{datePaciente?.dataCadastro || 'teste'}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

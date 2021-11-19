@@ -33,6 +33,8 @@
     .cntConcluido {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         .iconConcluido {
             font-size: 45px;
             color: white;
@@ -43,6 +45,28 @@
             align-items: center;
             width: 70px;
             height: 70px;
+        }
+        .descricao {
+            margin: 20px 10px;
+        }
+        .cntBtnConclusao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            button {
+                margin: 5px 0;
+                height: 30px;
+                padding: 0 20px;
+            }
+            .imprimir  {
+                color: white;
+                background: #e3cb24;
+            }
+            .sair {
+                background: #2d74df;
+                color: white;
+
+            }
         }
     }
 }

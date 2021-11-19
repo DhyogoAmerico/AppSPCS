@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   public mascaraPhone = '(00) 00000-0000';
   public listEscolaridade = [];
   public typePassword = false;
+  public blurSugestaoSenha = false;
   public registerForm = new FormGroup({
     nome: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required, Validators.maxLength(70)])
@@ -72,6 +73,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.blurSugestaoSenha = false
     this.listEscolaridade = [
       "Fundamental - Incompleto",
       "Fundamental - Completo",
@@ -182,27 +184,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  inputMaskPhone() {
-    let number = this.registerForm.get('telefone').value;
-
-    let listNumber = number.split("");
-    
-    if(listNumber[2] === 9){
+  async inputMaskPhone() {
+    if(this.registerForm.get('telefone').value.split("")[2] === 9){
       this.mascaraPhone = '(00) 00000-0000';
     }
     else {
       this.mascaraPhone = '(00) 0000-0000';
     }
-    // setTimeout(() => {
-    //   switch (this.registerForm.get('telefone').value.length) {
-    //     case 11:
-    //       this.mascaraPhone = '(00) 00000-0000';
-    //       break;
-    //     case 10:
-    //       this.mascaraPhone = '(00) 0000-0000';
-    //       break;
-    //   }
-    // }, 350);
   }
 
   differencePassword(){

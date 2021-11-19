@@ -262,7 +262,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     sncCancer: new FormControl(
       { value: false, disabled: false }
     ),
-    digestorioCcancer: new FormControl(
+    digestorioCancer: new FormControl(
       { value: false, disabled: false }
     ),
     respiratorioCancer: new FormControl(
@@ -389,6 +389,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
 
   ngOnInit() {
+    // this.currentStep = 5;
     this.listarTodosAgrotoxicos();
     this.mountItensStep();
     if (this.dataUser) {
@@ -621,6 +622,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       (response: any) => {
         console.log(response)
         this.currentStep++;
+        this.visibleConfirmation = false;
+      },
+      (err: any) => {
+        this.visibleConfirmation = false;
+        this.toastService.addToast('info','Erro!','Verifique os dados e tente novamente.')
       }
     )
   }
