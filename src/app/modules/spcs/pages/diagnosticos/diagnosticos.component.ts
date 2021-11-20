@@ -1,11 +1,9 @@
 import { Component, ComponentFactoryResolver, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
 import { SharedService } from 'src/app/services/shared.service';
-import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
-import { fontStyle } from 'html2canvas/dist/types/css/property-descriptors/font-style';
 
 @Component({
   selector: 'app-diagnosticos',
@@ -15,16 +13,16 @@ import { fontStyle } from 'html2canvas/dist/types/css/property-descriptors/font-
 export class DiagnosticosComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public visiblePDF = false;
-  public datePaciente: any;
+  public fichaPaciente: any;
   public infoTable = []
-  public responseTable : any[];
+  public responseTable: any[];
 
   @ViewChild('content', { static: false }) element: ElementRef;
 
   constructor(
     private sharedService: SharedService,
     private readonly resolver: ComponentFactoryResolver,
-  ) { 
+  ) {
     super();
   }
 
@@ -33,7 +31,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     this.ListarFichas();
   }
 
-  mountHeader(){
+  mountHeader() {
     this.infoTable = [
       {
         header: 'Nome',
@@ -55,7 +53,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     ]
   }
 
-  ListarFichas(){
+  ListarFichas() {
     this.sharedService.ListarFichaPaciente().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.responseTable = response || [];
@@ -64,118 +62,207 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
   }
 
   printPDF() {
-    var data = document.getElementById('content');  
-    let doc = new jsPDF('p','pt','a4');
+    var data = document.getElementById('content');
+    let doc = new jsPDF('p', 'pt', 'a4');
     doc.html(
       data, {
-        callback: (pdf) => {
-          pdf.save("teste.pdf");
-        }
+      callback: (pdf) => {
+        pdf.save("teste.pdf");
       }
+    }
     )
   }
 
-  gerarPDF(){
-    let documento = new jsPDF();
-    documento.setFont("Courier",'bold');
-    documento.setFontSize(20);
-    documento.text("Ficha do paciente", 65, 15);
+  async impressaoFicha(obj: any) {
+    await this.sharedService.ListarFichaPacientePorId(obj.fichas[0].id).pipe(takeUntil(this.ngUnsubscribe)).toPromise().then(
+      (response: any) => {
+        this.fichaPaciente = response;
+      }
+    );
 
-    documento.setFillColor(50,50,50);
-    documento.rect(10, 20, 30, 8, "FD");
-    documento.rect(10, 28, 30, 8, "FD");
-    documento.rect(10, 36, 30, 8, "FD");
-    documento.rect(40, 20, 160, 8, "s");
-    documento.rect(40, 28, 160, 8, "s");
-    documento.rect(40, 36, 160, 8, "s");
+    console.log(this.fichaPaciente);
 
-    documento.setFontSize(12);
-    documento.setTextColor(255, 255, 255);
-    documento.text("ID", 12, 25);
-    documento.text("dataCadastro", 12, 33);
-    documento.text("Preço", 12, 41);
+    //margin: 35 em toda a pagina
+    //largura max: 525
 
-    documento.setFont("curier",'normal');
-    documento.setTextColor(0, 0, 0);
-    documento.text("001", 42, 25);
-    documento.text("Notebook 14' i7 8GB 1TB", 42, 33);
-    documento.text("R$ 2400,00", 42, 41);
-  }
+    let documento = new jsPDF('p', 'pt', 'a4');
+    
+    documento.setFont("Helvetica", 'bold');
+    documento.setFontSize(15);
+    documento.text("SPCS - Sistema Plantando e Colhendo Saúde", 125, 35);
 
-  impressaoFicha(obj: any) {
-    this.datePaciente = obj;
+    documento.setFillColor(133, 133, 133);
+    // documento.rect(35, 45, 98, 20, "F");
+    // documento.rect(35, 75, 98, 20, "F");
+    documento.rect(35, 95, 525, 2, "F");
 
-    let documento = new jsPDF('p','pt','a4');
-    documento.setFont("Courier",'bold');
-    documento.setFontSize(20);
-    documento.text("Ficha do paciente", 65, 15);
-
-    documento.setFillColor(50,50,50);
-    documento.rect(10, 30, 55, 20, "FD");
-    documento.rect(10, 75, 55, 20, "FD");
-    documento.rect(10, 105, 55, 20, "FD");
-    // documento.rect(40, 20, 160, 8, "s");
+    // documento.rect(35, 119, 98, 16, "F");
+    // documento.rect(35, 140, 98, 16, "F");
+    // documento.rect(35, 161, 98, 16, "F");
+    // documento.rect(35, 182, 98, 16, "F");
+    // documento.rect(35, 203, 98, 16, "F");
+    // documento.rect(35, 224, 98, 16, "F");
+    // documento.rect(35, 245, 98, 16, "F");
+    // documento.rect(35, 266, 98, 16, "F");
+    // documento.rect(35, 287, 98, 16, "F");
+    // documento.rect(35, 308, 98, 16, "F");
+    // documento.rect(35, 266, 98, 16, "F");
+    // documento.rect(35, 287, 98, 16, "F");
+    // documento.rect(35, 308, 98, 16, "F");
+    // documento.rect(35, 329, 98, 16, "F");
+    // documento.rect(35, 350, 98, 16, "F");
+    // documento.rect(35, 371, 98, 16, "F");
+    // documento.rect(35, 392, 98, 16, "F");
+    // documento.rect(35, 413, 98, 16, "F");
+    // documento.rect(35, 434, 98, 16, "F");
+    // documento.rect(35, 455, 98, 16, "F");
+    // documento.rect(35, 476, 98, 16, "F");
+    // documento.rect(35, 497, 98, 16, "F");
+    // documento.rect(35, 518, 98, 16, "F");
+    // documento.rect(35, 539, 98, 16, "F");
+    // documento.rect(35, 560, 98, 16, "F");
+    // documento.rect(35, 581, 98, 16, "F");
+    // documento.rect(35, 602, 98, 16, "F");
+    // documento.rect(35, 623, 98, 16, "F");
+    // documento.rect(35, 644, 98, 16, "F");
+    // documento.rect(35, 665, 98, 16, "F");
+    // documento.rect(35, 686, 98, 16, "F");
+    // documento.rect(35, 707, 98, 16, "F");
+    // documento.rect(35, 105, 98, 20, "FD");
     // documento.rect(40, 28, 160, 8, "s");
     // documento.rect(40, 36, 160, 8, "s");
 
-    documento.setFontSize(12);
-    documento.setTextColor(255, 255, 255);
-    documento.text("ID", 12, 30);
-    documento.text("dataCadastro", 12, 75);
-    documento.text("Preço", 12, 105);
+    documento.setFontSize(8);
+    documento.setFont("Helvetica");
+    documento.setTextColor(25, 25, 25);
+    documento.text("Paciente", 38, 58);
+    documento.text("Data da Ficha", 38, 80);
 
-    documento.setFont("Courier",'normal');
+    documento.setFontSize(9);
+    var indHeight = 120;
+    var indMarginLeft = 38;
+    documento.text("abortoEspontaneo", indMarginLeft, indHeight);
+    documento.text("adoeceu", indMarginLeft, indHeight += 16);
+    documento.text("agitacaoIrritabilidade", indMarginLeft, indHeight += 16);
+    documento.text("agrotoxicos", indMarginLeft, indHeight += 16);
+    documento.text("alt", indMarginLeft, indHeight += 16);
+    documento.text("alteracaoSNervoso", indMarginLeft, indHeight += 16);
+    documento.text("ambulatorio", indMarginLeft, indHeight += 16);
+    documento.text("aparelhoAuditivo", indMarginLeft, indHeight += 16);
+    documento.text("aparelhoDigestorio", indMarginLeft, indHeight += 16);
+    documento.text("aparelhoRespiratorio", indMarginLeft, indHeight += 16);
+    documento.text("aparelhoUrinario", indMarginLeft, indHeight += 16);
+    documento.text("arritmia", indMarginLeft, indHeight += 16);
+    documento.text("ast", indMarginLeft, indHeight += 16);
+    documento.text("aziaQueimacao", indMarginLeft, indHeight += 16);
+    documento.text("botaProtecao", indMarginLeft, indHeight += 16);
+    documento.text("cafeMlDia", indMarginLeft, indHeight += 16);
+    documento.text("catarroEscarro", indMarginLeft, indHeight += 16);
+    documento.text("ch_e", indMarginLeft, indHeight += 16);
+    documento.text("ch_p", indMarginLeft, indHeight += 16);
+    documento.text("ch_t", indMarginLeft, indHeight += 16);
+    documento.text("circunferenciaAbdominal", indMarginLeft, indHeight += 16);
+    documento.text("colicasDorBarriga", indMarginLeft, indHeight += 16);
+    documento.text("contatoPraguicida", indMarginLeft, indHeight += 16);
+    documento.text("creatinina", indMarginLeft, indHeight += 16);
+    documento.text("cultura", indMarginLeft, indHeight += 16);
+    documento.text("dcIrritativa", indMarginLeft, indHeight += 16);
+    documento.text("dcSensibilizante", indMarginLeft, indHeight += 16);
+    documento.text("diarreia", indMarginLeft, indHeight += 16);
+    documento.text("dificuldadeEngravidar", indMarginLeft, indHeight += 16);
+    documento.text("digestorioCancer", indMarginLeft, indHeight += 16);
+    documento.text("digestorioCancerfamilia", indMarginLeft, indHeight += 16);
+    documento.text("diminuicaoAudicao", indMarginLeft, indHeight += 16);
+    documento.text("diminuicaoUrina", indMarginLeft, indHeight += 16);
+    documento.text("doencaCardioVascular", indMarginLeft, indHeight += 16);
+    documento.text("dorCabeca", indMarginLeft, indHeight += 16);
+    documento.text("dorEstomago", indMarginLeft, indHeight += 16);
+    documento.text("edaRegiao", indMarginLeft, indHeight += 16);
+    documento.text("equipamentoProtecao", indMarginLeft, indHeight += 16);
+    documento.text("etilismo", indMarginLeft, indHeight += 16);
+    documento.text("etilismoAnterior", indMarginLeft, indHeight += 16);
+    documento.text("etilismoAtual", indMarginLeft, indHeight += 16);
+    documento.text("exposicaoRaiox", indMarginLeft, indHeight += 16);
+    documento.text("faltaDeAr", indMarginLeft, indHeight += 16);
+    documento.text("familiaCancer", indMarginLeft, indHeight += 16);
+    documento.text("filhoMaFormacao", indMarginLeft, indHeight += 16);
+    documento.text("formaAplicacao", indMarginLeft, indHeight += 16);
+    documento.text("formigamento", indMarginLeft, indHeight += 16);
+    documento.text("fraquezaMuscular", indMarginLeft, indHeight += 16);
+    documento.text("frequenciaContatoPraguicida", indMarginLeft, indHeight += 16);
+    documento.text("funcaoTrabalho", indMarginLeft, indHeight += 16);
+    documento.text("gestante", indMarginLeft, indHeight += 16);
+    // documento.text("Preço", 38, 118);
+
+    documento.setFont("Helvetica", 'bold');
     documento.setTextColor(0, 0, 0);
-    documento.text(obj.pacienteId || 'teste', 42, 25);
-    documento.text(obj.dataCadastro || 'teste', 42, 33);
-    documento.text("R$ 2400,00", 42, 41);
+    documento.setFontSize(10);
+    documento.text(obj.nome || 'teste', 120, 58);
+    documento.text(obj.fichas[0].dataCadastro || 'teste', 120, 80);
 
-    documento.save("teste.pdf");
-    
-    // console.log(this.datePaciente)
+    documento.setFontSize(9);
+    indHeight = 121;
+    indMarginLeft = 163;
+    documento.text(this.fichaPaciente.abortoEspontaneo || 'teste', indMarginLeft, indHeight);
+    documento.text(this.fichaPaciente.adoeceu || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.agitacaoIrritabilidade || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.agrotoxicos || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.alt || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.alteracaoSNervoso || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.ambulatorio || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.aparelhoAuditivo || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.aparelhoDigestorio || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.aparelhoRespiratorio || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.aparelhoUrinario || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.arritmia || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.ast || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.aziaQueimacao || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.botaProtecao || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.cafeMlDia || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.catarroEscarro || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.ch_e || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.ch_p || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.ch_t || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.circunferenciaAbdominal || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.colicasDorBarriga || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.contatoPraguicida || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.creatinina || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.cultura || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.dcIrritativa || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.dcSensibilizante || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.diarreia || 'teste', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.dificuldadeEngravidar || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.digestorioCancer || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.digestorioCancerfamilia || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.diminuicaoAudicao || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.diminuicaoUrina || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.doencaCardioVascular || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.dorCabeca || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.dorEstomago || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.edaRegiao || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.equipamentoProtecao || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.etilismo || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.etilismoAnterior || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.etilismoAtual || "teste", indMarginLeft, indHeight += 16);
+    documento.addPage('a4','p');
+    documento.text(this.fichaPaciente.exposicaoRaiox || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.faltaDeAr || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.familiaCancer || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.filhoMaFormacao || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.formaAplicacao || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.formigamento || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.fraquezaMuscular || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.frequenciaContatoPraguicida || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.funcaoTrabalho || "teste", indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.gestante || "teste", indMarginLeft, indHeight += 16);
+    // documento.text("R$ 2400,00", 140, 118);
 
-    // this.visiblePDF = true;
-    
-    // html2canvas(data).then(canvas => {  
-    //   // Few necessary setting options  
-    //   var imgWidth = 208;   
-    //   // var pageHeight = 295;
-    //   var imgHeight = canvas.height * imgWidth / canvas.width;  
-    //   // var heightLeft = imgHeight;  
-  
-    //   const contentDataURL = canvas.toDataURL('image/png')  
-    //   let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
-    //   var position = 0;  
-    //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-    //   pdf.save('MYPdf.pdf'); // Generated PDF   
-    // });
-    // this.priceListPDF.clear();
-    // const factory = this.resolver.resolveComponentFactory(PrintPageComponent);
-    // const componentRef = this.priceListPDF.createComponent(factory);
 
-    // componentRef.instance.title = obj.pacienteId;
-    // componentRef.instance.list = obj;
+    const dateString = new Date(obj.fichas[0].dataCadastro).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+    documento.save(`${obj.nome} - ${dateString}.pdf`);
 
-    // componentRef.instance.emitter.subscribe(() => {
-    //   const config = {
-    //     html2canvas: {
-    //       scale: 1,
-    //       scrollX: 0,
-    //       scrollY: 0,
-    //     },
-    //   };
 
-    //   this.print(componentRef.location.nativeElement, config);
-    //   componentRef.destroy();
-    // });
-    this.datePaciente = null;
+    this.fichaPaciente = null;
   }
-  
-  // private print(content: any, config: any): void {
-  //   html2pdf()
-  //     .set(config)
-  //     .from(content)
-  //     .toPdf()
-  //     .outputPdf('dataurlnewwindow');
-  // }
+
 }

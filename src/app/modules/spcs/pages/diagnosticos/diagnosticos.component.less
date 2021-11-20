@@ -10,7 +10,7 @@
         .cntButton {
             display: flex;
             justify-content: center;
-            align-items: end;
+            align-items: flex-end;
             margin-bottom: 5px
         ;
             span {
@@ -41,6 +41,16 @@
             border: 2px solid #ffa243;
             cursor: pointer;
             font-size: 19px;
+        }
+    }
+    .cntData {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .data {
+            width: 100%;
+            text-align: center;
         }
     }
 }

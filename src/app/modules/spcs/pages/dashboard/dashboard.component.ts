@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
@@ -12,13 +12,17 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
 
-  public teste = true;
+  public innerWidth = window.innerWidth;
   constructor(
     private sharedService: SharedService,
     private commonService: CommonService
   ) {
     super();
-   }
+  }
+
+  @HostListener('window:resize', ['$event']) onResize(event) {
+    this.innerWidth = window.innerWidth;
+  }
 
   ngOnInit() {
     // this.sharedService.getAllUsers().pipe(takeUntil(this.ngUnsubscribe)).subscribe(

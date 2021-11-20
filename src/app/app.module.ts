@@ -33,6 +33,7 @@ import { BaseComponent } from './services/common-service/base-component/base-com
 import { StepsComponent } from './components/steps-component/steps-component.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+import Swal from 'sweetalert2';
 
 @NgModule({
   declarations: [

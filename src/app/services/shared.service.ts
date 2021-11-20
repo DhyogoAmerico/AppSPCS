@@ -9,7 +9,7 @@ import { CommonService } from './common-service/common.service';
 })
 
 export class SharedService {
-  private apiUrl = "https://api.plantandoecolhendosaude.com.br/api/"; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
+  private apiUrl = environment.urlApi; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
   constructor(
     private httpClient: HttpClient,
     private commonService:CommonService
@@ -86,5 +86,10 @@ export class SharedService {
     return this.httpClient.get(url + 'dashboard/obter-rel-dashboard', { headers });
   }
 
-  
+  ListarFichaPacientePorId(IdFicha) {
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
+    return this.httpClient.get(this.apiUrl + 'ficha/' + IdFicha, { headers });
+  }
 }

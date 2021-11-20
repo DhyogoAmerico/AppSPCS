@@ -40,6 +40,7 @@
                         <div class="group-input">
                             <label>CEP</label>
                             <input type="text" class="form-control" (keyup)='viaCep()' required formControlName='cep' mask='00.000-000' placeholder="00.000-000">
+                            <span class="errorFormField" *ngIf="formDiagnostico.get('cep').hasError('cepInvalido')">CEP Invalido</span>
                         </div>
                         <div class="group-input">
                             <label>Municipio de trabalho</label>
@@ -244,7 +245,7 @@
                                 <option *ngFor="let itemLavoura of listLavoura" [value]='itemLavoura'>{{itemLavoura}}</option>
                             </select>
                         </div>
-                        <div class="group-input">
+                        <div class="group-input contatoAgro">
                             <label>Agrotóxicos que já teve contato</label>
                             <!-- <select class="form-control" formControlName='listIdsAgroModel' >
                                 <option disabled value="">Selecione</option>
@@ -1025,8 +1026,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <ng-container *ngIf="formDiagnostico.get('exposicaoRaiox').value === 'Sim'" >
+                <ng-container *ngIf="formDiagnostico.get('exposicaoRaiox').value === 'Sim'" >
+                    <div class="form-group">
                         <div class="group-input">
                             <label>Data da última exposição ao Raio-X</label>
                             <select class="form-control" required formControlName='quandodiasExposicao'>
@@ -1035,8 +1036,8 @@
                                 </option>
                             </select>
                         </div>
-                    </ng-container>
-                </div>
+                    </div>
+                </ng-container>
                 <div class="cntButton">
                     <button (click)='alterCurrentPage()'>Próximo</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
@@ -1057,17 +1058,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="group-input">
-                        <ng-container *ngIf="formDiagnostico.get('teveCancer').value === 'Sim'" >
-                            <label>Qual tipo</label>
-                            <!-- Mudar disabled -> attr.disabled -->
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCcancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancer"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
-                        </ng-container>
+                    <div class="group-input cancerFicha">
+                        <label>Qual tipo</label>
+                        <!-- Mudar disabled -> attr.disabled -->
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancer"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancer"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancer"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancer"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancer"]' label='Glândula' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancer"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('teveCancer').value === 'Não'"></p-checkbox>
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
@@ -1084,17 +1083,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="group-input">
-                         <ng-container *ngIf="formDiagnostico.get('familiaCancer').value === 'Sim'" >
+                    <div class="group-input cancerFicha">
                         <label>Qual tipo</label>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancerFamilia"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancerfamilia"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancerfamilia"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancerfamilia"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancerfamilia"]' label='Glândula' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                            <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancerfamilia"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
-                        </ng-container>
-
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["sncCancerFamilia"]' label='Sistema Nervoso Central' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["digestorioCancerfamilia"]' label='Sistema Digestivo' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["respiratorioCancerfamilia"]' label='Sistema Respiratório' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["reprodutorCancerfamilia"]' label='Sistema Reprodutor' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["glandularCancerfamilia"]' label='Glândula' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
+                        <p-checkbox [binary]='true' [formControl]='formDiagnostico.controls["peleOssoSangueCancerfamilia"]' label='Pele/Osso/Sangue' [disabled]="formDiagnostico.get('familiaCancer').value === 'Não'"></p-checkbox>
                     </div>
                 </div>
                 <div class="form-group form-group-bool">
@@ -1263,17 +1259,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <ng-container *ngIf="formDiagnostico.get('remedioMicose').value === 'Sim'" >
+                <ng-container *ngIf="formDiagnostico.get('remedioMicose').value === 'Sim'" >
+                    <div class="form-group">
                         <div class="group-input">
                             <label>Nome medicamento para Micose:</label>
                             <input class="form-control" type="text" formControlName='nomeRemedio' maxlength="50">
                         </div>
-                    </ng-container>
-
-                </div>
+                    </div>
+                </ng-container>
                 <div class="cntButton">
-                    <button (click)='visibleConfirmation = true'>Próximo</button>
+                    <button (click)='submitFicha()'>Enviar</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>
@@ -1286,36 +1281,12 @@
                         <span>Cadastro da ficha concluída.</span>
                     </div>
                     <div class="cntBtnConclusao">
-                        <button class="imprimir">
-                            Imprimir
-                        </button>
                         <button class="sair" (click)='continueConclusao()'>
                             Sair
                         </button>
                     </div>
                 </div>
             </ng-container>
-
         </ng-container>
     </form>
 </div>
-
-<p-dialog [(visible)]='visibleConfirmation' [modal]='true' [showHeader]='false'>
-    <span class="dialog">
-        <div class="icon">
-            <i class="fas fa-exclamation-circle"></i>
-        </div>
-        <div class="description">
-            <span class="titleDesc">Atenção</span>
-            <span class="desc">Você deseja mesmo enviar estes dados? Após aceitar não será mais possível aceitar.</span>
-        </div>
-        <div class="cntButton">
-            <button (click)='submitFicha()' class='btnSim'>
-                Sim
-            </button>
-            <button (click)='visibleConfirmation = false' class="btnNao">
-                Não
-            </button>
-        </div>
-    </span>
-</p-dialog>

@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -12,24 +12,34 @@ import { ToastService } from 'src/app/services/common-service/toast.service';
   styleUrls: ['./side-nav.component.less']
 })
 export class SideNavComponent implements OnInit {
-  
+
   public displaySide = true;
-  public listSide : any[];
+  public listSide: any[];
+  public innerWidth: number;
+  public closeSide = false;
   public typeUser = '';
   constructor(
     private toastService: ToastService,
     private cookieService: CookieService,
     private commonService: CommonService,
-    private router:Router,
+    private router: Router,
+  ) {
+    this.innerWidth = window.innerWidth;
+  }
 
-  ) { }
+  @HostListener('window:resize', ['$event']) onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth < 700){
+      this.closeSide = true;
+    }
+  }
 
   ngOnInit() {
     this.typeUser = this.commonService.getTypeUser();
     this.mountSide();
   }
 
-  mountSide(){
+  mountSide() {
     switch (this.typeUser) {
       case 'medico':
         this.mountSideMedico();
@@ -42,7 +52,7 @@ export class SideNavComponent implements OnInit {
         break;
       default:
         this.router.navigate(['/login']);
-        this.toastService.addToast('error','Não Autorizado','Você não está autorizado');
+        this.toastService.addToast('error', 'Não Autorizado', 'Você não está autorizado');
         break;
     }
   }
@@ -50,16 +60,16 @@ export class SideNavComponent implements OnInit {
   mountSideMedico() {
     this.listSide = [
       {
-        icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
+        icon: 'fas fa-tachometer-alt', label: 'Painel', link: '/dashboard'
       },
       {
-        icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
+        icon: 'fas fa-hospital-user', label: 'Pacientes', link: '/dashboard/pacientes'
       },
       {
-        icon: 'fas fa-users-cog', label:'Enfermeiros', link: '/dashboard/enfermeiros'
+        icon: 'fas fa-user-nurse', label: 'Enfermeiros', link: '/dashboard/enfermeiros'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
+        icon: 'far fa-file-medical', label: 'Ficha', link: '/dashboard/fichas'
       }
     ]
   }
@@ -67,10 +77,10 @@ export class SideNavComponent implements OnInit {
   mountSideEndermeira() {
     this.listSide = [
       {
-        icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
+        icon: 'fas fa-tachometer-alt', label: 'Painel', link: '/dashboard'
       },
       {
-        icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
+        icon: 'fas fa-hospital-user', label: 'Pacientes', link: '/dashboard/pacientes'
       }
     ]
   }
@@ -78,25 +88,25 @@ export class SideNavComponent implements OnInit {
   mountSideAdmin() {
     this.listSide = [
       {
-        icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
+        icon: 'fas fa-tachometer-alt', label: 'Painel', link: '/dashboard'
       },
       {
-        icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
+        icon: 'fas fa-hospital-user', label: 'Pacientes', link: '/dashboard/pacientes'
       },
       {
-        icon: 'fas fa-users-cog', label:'Enfermeiros', link: '/dashboard/enfermeiros'
+        icon: 'fas fa-user-nurse', label: 'Enfermeiros', link: '/dashboard/enfermeiros'
       },
       {
-        icon: 'fas fa-users-cog', label:'Médicos', link: '/dashboard/medicos'
+        icon: 'fas fa-user-md', label: 'Médicos', link: '/dashboard/medicos'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Ficha', link: '/dashboard/fichas'
+        icon: 'far fa-file-medical', label: 'Ficha', link: '/dashboard/fichas'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/diagnosticos'
+        icon: 'far fa-file-medical-alt', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
       },
       {
-        icon: 'fas fa-cogs', label:'Agrotóxico', link: '/dashboard/agrotoxicos'
+        icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
       }
     ]
   }
@@ -104,42 +114,16 @@ export class SideNavComponent implements OnInit {
   mountSidePaciente() {
     this.listSide = [
       {
-        icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
+        icon: 'fas fa-tachometer-alt', label: 'Painel', link: '/dashboard'
       },
       {
-        icon: 'fas fa-stethoscope', label:'Diagnóstico', link: '/dashboard/report-diagnostico'
+        icon: 'fas fa-stethoscope', label: 'Diagnóstico', link: '/dashboard/report-diagnostico'
       }
     ]
   }
 
-  mountSideMaster() {
-    this.listSide = [
-      {
-        icon: 'fas fa-tachometer-alt', label:'Painel', link: '/dashboard'
-      },
-      {
-        icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
-      },
-      {
-        icon: 'fas fa-stethoscope', label:'Diagnósticos', link: '/dashboard/report-diagnostico'
-      },
-      {
-        icon: 'fas fa-hospital-user', label:'Pacientes', link: '/dashboard/pacientes'
-      },
-      {
-        icon: 'fas fa-users-cog', label:'Usuário', link: '/dashboard/usuarios'
-      },
-      {
-        icon: 'fas fa-cogs', label:'Configuração', link: '/dashboard/settings'
-      },
-      {
-        icon: 'fas fa-stethoscope', label:'Diagnóstico', link: '/dashboard/report-diagnostico'
-      }
-    ]
-  }
-
-  logoutUser(){
-    if(this.cookieService.get('authenticatedSPCS')){
+  logoutUser() {
+    if (this.cookieService.get('authenticatedSPCS')) {
       this.cookieService.deleteAll('/');
       this.router.navigate(["/login"]);
     }

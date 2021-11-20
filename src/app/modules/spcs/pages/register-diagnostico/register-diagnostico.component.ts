@@ -7,6 +7,7 @@ import { CommonService } from 'src/app/services/common-service/common.service';
 import { EventEmitterService } from 'src/app/services/common-service/eventEmitterService';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-diagnostico',
@@ -418,9 +419,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.currentStep++;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     console.log(this.formDiagnostico.value);
-    // if (this.currentStep - 1 === 2) {
-    //   this.alterFormAgro();
-    // }
   }
 
   mountIntensDropDown() {
@@ -521,8 +519,10 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         (response: any) => {
           if (response.erro) {
             this.formDiagnostico.get('cep').setValue('');
+            this.formDiagnostico.get('cep').setErrors({cepInvalido: true});
           }
           else {
+            this.formDiagnostico.get('cep').setErrors(null);
             this.formDiagnostico.get('municipioTrabalho').setValue(response.localidade + ' - ' + response.uf);
           }
         }
@@ -602,11 +602,79 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
   submitFicha() {
     this.alterFormAgro();
+    this.validationFicha();
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
+    if(this.formDiagnostico.valid){
+      Swal.fire({
+        title: 'Atenção!',
+        text: "Você deseja mesmo enviar estes dados? Após aceitar não será mais possível aceitar.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#38b12d',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, tenho certeza',
+        cancelButtonText: 'Não'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+            (response: any) => {
+              this.currentStep++;
+            },
+            (err: any) => {
+              this.toastService.addToast('info','Erro!','Verifique os dados e tente novamente.')
+            }
+          )
+        }
+      })
+    }
+  }
+
+  validationFicha(){
+    
+    if(this.formDiagnostico.get('ingestaoCafe').value === "Não"){
+      this.formDiagnostico.get('cafeMlDia').setValue("0");
+    }
+    
+    if(this.formDiagnostico.get('adoeceu').value === "Não"){
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue("Nenhuma vez");
+    }
+    
+    if(this.formDiagnostico.get('internado').value === "Não"){
+      this.formDiagnostico.get('qtdVezesInternado').setValue("Nenhuma vez");
+      this.formDiagnostico.get('quandoInterndo').setValue("Nenhuma vez");
+    }
+
+    if(this.formDiagnostico.get('roupaProtecao').value === 'Sim' && 
+      this.formDiagnostico.get('botaProtecao').value === 'Sim' && 
+      this.formDiagnostico.get('luvasProtecao').value === 'Sim' && 
+      this.formDiagnostico.get('mascaraProtecao').value === 'Sim' && 
+      this.formDiagnostico.get('oculosProtecao').value === 'Sim' && 
+      this.formDiagnostico.get('protetorAuricular').value === 'Sim'){
+        this.formDiagnostico.get('equipamentoProtecao').setValue('Completo');
+    } else if(this.formDiagnostico.get('roupaProtecao').value === 'Não' && 
+      this.formDiagnostico.get('botaProtecao').value === 'Não' && 
+      this.formDiagnostico.get('luvasProtecao').value === 'Não' && 
+      this.formDiagnostico.get('mascaraProtecao').value === 'Não' && 
+      this.formDiagnostico.get('oculosProtecao').value === 'Não' && 
+      this.formDiagnostico.get('protetorAuricular').value === 'Não'){
+        this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
+    }
+    
+    if(this.formDiagnostico.get('exposicaoRaiox').value === "Não"){
+      this.formDiagnostico.get('quandodiasExposicao').setValue("Não");
+    }
+    
+    if(this.formDiagnostico.get('medicamentoContinuo').value === "Não"){
+      this.formDiagnostico.get('medicamento').setValue("Não");
+    }
+    
+    if(this.formDiagnostico.get('remedioMicose').value === "Não"){
+      this.formDiagnostico.get('nomeRemedio').setValue("Não");
+    }
 
     this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value ? "Sim" : "Não");
-    this.formDiagnostico.get("digestorioCcancer").setValue(this.formDiagnostico.get("digestorioCcancer").value ? "Sim" : "Não");
+    this.formDiagnostico.get("digestorioCancer").setValue(this.formDiagnostico.get("digestorioCancer").value ? "Sim" : "Não");
     this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value ? "Sim" : "Não");
     this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value ? "Sim" : "Não");
     this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value ? "Sim" : "Não");
@@ -618,17 +686,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value ? "Sim" : "Não");
     this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value ? "Sim" : "Não");
 
-    this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (response: any) => {
-        console.log(response)
-        this.currentStep++;
-        this.visibleConfirmation = false;
-      },
-      (err: any) => {
-        this.visibleConfirmation = false;
-        this.toastService.addToast('info','Erro!','Verifique os dados e tente novamente.')
-      }
-    )
   }
 
   continueConclusao(){

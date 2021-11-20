@@ -1,16 +1,18 @@
-<div class="sideNav">
-    <!-- <p-toast></p-toast>
-
-    <button (click)='showSuccess()'>teste</button> -->
+<div class="sideNav" [ngClass]="{'resizeSide': innerWidth < 700 && closeSide}" [ngStyle]="{'position': innerWidth >= 700 ? 'relative' : 'absolute'}">
     <div class="cntAll">
         <div>
-            <div class="logo">
-                <img src="../../../assets/image/logoSPCS.png">
+            <div class="cntLogo" (click)='closeSide = !closeSide'>
+                <div class="logo">
+                    <img src="../../../assets/image/logoSPCS.png">
+                </div>
             </div>
             <div class="cntButtons">
                 <ng-container *ngFor="let item of listSide">
-                    <a class="button" [routerLink]='item.link' routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}">
-                        {{item.label}}
+                    <a [routerLink]='item.link' routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}">
+                        <span class="iconBtn">
+                            <i [class]="item.icon"></i>
+                        </span>
+                        <span class="labelBtn">{{item.label}}</span>
                     </a>
                 </ng-container>
             </div>

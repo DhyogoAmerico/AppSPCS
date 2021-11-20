@@ -1,13 +1,8 @@
 <div class="cntDiagnostico">
     <div class="cntSearch">
         <div class="form-group">
-<<<<<<< HEAD
-            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch'
-                placeholder="Nome do paciente">
-=======
             <label>Pesquisar por Nome</label>
             <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' >
->>>>>>> development
         </div>
         <div class="cntButton">
             <span pTooltip='Limpar' tooltipPosition='top'>
@@ -22,7 +17,6 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns='columns'>
@@ -37,7 +31,14 @@
                             </div>
                         </ng-container>
                         <ng-container *ngSwitchCase="'dataCadastro'">
-                            {{rowData[col.field] | date: 'dd/MM/yyyy'}}
+                            <div class="cntData">
+                                <ng-container *ngFor="let item of rowData?.fichas; let i=index;">
+                                    <span class="data" [ngStyle]="{'border-bottom': i === (rowData?.fichas?.length - 1) ? 'none' : '1px solid #cdcdcd'}" >{{item.dataCadastro | date: 'dd/MM/yyyy'}}</span>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'cpf'">
+                            {{rowData[col.field] | mask: '000.000.000-00'}}
                         </ng-container>
                         <ng-container *ngSwitchDefault>
                             {{rowData[col.field]}}
@@ -55,8 +56,8 @@
             <div id="content">
                 <h2 style="font-size: 20px;">Ficha Paciente</h2>
                 <div>
-                    <label>{{datePaciente?.pacienteId || 0}}</label>
-                    <label>{{datePaciente?.dataCadastro || 'teste'}}</label>
+                    <label>{{fichaPaciente?.pacienteId || 0}}</label>
+                    <label>{{fichaPaciente?.dataCadastro || 'teste'}}</label>
                 </div>
             </div>
         </div>

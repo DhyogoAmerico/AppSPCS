@@ -1,6 +1,6 @@
 <div class="cntAll">
     <app-side-nav></app-side-nav>
-    <div class="cntContainer">
+    <div class="cntContainer" [ngStyle]="{'margin-left': (innerWidth < 700) ? '65px' : '0'}">
         <div class="cntBody">
             <router-outlet></router-outlet>
         </div>
