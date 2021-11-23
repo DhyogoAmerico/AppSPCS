@@ -69,7 +69,16 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-user-nurse', label: 'Enfermeiros', link: '/dashboard/enfermeiros'
       },
       {
+        icon: 'fas fa-user-md', label: 'Médicos', link: '/dashboard/medicos'
+      },
+      {
         icon: 'far fa-file-medical', label: 'Ficha', link: '/dashboard/fichas'
+      },
+      {
+        icon: 'far fa-file-medical-alt', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
+      },
+      {
+        icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
       }
     ]
   }
@@ -107,17 +116,6 @@ export class SideNavComponent implements OnInit {
       },
       {
         icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
-      }
-    ]
-  }
-
-  mountSidePaciente() {
-    this.listSide = [
-      {
-        icon: 'fas fa-tachometer-alt', label: 'Painel', link: '/dashboard'
-      },
-      {
-        icon: 'fas fa-stethoscope', label: 'Diagnóstico', link: '/dashboard/report-diagnostico'
       }
     ]
   }

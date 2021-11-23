@@ -11,8 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            margin-bottom: 5px
-        ;
+            margin-bottom: 5px;
             span {
                 display: flex;
                 align-items: center;
@@ -42,6 +41,11 @@
             cursor: pointer;
             font-size: 19px;
         }
+        .overpanelImpressao {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     }
     .cntData {
         display: flex;
@@ -55,7 +59,6 @@
     }
 }
 
-
 .ui-dialog {
     .ui-dialog-content {
         padding: 0 !important;
@@ -63,11 +66,23 @@
     }
 }
 
-.print {
-    padding: 10px;
-    // background: #2e2e2e;
-    height: 100%;
-    .folha {
-        background: white;
+.ficha {
+    display: flex;
+    flex-direction: row;
+    min-width: 200px;
+    align-items: center;
+    padding: 10px 0px;
+    justify-content: space-between;
+    .button {
+        display: flex;
+        width: 104px;
+        height: 31px;
+        align-items: center;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        /* color: white; */
+        background: #fdda32;
+        justify-content: space-evenly;
     }
 }

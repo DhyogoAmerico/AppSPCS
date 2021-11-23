@@ -50,16 +50,14 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]='visiblePDF' header='Ficha' [style]="{minWidth: '400px', padding: '0'}"  [modal]='true' [responsive]='true'>
-    <div class="print">
-        <div class="folha">
-            <div id="content">
-                <h2 style="font-size: 20px;">Ficha Paciente</h2>
-                <div>
-                    <label>{{fichaPaciente?.pacienteId || 0}}</label>
-                    <label>{{fichaPaciente?.dataCadastro || 'teste'}}</label>
-                </div>
-            </div>
+<p-dialog [(visible)]='visiblePDF' header='Qual ficha?' [modal]='true' [responsive]='true'>
+    <ng-container *ngFor="let item of dataFicha?.fichas; let i=index">
+        <div class="ficha" [ngStyle]="{'border-bottom': i === (dataFicha?.fichas.length - 1) ? 'none' : '1px solid #cdcdcd'}"> 
+            {{item.dataCadastro | date: 'dd/MM/yyyy'}}
+            <span class="button" (click)='printPDF(item.dataCadastro)'>
+                <i class="fas fa-file-pdf"></i>
+                Imprimir
+            </span>
         </div>
-    </div>
+    </ng-container>
 </p-dialog>

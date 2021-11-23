@@ -519,7 +519,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         (response: any) => {
           if (response.erro) {
             this.formDiagnostico.get('cep').setValue('');
-            this.formDiagnostico.get('cep').setErrors({cepInvalido: true});
+            this.formDiagnostico.get('cep').setErrors({ cepInvalido: true });
           }
           else {
             this.formDiagnostico.get('cep').setErrors(null);
@@ -536,7 +536,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         this.listIdsAgrotoxicos = [];
         if (response) {
           response.forEach(element => {
-            this.listIdsAgrotoxicos.push({ label: element.nome, value: { agrotoxicoId:  element.id } })
+            this.listIdsAgrotoxicos.push({ label: element.nome, value: { agrotoxicoId: element.id } })
           })
         }
         else {
@@ -600,15 +600,15 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  submitFicha() {
+  async submitFicha() {
     this.alterFormAgro();
-    this.validationFicha();
+    await this.validationFicha();
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
-    if(this.formDiagnostico.valid){
+    if (this.formDiagnostico.valid) {
       Swal.fire({
         title: 'Atenção!',
-        text: "Você deseja mesmo enviar estes dados? Após aceitar não será mais possível aceitar.",
+        text: "Você deseja mesmo enviar estes dados? Após aceitar não será possível alterar os dados.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#38b12d',
@@ -622,7 +622,21 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
               this.currentStep++;
             },
             (err: any) => {
-              this.toastService.addToast('info','Erro!','Verifique os dados e tente novamente.')
+              //tratar erro
+              this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("digestorioCancer").setValue(this.formDiagnostico.get("digestorioCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value === "Sim" ? true : false);
+              this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value === "Sim" ? true : false);
+              this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value === "Sim" ? true : false);
+              this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value === "Sim" ? true : false);
+              this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value === "Sim" ? true : false);
+              this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value === "Sim" ? true : false);
+              this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value === "Sim" ? true : false);
+
+              this.toastService.addToast('info', 'Erro!', 'Verifique os dados e tente novamente.')
             }
           )
         }
@@ -630,46 +644,46 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  validationFicha(){
-    
-    if(this.formDiagnostico.get('ingestaoCafe').value === "Não"){
+  validationFicha() {
+
+    if (this.formDiagnostico.get('ingestaoCafe').value === "Não") {
       this.formDiagnostico.get('cafeMlDia').setValue("0");
     }
-    
-    if(this.formDiagnostico.get('adoeceu').value === "Não"){
+
+    if (this.formDiagnostico.get('adoeceu').value === "Não") {
       this.formDiagnostico.get('qtdVezesAdoeceu').setValue("Nenhuma vez");
     }
-    
-    if(this.formDiagnostico.get('internado').value === "Não"){
+
+    if (this.formDiagnostico.get('internado').value === "Não") {
       this.formDiagnostico.get('qtdVezesInternado').setValue("Nenhuma vez");
       this.formDiagnostico.get('quandoInterndo').setValue("Nenhuma vez");
     }
 
-    if(this.formDiagnostico.get('roupaProtecao').value === 'Sim' && 
-      this.formDiagnostico.get('botaProtecao').value === 'Sim' && 
-      this.formDiagnostico.get('luvasProtecao').value === 'Sim' && 
-      this.formDiagnostico.get('mascaraProtecao').value === 'Sim' && 
-      this.formDiagnostico.get('oculosProtecao').value === 'Sim' && 
-      this.formDiagnostico.get('protetorAuricular').value === 'Sim'){
-        this.formDiagnostico.get('equipamentoProtecao').setValue('Completo');
-    } else if(this.formDiagnostico.get('roupaProtecao').value === 'Não' && 
-      this.formDiagnostico.get('botaProtecao').value === 'Não' && 
-      this.formDiagnostico.get('luvasProtecao').value === 'Não' && 
-      this.formDiagnostico.get('mascaraProtecao').value === 'Não' && 
-      this.formDiagnostico.get('oculosProtecao').value === 'Não' && 
-      this.formDiagnostico.get('protetorAuricular').value === 'Não'){
-        this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
+    if (this.formDiagnostico.get('roupaProtecao').value === 'Sim' &&
+      this.formDiagnostico.get('botaProtecao').value === 'Sim' &&
+      this.formDiagnostico.get('luvasProtecao').value === 'Sim' &&
+      this.formDiagnostico.get('mascaraProtecao').value === 'Sim' &&
+      this.formDiagnostico.get('oculosProtecao').value === 'Sim' &&
+      this.formDiagnostico.get('protetorAuricular').value === 'Sim') {
+      this.formDiagnostico.get('equipamentoProtecao').setValue('Completo');
+    } else if (this.formDiagnostico.get('roupaProtecao').value === 'Não' &&
+      this.formDiagnostico.get('botaProtecao').value === 'Não' &&
+      this.formDiagnostico.get('luvasProtecao').value === 'Não' &&
+      this.formDiagnostico.get('mascaraProtecao').value === 'Não' &&
+      this.formDiagnostico.get('oculosProtecao').value === 'Não' &&
+      this.formDiagnostico.get('protetorAuricular').value === 'Não') {
+      this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
     }
-    
-    if(this.formDiagnostico.get('exposicaoRaiox').value === "Não"){
+
+    if (this.formDiagnostico.get('exposicaoRaiox').value === "Não") {
       this.formDiagnostico.get('quandodiasExposicao').setValue("Não");
     }
-    
-    if(this.formDiagnostico.get('medicamentoContinuo').value === "Não"){
+
+    if (this.formDiagnostico.get('medicamentoContinuo').value === "Não") {
       this.formDiagnostico.get('medicamento').setValue("Não");
     }
-    
-    if(this.formDiagnostico.get('remedioMicose').value === "Não"){
+
+    if (this.formDiagnostico.get('remedioMicose').value === "Não") {
       this.formDiagnostico.get('nomeRemedio').setValue("Não");
     }
 
@@ -688,7 +702,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
   }
 
-  continueConclusao(){
+  continueConclusao() {
     this.router.navigate(["/dashboard/diagnosticos"])
   }
 }

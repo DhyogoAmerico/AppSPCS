@@ -35,7 +35,7 @@ export class Interceptor implements HttpInterceptor {
           case 200:
             break;
           default:
-            this.toastService.addToast('error',err.status,err.error.errors.Mensagens);
+            this.toastService.addToast('error',err.status,err.error.errors.Mensagens || err.error.errors.title);
             break;
         }
         // if (err.status === 401) {

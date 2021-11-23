@@ -13,6 +13,8 @@ import { jsPDF } from "jspdf";
 export class DiagnosticosComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
   public visiblePDF = false;
+  public dataFicha: any;
+  public visiblePrintOverPanel = true;
   public fichaPaciente: any;
   public infoTable = []
   public responseTable: any[];
@@ -61,20 +63,15 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     )
   }
 
-  printPDF() {
-    var data = document.getElementById('content');
-    let doc = new jsPDF('p', 'pt', 'a4');
-    doc.html(
-      data, {
-      callback: (pdf) => {
-        pdf.save("teste.pdf");
-      }
-    }
-    )
+  impressaoFicha(objFicha) {
+    this.dataFicha = objFicha;
+    this.visiblePDF = true;
   }
 
-  async impressaoFicha(obj: any) {
-    await this.sharedService.ListarFichaPacientePorId(obj.fichas[0].id).pipe(takeUntil(this.ngUnsubscribe)).toPromise().then(
+  async printPDF(data: any) {
+    const dateFicha = this.dataFicha.fichas.find(x => x.dataCadastro === data);
+
+    await this.sharedService.ListarFichaPacientePorId(dateFicha.id).pipe(takeUntil(this.ngUnsubscribe)).toPromise().then(
       (response: any) => {
         this.fichaPaciente = response;
       }
@@ -197,8 +194,8 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.setFont("Helvetica", 'bold');
     documento.setTextColor(0, 0, 0);
     documento.setFontSize(10);
-    documento.text(obj.nome || 'teste', 120, 58);
-    documento.text(obj.fichas[0].dataCadastro || 'teste', 120, 80);
+    documento.text(this.dataFicha.nome || 'teste', 120, 58);
+    documento.text(this.fichaPaciente.dataCadastro || 'teste', 120, 80);
 
     documento.setFontSize(9);
     indHeight = 121;
@@ -258,11 +255,13 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     // documento.text("R$ 2400,00", 140, 118);
 
 
-    const dateString = new Date(obj.fichas[0].dataCadastro).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-    documento.save(`${obj.nome} - ${dateString}.pdf`);
+    const dateString = new Date(this.fichaPaciente.dataCadastro).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+    documento.save(`${this.dataFicha.nome} - ${dateString}.pdf`);
 
 
     this.fichaPaciente = null;
+
+    this.visiblePDF = false;
   }
 
 }
