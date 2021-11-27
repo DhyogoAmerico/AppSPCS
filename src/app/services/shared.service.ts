@@ -9,7 +9,7 @@ import { CommonService } from './common-service/common.service';
 })
 
 export class SharedService {
-  private apiUrl = environment.urlApi; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
+  private apiUrl = "https://api.plantandoecolhendosaude.com.br/api/"; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
   constructor(
     private httpClient: HttpClient,
     private commonService:CommonService
@@ -28,11 +28,20 @@ export class SharedService {
     return this.httpClient.post(this.apiUrl + 'auth/autenticar', objUser, { headers });
   }
 
-  findPacienteByCpf (cpf){
+  findUserByCpf (typeUser, cpf){
+    let idTypeUser = this.commonService.getIdUserByTypeUser(typeUser);
+
     const headers = new HttpHeaders()
     .set('Content-Type','application/json')
     .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
-    return this.httpClient.get(this.apiUrl + 'usuario/paciente/' + cpf, { headers });
+    return this.httpClient.get(this.apiUrl + 'usuario/' + idTypeUser + '/' + cpf, { headers });
+  }
+  
+  DesativeUsuario (idUser){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
+    return this.httpClient.put(this.apiUrl + 'usuario/atualizar/desativar/' + idUser, { headers });
   }
 
   getAllUsers(typeUser){
@@ -62,6 +71,13 @@ export class SharedService {
     .set('Content-Type','application/json')
     .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
     return this.httpClient.put(this.apiUrl + 'agrotoxico/atualizar', agrotoxico, { headers });
+  }
+  
+  DesativarAgrotoxico (idAgro){
+    const headers = new HttpHeaders()
+    .set('Content-Type','application/json')
+    .set('authorization', 'Bearer ' + this.commonService.getTokenCookie().toString());
+    return this.httpClient.put(this.apiUrl + 'agrotoxico/atualizar', idAgro, { headers });
   }
 
   InsertFichaPaciente(ficha){

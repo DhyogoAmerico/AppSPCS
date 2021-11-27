@@ -1,8 +1,8 @@
 <div class="cntDiagnostico">
     <div class="cntSearch">
         <div class="form-group">
-            <label>Pesquisar por Nome</label>
-            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch'>
+            <label>Pesquisar por CPF</label>
+            <input class="form-control" type="text" [(ngModel)]='valueSearch' (keyup.enter)='searchByCpf()'  placeholder="000.000.000-00">
         </div>
         <div class="cntButton">
             <span pTooltip='Limpar' tooltipPosition='top'>

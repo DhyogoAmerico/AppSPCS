@@ -251,7 +251,7 @@
                                 <option disabled value="">Selecione</option>
                                 <option *ngFor="let itemValueAgro of listIdsAgrotoxicos" [value]='itemValueAgro.value' >{{itemValueAgro.label}}</option>
                             </select> -->
-                            <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '250px'}"></p-multiSelect>
+                            <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '250px'}" [defaultLabel]="'Selecione'"></p-multiSelect>
                         </div>
                     </div>
                     <div class="form-group">
@@ -293,15 +293,15 @@
                                 <label>Quantas vezes você ficou doente por causa do veneno?</label>
                                 <div class="group-radio">
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Uma única vez' id='unicavezqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='1' id='unicavezqtdVezesAdoeceu'>
                                         <label for='unicavezqtdVezesAdoeceu'>Uma única vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='2' id='maisdeumaqtdVezesAdoeceu'>
                                         <label for='maisdeumaqtdVezesAdoeceu'>Mais de uma vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='0' id='nenhumaqtdVezesAdoeceu'>
                                         <label for='nenhumaqtdVezesAdoeceu'>Nenhuma vez</label>
                                     </div>
                                 </div>
@@ -327,15 +327,15 @@
                                 <label>Quantas vezes?</label>
                                 <div class="group-radio">
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='Uma única vez' id='unicavezqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='1' id='unicavezqtdVezesInternado'>
                                         <label for='unicavezqtdVezesInternado'>Uma única vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='2' id='maisdeumaqtdVezesInternado'>
                                         <label for='maisdeumaqtdVezesInternado'>Mais de uma vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='0' id='nenhumaqtdVezesInternado'>
                                         <label for='nenhumaqtdVezesInternado'>Nenhuma vez</label>
                                     </div>
                                 </div>
@@ -1268,7 +1268,7 @@
                     </div>
                 </ng-container>
                 <div class="cntButton">
-                    <button (click)='submitFicha()'>Enviar</button>
+                    <button [disabled]='!formDiagnostico.valid' (click)='submitFicha()'>Enviar</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>

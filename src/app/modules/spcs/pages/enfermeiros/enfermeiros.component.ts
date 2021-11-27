@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-enfermeiros',
@@ -18,7 +20,8 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   public listEnfermeiros: any;
   constructor(
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {
     super();
    }
@@ -26,42 +29,9 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.mountHeader();
     this.getAllEnfermeiros();
-    // this.listEnfermeiros = [
-    //   {
-    //     nome: 'Enfermeiro Teste1',
-    //     cpf: '15915915946',
-    //     diagnostico: true,
-    //     data_cadastro: '15/09/2021'
-    //   },
-    //   {
-    //     nome: 'Enfermeiro Teste2',
-    //     cpf: '15915915946',
-    //     diagnostico: true,
-    //     data_cadastro: '15/09/2021'
-    //   },
-    //   {
-    //     nome: 'Enfermeiro Teste23',
-    //     cpf: '15915915946',
-    //     diagnostico: true,
-    //     data_cadastro: '15/09/2021'
-    //   },
-    //   {
-    //     nome: 'Enfermeiro Teste4',
-    //     cpf: '15915915946',
-    //     diagnostico: true,
-    //     data_cadastro: '15/09/2021'
-    //   },
-    //   {
-    //     nome: 'Enfermeiro Teste5',
-    //     cpf: '15915915946',
-    //     diagnostico: true,
-    //     data_cadastro: '15/09/2021'
-    //   }
-    // ]
   }
 
   byUrlRegister() {
-    // this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'enfermeiro'} });
     this.router.navigate(['dashboard/usuario/register/enfermeiro']);
   }
   
@@ -78,10 +48,6 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
       {
         header: 'Telefone',
         field: 'telefone'
-      },
-      {
-        header: 'Coren',
-        field: 'coren'
       }
     ]
   }
@@ -101,12 +67,35 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   }
 
   deleteUser(user) {
-    console.log(user);
+    Swal.fire({
+      title: 'Atenção!',
+      text: "Você deseja mesmo enviar desativar estes dados?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#38b12d',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, tenho certeza',
+      cancelButtonText: 'Não',
+      allowOutsideClick: false
+    }).then (
+      (result) => {
+        if(result.isConfirmed) {
+          this.sharedService.DesativeUsuario(user.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+            (response) => {
+              this.toastService.addToast("success","Desativado","Desativado com sucesso!");
+            },
+            (err) => {
+              this.toastService.addToast("error","Erro!","Houve algum problema ao desativar o usuário.");
+            }
+          )
+        }
+      }
+    )
   }
 
   searchByCpf(){
     console.log(this.searchPaciente);
-    this.sharedService.findPacienteByCpf(this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+    this.sharedService.findUserByCpf('enfermeiro', this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.listEnfermeiros = [];
         this.listEnfermeiros.push(response);

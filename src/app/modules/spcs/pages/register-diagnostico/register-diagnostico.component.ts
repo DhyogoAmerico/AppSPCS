@@ -376,7 +376,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         param => {
           if (param.cpf) {
             this.cpfUser = param.cpf;
-            this.findPacienteByCpf(this.cpfUser);
+            this.findUserByCpf(this.cpfUser);
           }
           else {
             this.toastService.addToast('warn', 'Erro', 'Não há um tipo de usuário');
@@ -405,8 +405,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     this.cpfUser = _cpf;
   }
 
-  findPacienteByCpf(_cpf) {
-    this.sharedService.findPacienteByCpf(_cpf).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+  findUserByCpf(_cpf) {
+    this.sharedService.findUserByCpf('paciente', _cpf).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {
         this.dataUser = response;
         // this.dataUser.dataNascimento = this.dataUser.dataNascimento.toLocaleDateString('pt-br');
@@ -563,10 +563,10 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       this.formDiagnostico.get('formaAplicacao').setValue('Não Informado');
       this.formDiagnostico.get('viaExposicao').setValue('Nenhum');
       this.formDiagnostico.get('adoeceu').setValue('Não');
-      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('Nenhuma vez');
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('0');
       this.formDiagnostico.get('internado').setValue('Não');
-      this.formDiagnostico.get('qtdVezesInternado').setValue('Nenhuma vez');
-      this.formDiagnostico.get('quandoInterndo').setValue('Nenhuma vez');
+      this.formDiagnostico.get('qtdVezesInternado').setValue('0');
+      this.formDiagnostico.get('quandoInterndo').setValue('0');
       this.formDiagnostico.get('tipoContato').setValue('Sem contato');
       this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
       this.formDiagnostico.get('roupaProtecao').setValue('Não');
@@ -600,9 +600,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
   }
 
-  async submitFicha() {
+  submitFicha() {
     this.alterFormAgro();
-    await this.validationFicha();
+    if(this.formDiagnostico.valid){
+      this.validationFicha();
+    }
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
     if (this.formDiagnostico.valid) {
@@ -614,7 +616,8 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         confirmButtonColor: '#38b12d',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim, tenho certeza',
-        cancelButtonText: 'Não'
+        cancelButtonText: 'Não',
+        allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           this.sharedService.InsertFichaPaciente(this.formDiagnostico.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
@@ -622,26 +625,31 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
               this.currentStep++;
             },
             (err: any) => {
-              //tratar erro
-              this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("digestorioCancer").setValue(this.formDiagnostico.get("digestorioCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value === "Sim" ? true : false);
-              this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value === "Sim" ? true : false);
-              this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value === "Sim" ? true : false);
-              this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value === "Sim" ? true : false);
-              this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value === "Sim" ? true : false);
-              this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value === "Sim" ? true : false);
-              this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value === "Sim" ? true : false);
-
-              this.toastService.addToast('info', 'Erro!', 'Verifique os dados e tente novamente.')
+              this.invalidFicha();
+              this.toastService.addToast('info', 'Erro!', 'Verifique os dados e tente novamente.');
             }
           )
         }
+        else {
+          this.invalidFicha();
+        }
       })
     }
+  }
+
+  invalidFicha() {
+    this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("digestorioCancer").setValue(this.formDiagnostico.get("digestorioCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("reprodutorCancer").setValue(this.formDiagnostico.get("reprodutorCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("glandularCancer").setValue(this.formDiagnostico.get("glandularCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("peleOssoSangueCancer").setValue(this.formDiagnostico.get("peleOssoSangueCancer").value === "Sim" ? true : false);
+    this.formDiagnostico.get("sncCancerFamilia").setValue(this.formDiagnostico.get("sncCancerFamilia").value === "Sim" ? true : false);
+    this.formDiagnostico.get("digestorioCancerfamilia").setValue(this.formDiagnostico.get("digestorioCancerfamilia").value === "Sim" ? true : false);
+    this.formDiagnostico.get("respiratorioCancerfamilia").setValue(this.formDiagnostico.get("respiratorioCancerfamilia").value === "Sim" ? true : false);
+    this.formDiagnostico.get("reprodutorCancerfamilia").setValue(this.formDiagnostico.get("reprodutorCancerfamilia").value === "Sim" ? true : false);
+    this.formDiagnostico.get("glandularCancerfamilia").setValue(this.formDiagnostico.get("glandularCancerfamilia").value === "Sim" ? true : false);
+    this.formDiagnostico.get("peleOssoSangueCancerfamilia").setValue(this.formDiagnostico.get("peleOssoSangueCancerfamilia").value === "Sim" ? true : false);
   }
 
   validationFicha() {

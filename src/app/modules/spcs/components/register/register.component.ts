@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { CommonService } from 'src/app/services/common-service/common.service';
 import { ValidatorService } from 'src/app/services/validator-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -55,12 +56,6 @@ export class RegisterComponent implements OnInit {
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     escolaridade: new FormControl(
-      { value: '', disabled: false }
-    ),
-    coren: new FormControl(
-      { value: '', disabled: false }
-    ),
-    crm: new FormControl(
       { value: '', disabled: false }
     )
   })
@@ -116,24 +111,15 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('senhaConfirmacao').disable();
         this.registerForm.get('endereco').setValidators(Validators.required);
         this.registerForm.get('escolaridade').setValidators(Validators.required);
-        this.registerForm.get('crm').disable();
-        this.registerForm.get('crm').disable();
         this.registerForm.get('email').disable();
-        this.registerForm.get('coren').disable();
         this.router
         break;
       case 'medico':
         this.registerForm.get('tipoUsuarioId').setValue(this.commonService.getIdUserByTypeUser(this.typeUser));
-        this.registerForm.get('coren').disable();
-        this.registerForm.get('crm').setValidators(Validators.required);
-        this.registerForm.get('crm').setValue('');
         this.registerForm.get('endereco').disable();
         break;
       case 'enfermeiro':
         this.registerForm.get('tipoUsuarioId').setValue(this.commonService.getIdUserByTypeUser(this.typeUser));
-        this.registerForm.get('crm').disable();
-        this.registerForm.get('coren').setValidators(Validators.required);
-        this.registerForm.get('coren').setValue('');
         this.registerForm.get('endereco').disable();
         break;
       default:
@@ -157,7 +143,7 @@ export class RegisterComponent implements OnInit {
   }
 
   alterTypePassword() {
-    if(this.typePassword){
+    if (this.typePassword) {
       //password
       this.typePassword = false;
     }
@@ -174,18 +160,34 @@ export class RegisterComponent implements OnInit {
 
   submitForm() {
     if (this.registerForm.valid) {
-      this.sharedService.registerUsuario(this.typeUser, this.registerForm.value).subscribe(
-        (response: any) => {
-          console.log(response);
-          this.toastService.addToast('success','Sucesso!','Usuário registrado com sucesso');
-          this.router.navigate(['/dashboard/'+ this.typeUser + 's']);
+      Swal.fire({
+        title: 'Atenção!',
+        text: `Você tem certeza do cadastro deste ${this.typeUser === 'paciente' ? 'paciente' : 'usuário'}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#38b12d',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, tenho certeza',
+        cancelButtonText: 'Não',
+        allowOutsideClick: false
+      }).then( 
+        (result) => {
+          if(result.isConfirmed) {
+            this.sharedService.registerUsuario(this.typeUser, this.registerForm.value).subscribe(
+              (response: any) => {
+                console.log(response);
+                this.toastService.addToast('success', 'Sucesso!', 'Usuário registrado com sucesso');
+                this.router.navigate(['/dashboard/' + this.typeUser + 's']);
+              }
+            );
+          }
         }
-      );
+      )
     }
   }
 
   async inputMaskPhone() {
-    if(this.registerForm.get('telefone').value.split("")[2] === 9){
+    if (this.registerForm.get('telefone').value.split("")[2] === 9) {
       this.mascaraPhone = '(00) 00000-0000';
     }
     else {
@@ -193,8 +195,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  differencePassword(){
-    if(this.registerForm.get('senha').value !== this.registerForm.get('senhaConfirmacao').value){
+  differencePassword() {
+    if (this.registerForm.get('senha').value !== this.registerForm.get('senhaConfirmacao').value) {
       this.registerForm.get('senha').setErrors({ differencePassword: true });
       this.registerForm.get('senhaConfirmacao').setErrors({ differencePassword: true });
     }

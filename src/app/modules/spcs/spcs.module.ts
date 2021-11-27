@@ -40,6 +40,7 @@ import { StepsComponent } from 'src/app/components/steps-component/steps-compone
 import { FichaComponent } from './pages/ficha/ficha.component';
 import { AgrotoxicosComponent } from './pages/agrotoxicos/agrotoxicos.component';
 import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/register-agrotoxico.component';
+import { ExportDataComponent } from './pages/export-data/export-data.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/re
     RegisterDiagnosticoComponent,
     FichaComponent,
     AgrotoxicosComponent,
-    RegisterAgrotoxicoComponent
+    RegisterAgrotoxicoComponent,
+    ExportDataComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@
     <div class="cntSearch">
         <div class="form-group">
             <label>Pesquisar por Nome</label>
-            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch' >
+            <input class="form-control" type="text" maxlength="60" [(ngModel)]='valueSearch'>
         </div>
         <div class="cntButton">
             <span pTooltip='Limpar' tooltipPosition='top'>
@@ -26,14 +26,16 @@
                         <ng-container *ngSwitchCase="'action'">
                             <div class="cntBtn">
                                 <span class="impressao" (click)='impressaoFicha(rowData)'>
-                                    <i class="fas fa-file-pdf"></i>
+                                    Ver mais
                                 </span>
                             </div>
                         </ng-container>
                         <ng-container *ngSwitchCase="'dataCadastro'">
                             <div class="cntData">
                                 <ng-container *ngFor="let item of rowData?.fichas; let i=index;">
-                                    <span class="data" [ngStyle]="{'border-bottom': i === (rowData?.fichas?.length - 1) ? 'none' : '1px solid #cdcdcd'}" >{{item.dataCadastro | date: 'dd/MM/yyyy'}}</span>
+                                    <span class="data" [ngStyle]="{'border-bottom': i === (rowData?.fichas?.length - 1) ? 'none' : '1px solid #cdcdcd'}">
+                                        {{item.dataCadastro | date: 'dd/MM/yyyy'}}
+                                    </span>
                                 </ng-container>
                             </div>
                         </ng-container>
@@ -50,14 +52,133 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]='visiblePDF' header='Qual ficha?' [modal]='true' [responsive]='true'>
+<p-dialog [(visible)]='visibleAllFichas' header='Qual ficha?' [modal]='true' [responsive]='true'>
     <ng-container *ngFor="let item of dataFicha?.fichas; let i=index">
-        <div class="ficha" [ngStyle]="{'border-bottom': i === (dataFicha?.fichas.length - 1) ? 'none' : '1px solid #cdcdcd'}"> 
+        <div class="ficha"
+            [ngStyle]="{'border-bottom': i === (dataFicha?.fichas.length - 1) ? 'none' : '1px solid #cdcdcd'}">
             {{item.dataCadastro | date: 'dd/MM/yyyy'}}
-            <span class="button" (click)='printPDF(item.dataCadastro)'>
-                <i class="fas fa-file-pdf"></i>
-                Imprimir
+            <span class="button" (click)='visibleFicha(item.dataCadastro)'>
+                Selecionar
             </span>
         </div>
     </ng-container>
+</p-dialog>
+
+<p-dialog [(visible)]='visiblePDF' [header]="'Paciente: ' + dataFicha?.nome" [style]="{width: '550px'}" [modal]='true' [responsive]='true'>
+    <div class="dadosFicha">
+        <div class="dado">abortoEspontaneo ..........: <span>{{fichaPaciente?.abortoEspontaneo}}</span></div>
+        <div class="dado">adoeceu ..........: <span>{{fichaPaciente?.adoeceu}}</span></div>
+        <div class="dado">agitacaoIrritabilidade ..........: <span>{{fichaPaciente?.agitacaoIrritabilidade}}</span></div>
+        <div class="dado">agrotoxicos ..........: <span>{{fichaPaciente?.agrotoxicos}}</span></div>
+        <div class="dado">alt ..........: <span>{{fichaPaciente?.alt}}</span></div>
+        <div class="dado">alteracaoSNervoso ..........: <span>{{fichaPaciente?.alteracaoSNervoso}}</span></div>
+        <div class="dado">ambulatorio ..........: <span>{{fichaPaciente?.ambulatorio}}</span></div>
+        <div class="dado">aparelhoAuditivo ..........: <span>{{fichaPaciente?.aparelhoAuditivo}}</span></div>
+        <div class="dado">aparelhoDigestorio ..........: <span>{{fichaPaciente?.aparelhoDigestorio}}</span></div>
+        <div class="dado">aparelhoRespiratorio ..........: <span>{{fichaPaciente?.aparelhoRespiratorio}}</span></div>
+        <div class="dado">aparelhoUrinario ..........: <span>{{fichaPaciente?.aparelhoUrinario}}</span></div>
+        <div class="dado">arritmia ..........: <span>{{fichaPaciente?.arritmia}}</span></div>
+        <div class="dado">ast ..........: <span>{{fichaPaciente?.ast}}</span></div>
+        <div class="dado">aziaQueimacao ..........: <span>{{fichaPaciente?.aziaQueimacao}}</span></div>
+        <div class="dado">botaProtecao ..........: <span>{{fichaPaciente?.botaProtecao}}</span></div>
+        <div class="dado">cafeMlDia ..........: <span>{{fichaPaciente?.cafeMlDia}}</span></div>
+        <div class="dado">catarroEscarro ..........: <span>{{fichaPaciente?.catarroEscarro}}</span></div>
+        <div class="dado">ch_e ..........: <span>{{fichaPaciente?.ch_e}}</span></div>
+        <div class="dado">ch_p ..........: <span>{{fichaPaciente?.ch_p}}</span></div>
+        <div class="dado">ch_t ..........: <span>{{fichaPaciente?.ch_t}}</span></div>
+        <div class="dado">circunferenciaAbdominal ..........: <span>{{fichaPaciente?.circunferenciaAbdominal}}</span></div>
+        <div class="dado">colicasDorBarriga ..........: <span>{{fichaPaciente?.colicasDorBarriga}}</span></div>
+        <div class="dado">contatoPraguicida ..........: <span>{{fichaPaciente?.contatoPraguicida}}</span></div>
+        <div class="dado">creatinina ..........: <span>{{fichaPaciente?.creatinina}}</span></div>
+        <div class="dado">cultura ..........: <span>{{fichaPaciente?.cultura}}</span></div>
+        <div class="dado">dataCadastro ..........: <span>{{fichaPaciente?.dataCadastro}}</span></div>
+        <div class="dado">dcIrritativa ..........: <span>{{fichaPaciente?.dcIrritativa}}</span></div>
+        <div class="dado">dcSensibilizante ..........: <span>{{fichaPaciente?.dcSensibilizante}}</span></div>
+        <div class="dado">diarreia ..........: <span>{{fichaPaciente?.diarreia}}</span></div>
+        <div class="dado">dificuldadeEngravidar ..........: <span>{{fichaPaciente?.dificuldadeEngravidar}}</span></div>
+        <div class="dado">digestorioCancer ..........: <span>{{fichaPaciente?.digestorioCancer}}</span></div>
+        <div class="dado">digestorioCancerfamilia ..........: <span>{{fichaPaciente?.digestorioCancerfamilia}}</span></div>
+        <div class="dado">diminuicaoAudicao ..........: <span>{{fichaPaciente?.diminuicaoAudicao}}</span></div>
+        <div class="dado">diminuicaoUrina ..........: <span>{{fichaPaciente?.diminuicaoUrina}}</span></div>
+        <div class="dado">doencaCardioVascular ..........: <span>{{fichaPaciente?.doencaCardioVascular}}</span></div>
+        <div class="dado">dorCabeca ..........: <span>{{fichaPaciente?.dorCabeca}}</span></div>
+        <div class="dado">dorEstomago ..........: <span>{{fichaPaciente?.dorEstomago}}</span></div>
+        <div class="dado">edaRegiao ..........: <span>{{fichaPaciente?.edaRegiao}}</span></div>
+        <div class="dado">equipamentoProtecao ..........: <span>{{fichaPaciente?.equipamentoProtecao}}</span></div>
+        <div class="dado">etilismo ..........: <span>{{fichaPaciente?.etilismo}}</span></div>
+        <div class="dado">etilismoAnterior ..........: <span>{{fichaPaciente?.etilismoAnterior}}</span></div>
+        <div class="dado">etilismoAtual ..........: <span>{{fichaPaciente?.etilismoAtual}}</span></div>
+        <div class="dado">exposicaoRaiox ..........: <span>{{fichaPaciente?.exposicaoRaiox}}</span></div>
+        <div class="dado">faltaDeAr ..........: <span>{{fichaPaciente?.faltaDeAr}}</span></div>
+        <div class="dado">familiaCancer ..........: <span>{{fichaPaciente?.familiaCancer}}</span></div>
+        <div class="dado">filhoMaFormacao ..........: <span>{{fichaPaciente?.filhoMaFormacao}}</span></div>
+        <div class="dado">formaAplicacao ..........: <span>{{fichaPaciente?.formaAplicacao}}</span></div>
+        <div class="dado">formigamento ..........: <span>{{fichaPaciente?.formigamento}}</span></div>
+        <div class="dado">fraquezaMuscular ..........: <span>{{fichaPaciente?.fraquezaMuscular}}</span></div>
+        <div class="dado">frequenciaContatoPraguicida ..........: <span>{{fichaPaciente?.frequenciaContatoPraguicida}}</span></div>
+        <div class="dado">funcaoTrabalho ..........: <span>{{fichaPaciente?.funcaoTrabalho}}</span></div>
+        <div class="dado">gestante ..........: <span>{{fichaPaciente?.gestante}}</span></div>
+        <div class="dado">glandularCancer ..........: <span>{{fichaPaciente?.glandularCancer}}</span></div>
+        <div class="dado">glandularCancerfamilia ..........: <span>{{fichaPaciente?.glandularCancerfamilia}}</span></div>
+        <div class="dado">habitoAlimentar ..........: <span>{{fichaPaciente?.habitoAlimentar}}</span></div>
+        <div class="dado">hipertensaoArterial ..........: <span>{{fichaPaciente?.hipertensaoArterial}}</span></div>
+        <div class="dado">hipotensaoArterial ..........: <span>{{fichaPaciente?.hipotensaoArterial}}</span></div>
+        <div class="dado">imc ..........: <span>{{fichaPaciente?.imc}}</span></div>
+        <div class="dado">incoordenacaoMotora ..........: <span>{{fichaPaciente?.incoordenacaoMotora}}</span></div>
+        <div class="dado">ingestaoCafe ..........: <span>{{fichaPaciente?.ingestaoCafe}}</span></div>
+        <div class="dado">internado ..........: <span>{{fichaPaciente?.internado}}</span></div>
+        <div class="dado">irritacaoOcular ..........: <span>{{fichaPaciente?.irritacaoOcular}}</span></div>
+        <div class="dado">irritaçaoNasal ..........: <span>{{fichaPaciente?.irritacaoNasal}}</span></div>
+        <div class="dado">luvasProtecao ..........: <span>{{fichaPaciente?.luvasProtecao}}</span></div>
+        <div class="dado">mascaraProtecao ..........: <span>{{fichaPaciente?.mascaraProtecao}}</span></div>
+        <div class="dado">medicamento ..........: <span>{{fichaPaciente?.medicamento}}</span></div>
+        <div class="dado">medicamentoContinuo ..........: <span>{{fichaPaciente?.medicamentoContinuo}}</span></div>
+        <div class="dado">municipioTrabalho ..........: <span>{{fichaPaciente?.municipioTrabalho}}</span></div>
+        <div class="dado">nauseasEnjoo ..........: <span>{{fichaPaciente?.nauseasEnjoo}}</span></div>
+        <div class="dado">nomeRemedio ..........: <span>{{fichaPaciente?.nomeRemedio}}</span></div>
+        <div class="dado">oculosProtecao ..........: <span>{{fichaPaciente?.oculosProtecao}}</span></div>
+        <div class="dado">outro ..........: <span>{{fichaPaciente?.outro}}</span></div>
+        <div class="dado">pacienteId ..........: <span>{{fichaPaciente?.pacienteId}}</span></div>
+        <div class="dado">peleMucosa ..........: <span>{{fichaPaciente?.peleMucosa}}</span></div>
+        <div class="dado">peleOssoSangueCancer ..........: <span>{{fichaPaciente?.peleOssoSangueCancer}}</span></div>
+        <div class="dado">peleOssoSangueCancerfamilia ..........: <span>{{fichaPaciente?.peleOssoSangueCancerfamilia}}</span></div>
+        <div class="dado">produtoContatoUltimaVez ..........: <span>{{fichaPaciente?.produtoContatoUltimaVez}}</span></div>
+        <div class="dado">protetorAuricular ..........: <span>{{fichaPaciente?.protetorAuricular}}</span></div>
+        <div class="dado">qtdVezesAdoeceu ..........: <span>{{fichaPaciente?.qtdVezesAdoeceu}}</span></div>
+        <div class="dado">qtdVezesInternado ..........: <span>{{fichaPaciente?.qtdVezesInternado}}</span></div>
+        <div class="dado">quandoInterndo ..........: <span>{{fichaPaciente?.quandoInterndo}}</span></div>
+        <div class="dado">quandodiasExposicao ..........: <span>{{fichaPaciente?.quandodiasExposicao}}</span></div>
+        <div class="dado">relacaoTrabalho ..........: <span>{{fichaPaciente?.relacaoTrabalho}}</span></div>
+        <div class="dado">remedioMicose ..........: <span>{{fichaPaciente?.remedioMicose}}</span></div>
+        <div class="dado">reprodutorCancer ..........: <span>{{fichaPaciente?.reprodutorCancer}}</span></div>
+        <div class="dado">reprodutorCancerfamilia ..........: <span>{{fichaPaciente?.reprodutorCancerfamilia}}</span></div>
+        <div class="dado">respiratorioCancer ..........: <span>{{fichaPaciente?.respiratorioCancer}}</span></div>
+        <div class="dado">respiratorioCancerfamilia ..........: <span>{{fichaPaciente?.respiratorioCancerfamilia}}</span></div>
+        <div class="dado">roupaProtecao ..........: <span>{{fichaPaciente?.roupaProtecao}}</span></div>
+        <div class="dado">sncCancer ..........: <span>{{fichaPaciente?.sncCancer}}</span></div>
+        <div class="dado">sncCancerFamilia ..........: <span>{{fichaPaciente?.sncCancerFamilia}}</span></div>
+        <div class="dado">tabagismo ..........: <span>{{fichaPaciente?.tabagismo}}</span></div>
+        <div class="dado">tabagismoAnterior ..........: <span>{{fichaPaciente?.tabagismoAnterior}}</span></div>
+        <div class="dado">tabagismoAtual ..........: <span>{{fichaPaciente?.tabagismoAtual}}</span></div>
+        <div class="dado">temFilhos ..........: <span>{{fichaPaciente?.temFilhos}}</span></div>
+        <div class="dado">tempoContatoPraguicida ..........: <span>{{fichaPaciente?.tempoContatoPraguicida}}</span></div>
+        <div class="dado">teveCancer ..........: <span>{{fichaPaciente?.teveCancer}}</span></div>
+        <div class="dado">tipoContato ..........: <span>{{fichaPaciente?.tipoContato}}</span></div>
+        <div class="dado">tosse ..........: <span>{{fichaPaciente?.tosse}}</span></div>
+        <div class="dado">tremedeira ..........: <span>{{fichaPaciente?.tremedeira}}</span></div>
+        <div class="dado">tremorMuscular ..........: <span>{{fichaPaciente?.tremorMuscular}}</span></div>
+        <div class="dado">ultimoContatoPraguicida ..........: <span>{{fichaPaciente?.ultimoContatoPraguicida}}</span></div>
+        <div class="dado">urinaescuraSangue ..........: <span>{{fichaPaciente?.urinaescuraSangue}}</span></div>
+        <div class="dado">vertigensTonturas ..........: <span>{{fichaPaciente?.vertigensTonturas}}</span></div>
+        <div class="dado">viaExposicao ..........: <span>{{fichaPaciente?.viaExposicao}}</span></div>
+        <div class="dado">visaoTurvaEmbacada ..........: <span>{{fichaPaciente?.visaoTurvaEmbacada}}</span></div>
+        <div class="dado">vomito ..........: <span>{{fichaPaciente?.vomito}}</span></div>
+        <div class="dado">y_gt ..........: <span>{{fichaPaciente?.y_gt}}</span></div>
+        <div class="dado">zumbido ..........: <span>{{fichaPaciente?.zumbido}}</span></div>
+    </div>
+    <div class="btnImpressao" pTooltip='Imprimir' tooltipPosition='bottom'>
+        <button (click)='printPDF()'>
+            <i class="fas fa-file-pdf"></i>
+        </button>
+    </div>
 </p-dialog>

@@ -8,6 +8,7 @@ import { LayoutDashComponent } from './pages/common/layout/layout-dash/layout-da
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DiagnosticosComponent } from './pages/diagnosticos/diagnosticos.component';
 import { EnfermeirosComponent } from './pages/enfermeiros/enfermeiros.component';
+import { ExportDataComponent } from './pages/export-data/export-data.component';
 import { FichaComponent } from './pages/ficha/ficha.component';
 import { MedicosComponent } from './pages/medicos/medicos.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
@@ -88,6 +89,12 @@ const routes: Routes = [
         component: EnfermeirosComponent,
         canActivate: [ AuthGuard, TypeUserGuard ],
         data: { typeUser: ['medico','admin'] }
+      },
+      {
+        path: 'export',
+        component: ExportDataComponent,
+        canActivate: [ AuthGuard, TypeUserGuard ],
+        data: { typeUser: ['admin'] }
       }
     ]
   },

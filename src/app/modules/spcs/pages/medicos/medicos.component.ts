@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-medicos',
@@ -18,7 +20,8 @@ export class MedicosComponent extends BaseComponent implements OnInit {
   public responseMed: any;
   constructor(
     private sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) { 
     super();
   }
@@ -46,10 +49,6 @@ export class MedicosComponent extends BaseComponent implements OnInit {
       {
         header: 'Telefone',
         field: 'telefone'
-      },
-      {
-        header: 'CRM',
-        field: 'crm'
       }
     ]
   }
@@ -61,12 +60,35 @@ export class MedicosComponent extends BaseComponent implements OnInit {
   }
 
   deleteUser(user) {
-    console.log(user);
+    Swal.fire({
+      title: 'Atenção!',
+      text: "Você deseja mesmo enviar desativar estes dados?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#38b12d',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, tenho certeza',
+      cancelButtonText: 'Não',
+      allowOutsideClick: false
+    }).then (
+      (result) => {
+        if(result.isConfirmed) {
+          this.sharedService.DesativeUsuario(user.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+            (response) => {
+              this.toastService.addToast("success","Desativado","Desativado com sucesso!");
+            },
+            (err) => {
+              this.toastService.addToast("error","Erro!","Houve algum problema ao desativar o usuário.");
+            }
+          )
+        }
+      }
+    )
   }
 
   searchByCpf(){
     console.log(this.searchMed);
-    this.sharedService.findPacienteByCpf(this.searchMed).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+    this.sharedService.findUserByCpf('medico', this.searchMed).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.responseMed = [];
         this.responseMed.push(response);

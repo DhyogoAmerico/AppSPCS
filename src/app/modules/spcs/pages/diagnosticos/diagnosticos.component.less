@@ -28,11 +28,11 @@
     .cntBtn {
         display: flex;
         align-items: center;
+        justify-content: center;
         .impressao {
-            width: 30px;
-            height: 30px;
+            padding: 0 7px;
             display: flex;
-            border-radius: 50%;
+            border-radius: 505px;
             justify-content: center;
             align-items: center;
             background: transparent;
@@ -84,5 +84,32 @@
         /* color: white; */
         background: #fdda32;
         justify-content: space-evenly;
+    }
+}
+
+.dadosFicha {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+    box-shadow: inset -11px 1px 20px 0px #b1b1b1;
+    .dado {
+        font-weight: 600;
+        span {
+            font-weight: normal;
+        }
+    }
+}
+.btnImpressao {
+    position: absolute;
+    top: 22px;
+    right: 43px;
+    z-index: 10;
+    button {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        color: white;
+        background: #2e2e2e;
+        border-radius: 50% !important;
     }
 }

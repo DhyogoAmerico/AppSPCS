@@ -116,6 +116,9 @@ export class SideNavComponent implements OnInit {
       },
       {
         icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
+      },
+      {
+        icon: 'fas fa-seedling', label: 'Exporte Dados', link: '/dashboard/export'
       }
     ]
   }

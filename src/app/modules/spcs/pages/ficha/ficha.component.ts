@@ -56,6 +56,14 @@ export class FichaComponent extends BaseComponent implements OnInit {
     )
   }
 
+  searchByCpf() {
+    this.sharedService.findUserByCpf('paciente', this.valueSearch).pipe(takeUntil(this.ngUnsubscribe)).subscribe (
+      (response) => {
+        this.responseTable = response; 
+      }
+    )
+  }
+
   openRegisterFicha(objUser) {
     let cpf = objUser.cpf;
     

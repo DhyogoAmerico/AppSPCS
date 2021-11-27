@@ -60,6 +60,8 @@ export class CommonLoginComponent extends BaseComponent implements OnInit {
         (response: any) => {
           this.cookieService.set('authenticatedSPCS',(response.accessToken), 30);
           this.cookieService.set('refreshSPCS',(response.refreshToken), 30);
+
+          response.usuarioToken.claims[0] = response.usuarioToken.claims.find( x => x.type.includes('Administrador' || 'Medico' || 'Enfermeiro') )
           
           switch (response.usuarioToken.claims[0].type) {
             case 'Medico':

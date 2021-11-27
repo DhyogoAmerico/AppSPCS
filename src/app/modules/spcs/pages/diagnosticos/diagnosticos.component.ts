@@ -12,6 +12,7 @@ import { jsPDF } from "jspdf";
 })
 export class DiagnosticosComponent extends BaseComponent implements OnInit {
   public valueSearch = '';
+  public visibleAllFichas = false;
   public visiblePDF = false;
   public dataFicha: any;
   public visiblePrintOverPanel = true;
@@ -50,7 +51,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
       {
         header: 'Ação',
         field: 'action',
-        style: 'max-width: 80px'
+        style: 'maxWidth: "100px"'
       }
     ]
   }
@@ -65,17 +66,21 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
 
   impressaoFicha(objFicha) {
     this.dataFicha = objFicha;
-    this.visiblePDF = true;
+    this.visibleAllFichas = true;
   }
 
-  async printPDF(data: any) {
+  async visibleFicha(data: any) {
     const dateFicha = this.dataFicha.fichas.find(x => x.dataCadastro === data);
 
     await this.sharedService.ListarFichaPacientePorId(dateFicha.id).pipe(takeUntil(this.ngUnsubscribe)).toPromise().then(
       (response: any) => {
         this.fichaPaciente = response;
+        this.visiblePDF = true;
       }
     );
+  }
+
+  async printPDF() {
 
     console.log(this.fichaPaciente);
 
@@ -241,7 +246,13 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.text(this.fichaPaciente.etilismo || "teste", indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.etilismoAnterior || "teste", indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.etilismoAtual || "teste", indMarginLeft, indHeight += 16);
+
     documento.addPage('a4','p');
+    documento.setFont("Helvetica", 'bold');
+    documento.setFontSize(15);
+    documento.text("SPCS - Sistema Plantando e Colhendo Saúde", 125, 35);
+    documento.setFillColor(133, 133, 133);
+    documento.rect(35, 60, 525, 2, "F");
     documento.text(this.fichaPaciente.exposicaoRaiox || "teste", indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.faltaDeAr || "teste", indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.familiaCancer || "teste", indMarginLeft, indHeight += 16);
@@ -258,10 +269,9 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     const dateString = new Date(this.fichaPaciente.dataCadastro).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
     documento.save(`${this.dataFicha.nome} - ${dateString}.pdf`);
 
-
     this.fichaPaciente = null;
-
     this.visiblePDF = false;
+    this.visibleAllFichas = false;
   }
 
 }
