@@ -247,10 +247,6 @@
                         </div>
                         <div class="group-input contatoAgro">
                             <label>Agrotóxicos que já teve contato</label>
-                            <!-- <select class="form-control" formControlName='listIdsAgroModel' >
-                                <option disabled value="">Selecione</option>
-                                <option *ngFor="let itemValueAgro of listIdsAgrotoxicos" [value]='itemValueAgro.value' >{{itemValueAgro.label}}</option>
-                            </select> -->
                             <p-multiSelect [options]='listIdsAgrotoxicos' formControlName='listIdsAgroModel' [panelStyle]="{minWidth: '250px'}" [defaultLabel]="'Selecione'"></p-multiSelect>
                         </div>
                     </div>
@@ -1095,7 +1091,7 @@
                 </div>
                 <div class="form-group form-group-bool">
                     <div class="group-input-bool">
-                        <label>É da região?</label>
+                        <label>Sua família é da mesma região que você?</label>
                         <div class="group-radio">
                             <div class="input-radio">
                                 <input formControlName='edaRegiao' type="radio" value='Sim' id='simedaRegiao'>
@@ -1268,7 +1264,8 @@
                     </div>
                 </ng-container>
                 <div class="cntButton">
-                    <button [disabled]='!formDiagnostico.valid' (click)='submitFicha()'>Enviar</button>
+                    <label (click)='console()'>teste</label>
+                    <button (click)='submitFicha()'>Enviar</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>
                 </div>
             </ng-container>

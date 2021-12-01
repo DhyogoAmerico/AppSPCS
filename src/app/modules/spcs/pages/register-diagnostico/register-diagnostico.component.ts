@@ -84,13 +84,13 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     produtoContatoUltimaVez: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     formaAplicacao: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     cultura: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
+      { value: '', disabled: false }
     ),
     agrotoxicos: new FormControl(
       { value: '', disabled: false },
@@ -599,12 +599,17 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       console.log(this.formDiagnostico.value)
     }
   }
+  
+  console(){
+    console.log(this.formDiagnostico.value);
+    console.log(this.formDiagnostico.valid);
+    console.log(this.formDiagnostico);
+  }
 
   submitFicha() {
     this.alterFormAgro();
-    if(this.formDiagnostico.valid){
-      this.validationFicha();
-    }
+    this.validationFicha();
+
     console.log(this.formDiagnostico.value);
     console.log(this.formDiagnostico.valid);
     if (this.formDiagnostico.valid) {
@@ -635,9 +640,17 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         }
       })
     }
+    else {
+      this.invalidFicha();
+    }
   }
 
   invalidFicha() {
+
+    if(this.formDiagnostico.get('contatoPraguicida').value === 'Não'){
+      this.casoNaoPraguicida('Sim');
+    }
+
     this.formDiagnostico.get("sncCancer").setValue(this.formDiagnostico.get("sncCancer").value === "Sim" ? true : false);
     this.formDiagnostico.get("digestorioCancer").setValue(this.formDiagnostico.get("digestorioCancer").value === "Sim" ? true : false);
     this.formDiagnostico.get("respiratorioCancer").setValue(this.formDiagnostico.get("respiratorioCancer").value === "Sim" ? true : false);
@@ -653,17 +666,20 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   }
 
   validationFicha() {
+    if(this.formDiagnostico.get('contatoPraguicida').value === 'Não'){
+      this.casoNaoPraguicida('Não');
+    }
 
     if (this.formDiagnostico.get('ingestaoCafe').value === "Não") {
       this.formDiagnostico.get('cafeMlDia').setValue("0");
     }
 
     if (this.formDiagnostico.get('adoeceu').value === "Não") {
-      this.formDiagnostico.get('qtdVezesAdoeceu').setValue("Nenhuma vez");
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue("0");
     }
 
     if (this.formDiagnostico.get('internado').value === "Não") {
-      this.formDiagnostico.get('qtdVezesInternado').setValue("Nenhuma vez");
+      this.formDiagnostico.get('qtdVezesInternado').setValue("0");
       this.formDiagnostico.get('quandoInterndo').setValue("Nenhuma vez");
     }
 
@@ -685,6 +701,10 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
 
     if (this.formDiagnostico.get('exposicaoRaiox').value === "Não") {
       this.formDiagnostico.get('quandodiasExposicao').setValue("Não");
+    }
+    
+    if (this.formDiagnostico.get('temFilhos').value === "Não") {
+      this.formDiagnostico.get('filhoMaFormacao').setValue("Não");
     }
 
     if (this.formDiagnostico.get('medicamentoContinuo').value === "Não") {
