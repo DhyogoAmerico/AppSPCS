@@ -10,7 +10,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class DashInformationsComponent extends BaseComponent implements OnInit {
 
-  public quantPacientes = 0;
+  public quantPacientes: any;
   constructor(
     private sharedService: SharedService
   ) { 
@@ -24,7 +24,7 @@ export class DashInformationsComponent extends BaseComponent implements OnInit {
   QuantPaciente(){
     this.sharedService.QuantPacientes().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any) => {
-        this.quantPacientes = response.quantidadePacientes || 0;
+        this.quantPacientes = response;
       }
     )
   }

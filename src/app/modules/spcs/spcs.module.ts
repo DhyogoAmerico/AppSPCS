@@ -41,6 +41,9 @@ import { FichaComponent } from './pages/ficha/ficha.component';
 import { AgrotoxicosComponent } from './pages/agrotoxicos/agrotoxicos.component';
 import { RegisterAgrotoxicoComponent } from './components/register-agrotoxico/register-agrotoxico.component';
 import { ExportDataComponent } from './pages/export-data/export-data.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ import { ExportDataComponent } from './pages/export-data/export-data.component';
     FichaComponent,
     AgrotoxicosComponent,
     RegisterAgrotoxicoComponent,
-    ExportDataComponent
+    ExportDataComponent,
+    LoadingComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     CommonModule,
@@ -74,6 +79,7 @@ import { ExportDataComponent } from './pages/export-data/export-data.component';
     CheckboxModule,
     MultiSelectModule,
     TooltipModule,
+    ProgressSpinnerModule,
     OverlayPanelModule,
     KeyFilterModule,
     DropdownModule,

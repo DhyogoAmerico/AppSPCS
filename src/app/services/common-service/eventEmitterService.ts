@@ -1,15 +1,20 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class EventEmitterService {
 
-    private static emitters: {
+    private static emit: {
         [nomeEvento: string]: EventEmitter<any>
-    } = {}
+    } = {};
 
-    static get (nomeEvento:string): EventEmitter<any> {
-        if (!this.emitters[nomeEvento])
-            this.emitters[nomeEvento] = new EventEmitter<any>();
-        return this.emitters[nomeEvento];
+    static get(nomeEvento: string): EventEmitter<any> {
+        if (!this.emit[nomeEvento]) {
+            this.emit[nomeEvento] = new EventEmitter<any>();
+        }
+        return this.emit[nomeEvento];
     }
 
+    constructor() { }
 }

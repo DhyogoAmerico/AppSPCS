@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedService } from '../shared.service';
+import { EventEmitterService } from './eventEmitterService';
 
 @Injectable({
   providedIn: 'root'
@@ -89,4 +90,14 @@ export class CommonService {
       .set('Content-Type','application/json');
     return this.httpClient.post(this.apiUrl + 'auth/refresh-token', ('"' + token.toString() + '"'), { headers });
   }
+
+  emitBreadcrumb(objComponent: breadcrumb[]){
+    console.log(objComponent)
+    EventEmitterService.get('breadcrumb').emit(objComponent);
+  }
+}
+
+export class breadcrumb {
+  title: string;
+  url: string;
 }

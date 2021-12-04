@@ -65,9 +65,19 @@ export class RegisterComponent implements OnInit {
     private commonService: CommonService,
     private router: Router,
     private sharedService: SharedService
-  ) { }
+  ) {
+    console.log(this.initial)
+    if(this.initial){
+      console.log(this.initial)
+      Object.keys(this.initial).forEach(item => {
+        this.registerForm.get(item).setValue(this.initial[item]);
+      })
+      // this.registerForm.setValue(this.initial);
+    }
+   }
 
   ngOnInit() {
+    
     this.blurSugestaoSenha = false
     this.listEscolaridade = [
       "Fundamental - Incompleto",
@@ -98,7 +108,6 @@ export class RegisterComponent implements OnInit {
     }
     else {
       this.invalidInput(this.inputTypeUser);
-      console.log(this.initial);
     }
   }
 
@@ -151,11 +160,9 @@ export class RegisterComponent implements OnInit {
       //text
       this.typePassword = true;
     }
-    console.log(this.registerForm.get('senha'));
   }
 
   consoleLog() {
-    console.log(this.registerForm.value);
   }
 
   submitForm() {
@@ -175,7 +182,6 @@ export class RegisterComponent implements OnInit {
           if(result.isConfirmed) {
             this.sharedService.registerUsuario(this.typeUser, this.registerForm.value).subscribe(
               (response: any) => {
-                console.log(response);
                 this.toastService.addToast('success', 'Sucesso!', 'Usuário registrado com sucesso');
                 this.router.navigate(['/dashboard/' + this.typeUser + 's']);
               }

@@ -43,7 +43,6 @@ export class ExportDataComponent extends BaseComponent implements OnInit {
   exportAsExcelFile(json: any[], excelFileName: string = 'sample'): void {
     
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    console.log('worksheet',worksheet);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });

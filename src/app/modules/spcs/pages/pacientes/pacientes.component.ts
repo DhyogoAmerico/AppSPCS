@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
@@ -21,7 +22,8 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private commomService:CommonService
   ) {
     super();
   }
@@ -29,7 +31,23 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getAllPacientes();
     this.mountHeader();
+    this.mountBreadcrumb();
+  }
 
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: 'Pacientes',
+        url: ''
+      }
+    ]
+
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   byUrlRegister() {
@@ -67,8 +85,9 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   }
 
   editUser(user) {
-    this.objUser = null;
     this.objUser = user;
+    console.log(user)
+    console.log(this.objUser)
     this.visibleEdit = true;
   }
 
@@ -100,10 +119,8 @@ export class PacientesComponent extends BaseComponent implements OnInit {
   }
 
   searchByCpf() {
-    console.log(this.searchPaciente);
     this.sharedService.findUserByCpf('paciente', this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
-        console.log(response);
         this.listPacientes = [];
         this.listPacientes.push(response);
       }

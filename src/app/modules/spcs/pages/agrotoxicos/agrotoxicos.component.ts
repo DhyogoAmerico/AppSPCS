@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take, takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
@@ -36,14 +37,32 @@ export class AgrotoxicosComponent extends BaseComponent implements OnInit {
   constructor(
     private router: Router,
     private sharedService: SharedService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private commomService: CommonService
   ) {
     super();
   }
 
   ngOnInit() {
+    this.mountBreadcrumb();
     this.mountHeader();
     this.listarTodosAgrotoxicos();
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: 'Agrotóxico',
+        url: ''
+      },
+    ]
+
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   mountHeader() {

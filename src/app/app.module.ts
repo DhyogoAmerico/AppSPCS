@@ -12,6 +12,7 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import {ButtonModule} from 'primeng/button';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,16 +35,18 @@ import { StepsComponent } from './components/steps-component/steps-component.com
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import Swal from 'sweetalert2';
+import { LoadingIntercept } from './services/common-service/loading-intercept';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    CommonLoginComponent
+    CommonLoginComponent,
   ],
   imports: [
     ReactiveFormsModule,
+    ProgressSpinnerModule,
     RouterModule,
     SidebarModule,
     ButtonModule,
@@ -71,8 +74,10 @@ import Swal from 'sweetalert2';
     CommonService,
     CookieService,
     SharedService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingIntercept, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ ]
 })
 export class AppModule { }

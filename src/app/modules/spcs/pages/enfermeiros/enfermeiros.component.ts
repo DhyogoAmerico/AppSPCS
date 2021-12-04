@@ -94,7 +94,6 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   }
 
   searchByCpf(){
-    console.log(this.searchPaciente);
     this.sharedService.findUserByCpf('enfermeiro', this.searchPaciente).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.listEnfermeiros = [];

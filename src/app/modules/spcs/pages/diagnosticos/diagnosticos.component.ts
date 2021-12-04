@@ -75,6 +75,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     await this.sharedService.TrazerAmostraPacientePorId(objFicha.amostraId).pipe(takeUntil(this.ngUnsubscribe)).toPromise().then(
       (response: any) => {
         this.fichaPaciente = response;
+        this.fichaPaciente.dataCadastro = objFicha.dataCadastro;
         this.visiblePDF = true;
       }
     );

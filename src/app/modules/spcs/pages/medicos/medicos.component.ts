@@ -87,7 +87,6 @@ export class MedicosComponent extends BaseComponent implements OnInit {
   }
 
   searchByCpf(){
-    console.log(this.searchMed);
     this.sharedService.findUserByCpf('medico', this.searchMed).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (response: any[]) => {
         this.responseMed = [];

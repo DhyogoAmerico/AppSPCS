@@ -209,7 +209,7 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     faltaDeAr: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    irritaçaoNasal: new FormControl(
+    irritacaoNasal: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     catarroEscarro: new FormControl(
