@@ -1,6 +1,6 @@
-<div class="cntBreadCrumb" *ngIf="objBread?.length > 0">
-    <ng-container *ngFor="let item of objBread; let ind = index">
-        <label [routerLink]='objBread?.url'>{{objBread?.title}}</label>
-        <span>/</span>
+<div class="cntBreadCrumb" *ngIf="objBreadcrumb?.length > 0; let ind = index">
+    <ng-container *ngFor="let item of objBreadcrumb; let ind = index">
+        <label class="title" >{{item?.title}}</label>
+        <span class="separador" *ngIf="(objBreadcrumb.length-1) > ind">></span>
     </ng-container>
 </div>

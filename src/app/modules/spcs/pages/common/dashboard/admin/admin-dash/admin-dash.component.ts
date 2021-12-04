@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 
 @Component({
   selector: 'app-admin-dash',
@@ -8,10 +10,24 @@ import { Component, OnInit } from '@angular/core';
 export class AdminDashComponent implements OnInit {
 
   public listBtnDash: any[];
-  constructor() { }
+  constructor(
+    private commomService: CommonService
+  ) { }
 
   ngOnInit() {
     this.mountDash();
+    this.mountBreadcrumb();
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      }
+    ]
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   mountDash() {

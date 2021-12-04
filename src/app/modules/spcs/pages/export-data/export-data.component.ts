@@ -4,6 +4,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { SharedService } from 'src/app/services/shared.service';
 import { takeUntil } from 'rxjs/operators';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 
 @Component({
   selector: 'app-export-data',
@@ -14,12 +15,14 @@ export class ExportDataComponent extends BaseComponent implements OnInit {
 
   public listOptions: any[];
   constructor(
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private commomService: CommonService
   ) { 
     super();
   }
 
   ngOnInit() {
+    this.mountBreadcrumb();
     this.listOptions = [
       {
         label: 'Nome',
@@ -30,6 +33,21 @@ export class ExportDataComponent extends BaseComponent implements OnInit {
         value: 'telefone'
       }
     ]
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: 'Exportar Dados',
+        url: ''
+      }
+    ]
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   ExportDados() {

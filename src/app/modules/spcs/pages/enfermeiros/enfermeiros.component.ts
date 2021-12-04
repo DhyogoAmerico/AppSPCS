@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 import { ToastService } from 'src/app/services/common-service/toast.service';
 import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
@@ -21,7 +22,8 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private commomService:CommonService
   ) {
     super();
    }
@@ -29,6 +31,22 @@ export class EnfermeirosComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.mountHeader();
     this.getAllEnfermeiros();
+    this.mountBreadcrumb();
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: 'Enfermeiros',
+        url: ''
+      }
+    ]
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   byUrlRegister() {

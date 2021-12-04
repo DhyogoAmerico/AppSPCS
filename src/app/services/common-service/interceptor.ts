@@ -21,9 +21,9 @@ export class Interceptor implements HttpInterceptor {
     if(isPlatformServer(this._platformId)){
       return next.handle(request);
     }
-
     return next.handle(request).pipe(catchError(
       (err) => {
+        console.log(err)
         switch (err.status) {
           case 401:
             this.toastService.addToast('error','Erro 401','Você não está autorizado a executar essa ação.');

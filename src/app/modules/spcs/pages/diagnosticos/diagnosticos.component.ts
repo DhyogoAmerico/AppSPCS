@@ -101,12 +101,12 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.setFillColor(133, 133, 133);
     documento.rect(35, 60, 525, 2, "F");
 
-    documento.addPage('a4', 'p');
-    documento.setFont("Helvetica", 'bold');
-    documento.setFontSize(15);
-    documento.text("SPCS - Sistema Plantando e Colhendo Saúde", 125, 35);
-    documento.setFillColor(133, 133, 133);
-    documento.rect(35, 60, 525, 2, "F");
+    // documento.addPage('a4', 'p');
+    // documento.setFont("Helvetica", 'bold');
+    // documento.setFontSize(15);
+    // documento.text("SPCS - Sistema Plantando e Colhendo Saúde", 125, 35);
+    // documento.setFillColor(133, 133, 133);
+    // documento.rect(35, 60, 525, 2, "F");
 
     documento.setPage(1);
 
@@ -114,6 +114,8 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     // documento.rect(35, 45, 98, 20, "F");
     // documento.rect(35, 75, 98, 20, "F");
     documento.rect(35, 95, 525, 2, "F");
+    
+    documento.rect(295, 95, 1.5, 720, "F");
 
     documento.setFontSize(8);
     documento.setFont("Helvetica");
@@ -124,128 +126,127 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.setFontSize(9);
     var indHeight = 120;
     var indMarginLeft = 38;
-    // documento.text("paciente", indMarginLeft, indHeight);
-    documento.text("pacienteId", indMarginLeft, indHeight += 16);
-    documento.text("Idade", indMarginLeft, indHeight += 16);
-    documento.text("Sexo", indMarginLeft, indHeight += 16);
-    documento.text("Gestante", indMarginLeft, indHeight += 16);
-    documento.text("Tabagismo", indMarginLeft, indHeight += 16);
-    documento.text("Tabagismo Atual", indMarginLeft, indHeight += 16);
-    documento.text("Tabagismo Anterior", indMarginLeft, indHeight += 16);
-    documento.text("Etilismo", indMarginLeft, indHeight += 16);
-    documento.text("Etilismo Atual", indMarginLeft, indHeight += 16);
-    documento.text("Etilismo Anterior", indMarginLeft, indHeight += 16);
-    documento.text("Ingestão de Café", indMarginLeft, indHeight += 16);
-    documento.text("Quant. Café p/ dia", indMarginLeft, indHeight += 16);
-    documento.text("Relacao de Trabalho", indMarginLeft, indHeight += 16);
-    documento.text("Funcao no Trabalho", indMarginLeft, indHeight += 16);
-    documento.text("Tem Contato com Praguicida", indMarginLeft, indHeight += 16);
-    documento.text("Por quanto tempo tem contato", indMarginLeft, indHeight += 16);
-    documento.text("Com qual frequência", indMarginLeft, indHeight += 16);
-    documento.text("Última vez que teve contato", indMarginLeft, indHeight += 16);
-    documento.text("Princípio Ativo", indMarginLeft, indHeight += 16);
-    documento.text("Forma de Aplicacao", indMarginLeft, indHeight += 16);
-    documento.text("Nome Comercial", indMarginLeft, indHeight += 16);
-    documento.text("Princípio Ativo 2", indMarginLeft, indHeight += 16);
-    documento.text("Cultura", indMarginLeft, indHeight += 16);
-    documento.text("Via de Exposicao", indMarginLeft, indHeight += 16);
-    documento.text("Adoeceu", indMarginLeft, indHeight += 16);
-    documento.text("Quantas vezes", indMarginLeft, indHeight += 16);
-    documento.text("Já foi internado", indMarginLeft, indHeight += 16);
-    documento.text("Quantas vezes", indMarginLeft, indHeight += 16);
-    documento.text("Quando foi", indMarginLeft, indHeight += 16);
-    documento.text("Tipo de contato", indMarginLeft, indHeight += 16);
-    documento.text("EPI", indMarginLeft, indHeight += 16);
-    documento.text("Roupa de Protecao", indMarginLeft, indHeight += 16);
-    documento.text("Bota de Protecao", indMarginLeft, indHeight += 16);
-    documento.text("Luvas de Protecao", indMarginLeft, indHeight += 16);
-    documento.text("Máscara de Protecao", indMarginLeft, indHeight += 16);
-    documento.text("Óculos de Protecao", indMarginLeft, indHeight += 16);
-    documento.text("Protetor Auricular", indMarginLeft, indHeight += 16);
-    documento.text("Doenças Cardiovascular", indMarginLeft, indHeight += 16);
-    documento.text("Hipertensão Arterial", indMarginLeft, indHeight += 16);
-    documento.text("Hipotensão Arterial", indMarginLeft, indHeight += 16);
-    documento.text("Arritmia", indMarginLeft, indHeight += 16);
-    documento.text("Alteração do Sistema Nervoso", indMarginLeft, indHeight += 16);
-    documento.text("Dor de Cabeça", indMarginLeft, indHeight += 16);
+
+    documento.text("Idade...........................................:", indMarginLeft, indHeight);
+    documento.text("Sexo............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Gestante.....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Tabagismo.................................:", indMarginLeft, indHeight += 16);
+    documento.text("Tabagismo Atual.......................:", indMarginLeft, indHeight += 16);
+    documento.text("Tabagismo Anterior..................:", indMarginLeft, indHeight += 16);
+    documento.text("Etilismo......................................:", indMarginLeft, indHeight += 16);
+    documento.text("Etilismo Atual............................:", indMarginLeft, indHeight += 16);
+    documento.text("Etilismo Anterior.......................:", indMarginLeft, indHeight += 16);
+    documento.text("Ingestão de Café.......................:", indMarginLeft, indHeight += 16);
+    documento.text("Quant. Café p/ dia.....................:", indMarginLeft, indHeight += 16);
+    documento.text("Relacao de Trabalho.................:", indMarginLeft, indHeight += 16);
+    documento.text("Funcao no Trabalho..................:", indMarginLeft, indHeight += 16);
+    documento.text("Tem Contato com Praguicida...:", indMarginLeft, indHeight += 16);
+    documento.text("Por quanto tempo tem contato.:", indMarginLeft, indHeight += 16);
+    documento.text("Com qual frequência.................:", indMarginLeft, indHeight += 16);
+    documento.text("Última vez que teve contato.....:", indMarginLeft, indHeight += 16);
+    documento.text("Princípio Ativo...........................:", indMarginLeft, indHeight += 16);
+    documento.text("Forma de Aplicacao...................:", indMarginLeft, indHeight += 16);
+    documento.text("Nome Comercial.........................:", indMarginLeft, indHeight += 16);
+    documento.text("Princípio Ativo 2........................:", indMarginLeft, indHeight += 16);
+    documento.text("Cultura........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Via de Exposicao........................:", indMarginLeft, indHeight += 16);
+    documento.text("Adoeceu......................................:", indMarginLeft, indHeight += 16);
+    documento.text("Quantas vezes............................:", indMarginLeft, indHeight += 16);
+    documento.text("Já foi internado..........................:", indMarginLeft, indHeight += 16);
+    documento.text("Quantas vezes............................:", indMarginLeft, indHeight += 16);
+    documento.text("Quando foi..................................:", indMarginLeft, indHeight += 16);
+    documento.text("Tipo de contato..........................:", indMarginLeft, indHeight += 16);
+    documento.text("EPI...............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Roupa de Protecao....................:", indMarginLeft, indHeight += 16);
+    documento.text("Bota de Protecao.......................:", indMarginLeft, indHeight += 16);
+    documento.text("Luvas de Protecao.....................:", indMarginLeft, indHeight += 16);
+    documento.text("Máscara de Protecao.................:", indMarginLeft, indHeight += 16);
+    documento.text("Óculos de Protecao....................:", indMarginLeft, indHeight += 16);
+    documento.text("Protetor Auricular......................:", indMarginLeft, indHeight += 16);
+    documento.text("Doenças Cardiovascular...........:", indMarginLeft, indHeight += 16);
+    documento.text("Hipertensão Arterial..................:", indMarginLeft, indHeight += 16);
+    documento.text("Hipotensão Arterial...................:", indMarginLeft, indHeight += 16);
+    documento.text("Arritmia.......................................:", indMarginLeft, indHeight += 16);
+    documento.text("Alteração do Sistema Nervoso.:", indMarginLeft, indHeight += 16);
+    documento.text("Dor de Cabeça...........................:", indMarginLeft, indHeight += 16);
+    documento.text("Fraqueza Muscular...................:", indMarginLeft,  indHeight += 16);
+    documento.text("Tremedeira..................................:", indMarginLeft, indHeight += 16);
+
+    // documento.setPage(2)
+    documento.setFontSize(9);
+    indHeight = 121;
+    indMarginLeft = 308;
+    documento.text("Tremor Muscular.......................................:", indMarginLeft, indHeight);
+    documento.text("Visão Turva/Embaçada.............................:", indMarginLeft, indHeight += 16);
+    documento.text("Agitacao/Irritabilidade...............................:", indMarginLeft, indHeight += 16);
+    documento.text("Vertigens/Tonturas....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Formigamento............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Incoordenação Motora..............................:", indMarginLeft, indHeight += 16);
+    documento.text("Aparelho Digestório..................................:", indMarginLeft, indHeight += 16);
+    documento.text("Cólicas/Dor de Barriga..............................:", indMarginLeft, indHeight += 16);
+    documento.text("Dor de Estômago.......................................:", indMarginLeft, indHeight += 16);
+    documento.text("Azia Queimação.........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Náuseas/Enjoo...........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Vomito........................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Diarreia.......................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Aparelho Respiratório...............................:", indMarginLeft, indHeight += 16);
+    documento.text("Falta de Ar..................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Irritação Nasal............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Catarro/Escarro.........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Tosse..........................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Aparelho Auditivo.....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Diminuição da Audição.............................:", indMarginLeft, indHeight += 16);
+    documento.text("Zumbido.....................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Pele/Mucosa..............................................:", indMarginLeft, indHeight += 16);
+    documento.text("DC-Sensibilizante......................................:", indMarginLeft, indHeight += 16);
+    documento.text("DC-Irritativa...............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Irritação Ocular.........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Aparelho Urinário.....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Diminuição de urina..................................:", indMarginLeft, indHeight += 16);
+    documento.text("Urina escura/sangue.................................:", indMarginLeft, indHeight += 16);
+    documento.text("Outro..........................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Exposição à Raio-X..................................:", indMarginLeft, indHeight += 16);
+    documento.text("Quando......................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Teve Câncer..............................................:", indMarginLeft, indHeight += 16);
+    documento.text("SNC Câncer...............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Sistema Digestrório.....................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Sistema Respiratório...................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Sistema Reprodutor.....................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Glandular......................................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Pele/Osso/Sangue.......................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer na Família.....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer SNC na Familia............................:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Sistema Digestrório na Familia..:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Sistema Respiratório na Familia.:", indMarginLeft, indHeight += 16)
+    documento.text("Câncer Sistema Reprodutor na Familia...:", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Glandular na Familia....................:", indMarginLeft, indHeight += 16);
+
 
     documento.setPage(2)
     documento.setFontSize(9);
-    indHeight = 120;
+    indHeight = 90;
     indMarginLeft = 38;
-    documento.text("Fraqueza Muscular", indMarginLeft, indHeight);
-    documento.text("Tremedeira", indMarginLeft, indHeight += 16);
-    documento.text("Tremor Muscular", indMarginLeft, indHeight += 16);
-    documento.text("Visão Turva/Embaçada", indMarginLeft, indHeight += 16);
-    documento.text("Agitacao/Irritabilidade", indMarginLeft, indHeight += 16);
-    documento.text("Vertigens/Tonturas", indMarginLeft, indHeight += 16);
-    documento.text("Formigamento", indMarginLeft, indHeight += 16);
-    documento.text("Incoordenação Motora", indMarginLeft, indHeight += 16);
-    documento.text("Aparelho Digestório", indMarginLeft, indHeight += 16);
-    documento.text("Cólicas/Dor de Barriga", indMarginLeft, indHeight += 16);
-    documento.text("Dor de Estômago", indMarginLeft, indHeight += 16);
-    documento.text("Azia Queimação", indMarginLeft, indHeight += 16);
-    documento.text("Náuseas/Enjoo", indMarginLeft, indHeight += 16);
-    documento.text("Vomito", indMarginLeft, indHeight += 16);
-    documento.text("Diarreia", indMarginLeft, indHeight += 16);
-    documento.text("Aparelho Respiratório", indMarginLeft, indHeight += 16);
-    documento.text("Falta de Ar", indMarginLeft, indHeight += 16);
-    documento.text("Irritação Nasal", indMarginLeft, indHeight += 16);
-    documento.text("Catarro/Escarro", indMarginLeft, indHeight += 16);
-    documento.text("Tosse", indMarginLeft, indHeight += 16);
-    documento.text("Aparelho Auditivo", indMarginLeft, indHeight += 16);
-    documento.text("Diminuição da Audiçã", indMarginLeft, indHeight += 16);
-    documento.text("Zumbido", indMarginLeft, indHeight += 16);
-    documento.text("Pele/Mucosa", indMarginLeft, indHeight += 16);
-    documento.text("DC-Sensibilizante", indMarginLeft, indHeight += 16);
-    documento.text("DC-Irritativa", indMarginLeft, indHeight += 16);
-    documento.text("Irritação Ocular", indMarginLeft, indHeight += 16);
-    documento.text("Aparelho Urinário", indMarginLeft, indHeight += 16);
-    documento.text("Diminuição de urina", indMarginLeft, indHeight += 16);
-    documento.text("Urina escura/sangue", indMarginLeft, indHeight += 16);
-    documento.text("Outro", indMarginLeft, indHeight += 16);
-    documento.text("Exposição à Raio-X", indMarginLeft, indHeight += 16);
-    documento.text("Quando", indMarginLeft, indHeight += 16);
-    documento.text("Teve Câncer", indMarginLeft, indHeight += 16);
-    documento.text("SNC Câncer", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Sistema Digestrório", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Sistema Respiratório", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Sistema Reprodutor", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Glandular", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Pele/Osso/Sangue", indMarginLeft, indHeight += 16);
-    documento.text("Câncer na Família", indMarginLeft, indHeight += 16);
-    documento.text("Câncer SNC na Familia", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Sistema Digestrório na Familia", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Sistema Respiratório na Familia", indMarginLeft, indHeight += 16)
-
-
-    documento.setPage(3)
-    documento.setFontSize(9);
-    indHeight = 120;
-    indMarginLeft = 38;
-    documento.text("Câncer Sistema Reprodutor na Familia", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Glandular na Familia", indMarginLeft, indHeight += 16);
-    documento.text("Câncer Pele/Osso/Sangue na Familia", indMarginLeft, indHeight += 16);
-    documento.text("É da mesma região", indMarginLeft, indHeight += 16);
-    documento.text("ch_t", indMarginLeft, indHeight += 16);
-    documento.text("ch_e", indMarginLeft, indHeight += 16);
-    documento.text("ch_p", indMarginLeft, indHeight += 16);
-    documento.text("ast", indMarginLeft, indHeight += 16);
-    documento.text("alt", indMarginLeft, indHeight += 16);
-    documento.text("y_gt", indMarginLeft, indHeight += 16);
-    documento.text("Creatina", indMarginLeft, indHeight += 16);
-    documento.text("Ambulatório", indMarginLeft, indHeight += 16);
-    documento.text("Habito Alimentar", indMarginLeft, indHeight += 16);
-    documento.text("IMC", indMarginLeft, indHeight += 16);
-    documento.text("Circunferência Abdominal", indMarginLeft, indHeight += 16);
-    documento.text("Dificuldade p/ Engravidar", indMarginLeft, indHeight += 16);
-    documento.text("Aborto Espontâneo", indMarginLeft, indHeight += 16);
-    documento.text("Tem Filhos", indMarginLeft, indHeight += 16);
-    documento.text("Filho com Má Formação", indMarginLeft, indHeight += 16);
-    documento.text("Medicamento Contínuo", indMarginLeft, indHeight += 16);
-    documento.text("Remédio Micose", indMarginLeft, indHeight += 16);
-    documento.text("Nome do Remédio", indMarginLeft, indHeight += 16);
-    documento.text("Sigla do Diagnóstico", indMarginLeft, indHeight += 16);
+    documento.text("Câncer Pele/Osso/Sangue na Familia.....:", indMarginLeft, indHeight);
+    documento.text("É da mesma região....................................:", indMarginLeft, indHeight += 16);
+    documento.text("ch_t.............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("ch_e............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("ch_p............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("ast...............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("alt................................................................:", indMarginLeft, indHeight += 16);
+    documento.text("y_gt.............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Creatina......................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Ambulatório...............................................:", indMarginLeft, indHeight += 16);
+    documento.text("Habito Alimentar.......................................:", indMarginLeft, indHeight += 16);
+    documento.text("IMC.............................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Circunferência Abdominal........................:", indMarginLeft, indHeight += 16);
+    documento.text("Dificuldade p/ Engravidar.........................:", indMarginLeft, indHeight += 16);
+    documento.text("Aborto Espontâneo...................................:", indMarginLeft, indHeight += 16);
+    documento.text("Tem Filhos.................................................:", indMarginLeft, indHeight += 16);
+    documento.text("Filho com Má Formação...........................:", indMarginLeft, indHeight += 16);
+    documento.text("Medicamento Contínuo.............................:", indMarginLeft, indHeight += 16);
+    documento.text("Remédio Micose........................................:", indMarginLeft, indHeight += 16);
+    documento.text("Nome do Remédio.....................................:", indMarginLeft, indHeight += 16);
+    documento.text("Sigla do Diagnóstico.................................:", indMarginLeft, indHeight += 16);
     // documento.text("Preço", 38, 118);
 
     documento.setPage(1);
@@ -258,9 +259,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.setFontSize(9);
     indHeight = 121;
     indMarginLeft = 175;
-    documento.text(this.fichaPaciente.paciente || 'Não informado', indMarginLeft, indHeight);
-    documento.text(this.fichaPaciente.pacienteId || 'Não informado', indMarginLeft, indHeight += 16);
-    documento.text(this.fichaPaciente.idadeDiscretizado || 'Não informado', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.idadeDiscretizado || 'Não informado', indMarginLeft, indHeight);
     documento.text(this.fichaPaciente.sexo || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.gestante || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.tabagismo || 'Não informado', indMarginLeft, indHeight += 16);
@@ -302,15 +301,15 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.text(this.fichaPaciente.arritmia || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.alteracaoSNervoso || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.dorCabeca || 'Não informado', indMarginLeft, indHeight += 16);
+    documento.text(this.fichaPaciente.fraquezaMuscular || 'Não informado', indMarginLeft,  indHeight += 16);
+    documento.text(this.fichaPaciente.tremedeira || 'Não informado', indMarginLeft, indHeight += 16);
 
 
-    documento.setPage(2)
+    // documento.setPage(2)
     documento.setFontSize(9);
     indHeight = 121;
-    indMarginLeft = 175;
-    documento.text(this.fichaPaciente.fraquezaMuscular || 'Não informado', indMarginLeft, indHeight);
-    documento.text(this.fichaPaciente.tremedeira || 'Não informado', indMarginLeft, indHeight += 16);
-    documento.text(this.fichaPaciente.tremorMuscular || 'Não informado', indMarginLeft, indHeight += 16);
+    indMarginLeft = 485;
+    documento.text(this.fichaPaciente.tremorMuscular || 'Não informado', indMarginLeft, indHeight);
     documento.text(this.fichaPaciente.visaoTurvaEmbacada || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.agitacaoIrritabilidade || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.vertigensTonturas || 'Não informado', indMarginLeft, indHeight += 16);
@@ -352,15 +351,15 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     documento.text(this.fichaPaciente.sncCancerFamilia || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.digestorioCancerfamilia || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.respiratorioCancerfamilia || 'Não informado', indMarginLeft, indHeight += 16);
-
-
-    documento.setPage(3)
-    documento.setFontSize(9);
-    indHeight = 150;
-    indMarginLeft = 175;
     documento.text(this.fichaPaciente.reprodutorCancerfamilia || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.glandularCancerfamilia || 'Não informado', indMarginLeft, indHeight += 16);
-    documento.text(this.fichaPaciente.peleOssoSangueCancerfamilia || 'Não informado', indMarginLeft, indHeight += 16);
+
+
+    documento.setPage(2)
+    documento.setFontSize(9);
+    indHeight = 90;
+    indMarginLeft = 215;
+    documento.text(this.fichaPaciente.peleOssoSangueCancerfamilia || 'Não informado', indMarginLeft, indHeight);
     documento.text(this.fichaPaciente.edaRegiao || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.ch_t_discretizado || 'Não informado', indMarginLeft, indHeight += 16);
     documento.text(this.fichaPaciente.ch_e_discretizado || 'Não informado', indMarginLeft, indHeight += 16);

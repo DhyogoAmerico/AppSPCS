@@ -23,17 +23,8 @@ export class BreadcrumbsComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.subscription =  EventEmitterService.get('breadcrumb').pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       breadcrumb => {
-        console.log(breadcrumb)
+        // console.log(breadcrumb)
         this.objBreadcrumb = breadcrumb
-        this.objBread = []
-        setTimeout(() => {
-          this.objBreadcrumb.forEach(element => {
-            this.objBread.push({
-              title: element.title,
-              url: element.url
-            })
-          });
-        }, 500);
       }
     );
   }

@@ -26,12 +26,12 @@ export class PacientesComponent extends BaseComponent implements OnInit {
     private commomService:CommonService
   ) {
     super();
+    this.mountBreadcrumb();
   }
 
   ngOnInit() {
     this.getAllPacientes();
     this.mountHeader();
-    this.mountBreadcrumb();
   }
 
   mountBreadcrumb(){
@@ -46,12 +46,10 @@ export class PacientesComponent extends BaseComponent implements OnInit {
         url: ''
       }
     ]
-
     this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   byUrlRegister() {
-    // this.router.navigate(['dashboard/usuario/register'], { queryParams : { type: 'paciente'} });
     this.router.navigate(['dashboard/usuario/register/paciente']);
   }
 

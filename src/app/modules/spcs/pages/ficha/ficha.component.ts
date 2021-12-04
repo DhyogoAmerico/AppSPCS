@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/services/common-service/base-component/base-component.component';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 import { EventEmitterService } from 'src/app/services/common-service/eventEmitterService';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -16,7 +17,8 @@ export class FichaComponent extends BaseComponent implements OnInit {
   public responseTable: any;
   constructor(
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private commomService: CommonService
   ) {
     super();
   }
@@ -24,6 +26,22 @@ export class FichaComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.mountHeader();
     this.getAllPacientes();
+    this.mountBreadcrumb();
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: 'Fichas',
+        url: ''
+      }
+    ]
+    this.commomService.emitBreadcrumb(objBreadcrumb);
   }
 
   registerDiagnostico() {

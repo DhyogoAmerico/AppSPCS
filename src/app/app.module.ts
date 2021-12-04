@@ -26,7 +26,7 @@ import { RouterModule } from '@angular/router';
 import { Interceptor } from './services/common-service/interceptor';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ToastService } from './services/common-service/toast.service';
-import { NgxMaskModule } from 'ngx-mask';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
 import { AddAddressComponent } from './components/add-address/add-address.component';
 import { CommonService } from './services/common-service/common.service';
@@ -36,6 +36,12 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import Swal from 'sweetalert2';
 import { LoadingIntercept } from './services/common-service/loading-intercept';
+import { environment } from '@env';
+
+const options: Partial<IConfig> = {
+  validation: false,
+  // dropSpecialCharacters: false
+};
 
 @NgModule({
   declarations: [
@@ -56,9 +62,7 @@ import { LoadingIntercept } from './services/common-service/loading-intercept';
     BrowserAnimationsModule,
     MessagesModule,
     NgbModalModule,
-    NgxMaskModule.forRoot({
-      validation: true,
-    }),
+    NgxMaskModule.forRoot(options),
     MessageModule,
     ToastModule,
     GrowlModule,
@@ -74,8 +78,8 @@ import { LoadingIntercept } from './services/common-service/loading-intercept';
     CommonService,
     CookieService,
     SharedService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingIntercept, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingIntercept, multi: true },
+    { provide: 'environments', useValue: environment }
   ],
   bootstrap: [AppComponent],
   exports: [ ]

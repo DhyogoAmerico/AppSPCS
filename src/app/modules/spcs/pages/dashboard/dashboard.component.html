@@ -2,7 +2,9 @@
     <app-loading></app-loading>
     <app-side-nav></app-side-nav>
     <div class="cntContainer" [ngStyle]="{'margin-left': (innerWidth < 700) ? '65px' : '0'}">
-        <app-breadcrumbs></app-breadcrumbs>
+        <div class="cntBread">
+            <app-breadcrumbs></app-breadcrumbs>
+        </div>
         <div class="cntBody">
             <router-outlet></router-outlet>
         </div>

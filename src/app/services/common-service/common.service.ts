@@ -92,7 +92,6 @@ export class CommonService {
   }
 
   emitBreadcrumb(objComponent: breadcrumb[]){
-    console.log(objComponent)
     EventEmitterService.get('breadcrumb').emit(objComponent);
   }
 }

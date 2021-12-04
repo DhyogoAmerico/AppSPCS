@@ -418,7 +418,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
   alterCurrentPage() {
     this.currentStep++;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    console.log(this.formDiagnostico.value);
   }
 
   mountIntensDropDown() {
@@ -542,20 +541,15 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
         else {
           this.listIdsAgrotoxicos = [];
         }
-        console.log(this.listIdsAgrotoxicos)
-
-
       }
     )
   }
 
   alterFormAgro() {
     this.formDiagnostico.get('agrotoxicos').setValue(this.formDiagnostico.get('listIdsAgroModel').value);
-    console.log(this.formDiagnostico.get('agrotoxicos').value);
   }
 
   casoNaoPraguicida(obj) {
-    console.log(this.formDiagnostico.get('contatoPraguicida').value)
     if (obj === 'Não') {
       this.formDiagnostico.get('tempoContatoPraguicida').setValue(0);
       this.formDiagnostico.get('ultimoContatoPraguicida').setValue(0);
@@ -575,7 +569,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       this.formDiagnostico.get('mascaraProtecao').setValue('Não');
       this.formDiagnostico.get('oculosProtecao').setValue('Não');
       this.formDiagnostico.get('protetorAuricular').setValue('Não');
-      console.log(this.formDiagnostico.value)
     }
     else {
       this.formDiagnostico.get('tempoContatoPraguicida').setValue('');
@@ -596,22 +589,13 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       this.formDiagnostico.get('mascaraProtecao').setValue('');
       this.formDiagnostico.get('oculosProtecao').setValue('');
       this.formDiagnostico.get('protetorAuricular').setValue('');
-      console.log(this.formDiagnostico.value)
     }
-  }
-  
-  console(){
-    console.log(this.formDiagnostico.value);
-    console.log(this.formDiagnostico.valid);
-    console.log(this.formDiagnostico);
   }
 
   submitFicha() {
     this.alterFormAgro();
     this.validationFicha();
 
-    console.log(this.formDiagnostico.value);
-    console.log(this.formDiagnostico.valid);
     if (this.formDiagnostico.valid) {
       Swal.fire({
         title: 'Atenção!',

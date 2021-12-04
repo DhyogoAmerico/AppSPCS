@@ -44,6 +44,8 @@ import { ExportDataComponent } from './pages/export-data/export-data.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from 'src/app/services/common-service/interceptor';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     ReactiveFormsModule
   ],
   providers: [
-    MessageService
+    MessageService,
   ]
 })
 export class SpcsModule { }

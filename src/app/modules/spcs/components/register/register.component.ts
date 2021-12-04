@@ -5,7 +5,7 @@ import { ToastService } from 'src/app/services/common-service/toast.service';
 import { cpf } from 'cpf-cnpj-validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
-import { CommonService } from 'src/app/services/common-service/common.service';
+import { breadcrumb, CommonService } from 'src/app/services/common-service/common.service';
 import { ValidatorService } from 'src/app/services/validator-service.service';
 import Swal from 'sweetalert2';
 
@@ -109,6 +109,26 @@ export class RegisterComponent implements OnInit {
     else {
       this.invalidInput(this.inputTypeUser);
     }
+    this.mountBreadcrumb();
+  }
+
+  mountBreadcrumb(){
+    let objBreadcrumb: breadcrumb[];
+    objBreadcrumb = [
+      {
+        title: 'Painel',
+        url: 'dashboard'
+      },
+      {
+        title: this.typeUser === 'paciente' ? 'Paciente' : this.typeUser === 'medico' ? 'Médico' : this.typeUser === 'enfermeiro' ? 'Enfermeiro' : 'Usuário',
+        url: this.typeUser + 's'
+      },
+      {
+        title: 'Register',
+        url: ''
+      }
+    ]
+    this.commonService.emitBreadcrumb(objBreadcrumb);
   }
 
   invalidInput(type) {
