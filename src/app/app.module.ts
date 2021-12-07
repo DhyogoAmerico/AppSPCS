@@ -12,6 +12,7 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import {ButtonModule} from 'primeng/button';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
+import {PaginatorModule} from 'primeng/paginator';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,13 +29,8 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { ToastService } from './services/common-service/toast.service';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { CookieService } from 'ngx-cookie-service';
-import { AddAddressComponent } from './components/add-address/add-address.component';
 import { CommonService } from './services/common-service/common.service';
-import { BaseComponent } from './services/common-service/base-component/base-component.component';
-import { StepsComponent } from './components/steps-component/steps-component.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
-import Swal from 'sweetalert2';
 import { LoadingIntercept } from './services/common-service/loading-intercept';
 import { environment } from '@env';
 
@@ -53,6 +49,7 @@ const options: Partial<IConfig> = {
   imports: [
     ReactiveFormsModule,
     ProgressSpinnerModule,
+    PaginatorModule,
     RouterModule,
     SidebarModule,
     ButtonModule,

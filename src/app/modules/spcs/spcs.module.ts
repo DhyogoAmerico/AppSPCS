@@ -44,6 +44,7 @@ import { ExportDataComponent } from './pages/export-data/export-data.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import {PaginatorModule} from 'primeng/paginator';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from 'src/app/services/common-service/interceptor';
 
@@ -78,6 +79,7 @@ import { Interceptor } from 'src/app/services/common-service/interceptor';
     TableModule,
     RadioButtonModule,
     InputSwitchModule,
+    PaginatorModule,
     CheckboxModule,
     MultiSelectModule,
     TooltipModule,

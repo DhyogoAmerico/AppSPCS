@@ -115,7 +115,7 @@ export class DiagnosticosComponent extends BaseComponent implements OnInit {
     // documento.rect(35, 75, 98, 20, "F");
     documento.rect(35, 95, 525, 2, "F");
     
-    documento.rect(295, 95, 1.5, 720, "F");
+    documento.rect(297, 95, 1.5, 720, "F");
 
     documento.setFontSize(8);
     documento.setFont("Helvetica");

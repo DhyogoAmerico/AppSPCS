@@ -46,8 +46,7 @@
                 </div>
                 <div class="group-input">
                     <div class="form-label">Telefone</div>
-                    <input class="form-control" type="text" [mask]="mascaraPhone" formControlName='telefone'
-                        (keyup)='inputMaskPhone()'>
+                    <input class="form-control" type="text" [mask]="mascaraPhone" formControlName='telefone' (keyup)='inputMaskPhone()'>
                 </div>
             </div>
             <ng-container *ngIf="typeUser === 'paciente'">

@@ -82,6 +82,10 @@ export class PacientesComponent extends BaseComponent implements OnInit {
     ]
   }
 
+  paginateTable(event) {
+    console.log(event)
+  }
+
   editUser(user) {
     this.objUser = user;
     console.log(user)

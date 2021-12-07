@@ -15,7 +15,7 @@
             Antes de iniciar o cadastro da ficha, verifique com seu paciente os agrotóxicos que ele trabalha e já utilizou/utiliza no cotidiano. E se for preciso acrescente na aba Agrotóxicos.
         </div>
     </div>
-    <p-table [value]='responseTable' [columns]='infoTable' [responsive]='true' [autoLayout]='true' [resizableColumns]='true'>
+    <p-table [value]='responseTable'  [columns]='infoTable' [paginator]='true' [rows]='10' [resizableColumns]="true" [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">

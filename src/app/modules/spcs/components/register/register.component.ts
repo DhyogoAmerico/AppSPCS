@@ -212,12 +212,12 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  async inputMaskPhone() {
+  inputMaskPhone() {
     if (this.registerForm.get('telefone').value.split("")[2] === 9) {
-      this.mascaraPhone = '(00) 00000-0000';
+      this.mascaraPhone = '(00) 92365-8521';
     }
     else {
-      this.mascaraPhone = '(00) 0000-0000';
+      this.mascaraPhone = '(32) 9851-3211';
     }
   }
 

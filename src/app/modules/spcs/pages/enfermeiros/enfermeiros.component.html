@@ -11,11 +11,14 @@
             </button>
         </div>
     </div>
-    <p-table [value]='listEnfermeiros' [columns]='infoTable' [responsive]='true'>
+    <p-table [value]='listEnfermeiros' [columns]='infoTable' [paginator]='true' [rows]='10' [resizableColumns]="true" [responsive]='true'>
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th *ngFor="let col of columns">
+                <th *ngFor="let col of columns" [pSortableColumn]="col.header !== 'Telefone' ? col.field : ''">
                     {{col.header}}
+                    <ng-container *ngIf="col.header !== 'Telefone'" >
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </ng-container>
                 </th>
                 <th style='width: 115px;'></th>
             </tr>
@@ -35,7 +38,7 @@
                     </span>
                     </ng-container>
                 </td>
-                <td style='width: 80px;'>
+                <td style='width: 115px;'>
                     <div class="cntButtons">
                         <span class="edit" (click)='editUser(rowData)'>
                             <i class="fas fa-user-edit"></i>
