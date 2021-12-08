@@ -213,12 +213,16 @@ export class RegisterComponent implements OnInit {
   }
 
   inputMaskPhone() {
-    if (this.registerForm.get('telefone').value.split("")[2] === 9) {
-      this.mascaraPhone = '(00) 92365-8521';
+    let number = this.registerForm.get('telefone').value.split("")[2];
+    if (+number === 9) {
+      console.log('sim')
+      this.mascaraPhone = '(00) 0 0000-0000';
     }
     else {
-      this.mascaraPhone = '(32) 9851-3211';
+      this.mascaraPhone = '(00) 0000-0000';
     }
+    setTimeout(() => {
+    }, 600);
   }
 
   differencePassword() {

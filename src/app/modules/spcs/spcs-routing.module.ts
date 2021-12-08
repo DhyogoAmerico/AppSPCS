@@ -43,7 +43,7 @@ const routes: Routes = [
         path: 'agrotoxicos',
         component: AgrotoxicosComponent,
         canActivate: [ AuthGuard, TypeUserGuard ],
-        data: { typeUser: ['medico','admin'] }
+        data: { typeUser: ['*'] }
       },
       {
         path: 'diagnosticos/cadastro/:cpf',

@@ -41,9 +41,9 @@
                 </td>
                 <td style='width: 120px;'>
                     <div class="cntButtons">
-                        <span class="edit" (click)='editUser(rowData)'>
+                        <!-- <span class="edit" (click)='editUser(rowData)'>
                             <i class="fas fa-user-edit"></i>
-                        </span>
+                        </span> -->
                         <span class="delete" (click)='deleteUser(rowData)'>
                             <i class="fas fa-trash-alt"></i>
                         </span>
@@ -56,5 +56,5 @@
 </div>
 
 <p-dialog [(visible)]='visibleEdit' [modal]='true' [responsive]='true' header='Editar Paciente'>
-    <app-register [inputTypeUser]="'paciente'" [initial]='objUser'></app-register>
+    <!-- <app-register [inputTypeUser]="'paciente'" [initial]='objUser'></app-register> -->
 </p-dialog>

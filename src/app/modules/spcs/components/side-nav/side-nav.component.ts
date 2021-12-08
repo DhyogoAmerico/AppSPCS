@@ -72,10 +72,10 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-user-md', label: 'Médicos', link: '/dashboard/medicos'
       },
       {
-        icon: 'far fa-file-medical', label: 'Ficha', link: '/dashboard/fichas'
+        icon: 'fas fa-file-signature', label: 'Ficha', link: '/dashboard/fichas'
       },
       {
-        icon: 'far fa-file-medical-alt', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
+        icon: 'fas fa-file-invoice', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
       },
       {
         icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
@@ -90,6 +90,12 @@ export class SideNavComponent implements OnInit {
       },
       {
         icon: 'fas fa-hospital-user', label: 'Pacientes', link: '/dashboard/pacientes'
+      },
+      {
+        icon: 'fas fa-file-signature', label: 'Ficha', link: '/dashboard/fichas'
+      },
+      {
+        icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
       }
     ]
   }
@@ -109,16 +115,16 @@ export class SideNavComponent implements OnInit {
         icon: 'fas fa-user-md', label: 'Médicos', link: '/dashboard/medicos'
       },
       {
-        icon: 'far fa-file-medical', label: 'Ficha', link: '/dashboard/fichas'
+        icon: 'fas fa-file-signature', label: 'Ficha', link: '/dashboard/fichas'
       },
       {
-        icon: 'far fa-file-medical-alt', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
+        icon: 'fas fa-file-invoice', label: 'Diagnósticos', link: '/dashboard/diagnosticos'
       },
       {
-        icon: 'fas fa-seedling', label: 'Agrotóxico', link: '/dashboard/agrotoxicos'
+        icon: 'fas fa-seedling', label: 'Agrotóxicos', link: '/dashboard/agrotoxicos'
       },
       {
-        icon: 'fas fa-seedling', label: 'Exporte Dados', link: '/dashboard/export'
+        icon: 'fas fa-file-csv', label: 'Exporte Dados', link: '/dashboard/export'
       }
     ]
   }

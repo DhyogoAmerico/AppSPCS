@@ -19,7 +19,7 @@
         </div>
         <div class="btnPerfil">
             <div class="btn" routerLinkActive='active' (click)='op.toggle($event)' [routerLinkActiveOptions]="{exact: true}">
-                Meu perfil
+                Sair
             </div>
             <p-overlayPanel #op [dismissable]="true">
                 <div class="overPanelLogout" (click)='logoutUser()'>
