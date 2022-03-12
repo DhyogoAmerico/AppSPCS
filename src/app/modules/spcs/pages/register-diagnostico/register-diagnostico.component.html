@@ -216,13 +216,13 @@
                 <ng-container *ngIf="formDiagnostico.get('contatoPraguicida').value === 'Sim'" >
                     <div class="form-group">
                         <div class="group-input">
-                            <label>Há quanto anos você tem contato com praguicidas (venenos)?</label>
+                            <label>Há quanto <strong>anos</strong> você tem contato com praguicidas (venenos)?</label>
                             <input type="text" pKeyFilter='int' maxlength="3" class="form-control" formControlName='tempoContatoPraguicida'>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="group-input">
-                            <label>Quando foi a última vez que teve contato (em dias) com um praguicida?</label>
+                            <label>Quando foi a última vez que teve contato <strong>(em dias)</strong> com um praguicida?</label>
                             <input type="text" pKeyFilter='int' maxlength="2" class="form-control" formControlName='ultimoContatoPraguicida'>
                         </div>
                         <div class="group-input">
@@ -285,15 +285,15 @@
                                 <label>Quantas vezes você ficou doente por causa do veneno?</label>
                                 <div class="group-radio">
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='1' id='unicavezqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Uma única vez' id='unicavezqtdVezesAdoeceu'>
                                         <label for='unicavezqtdVezesAdoeceu'>Uma única vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='2' id='maisdeumaqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesAdoeceu'>
                                         <label for='maisdeumaqtdVezesAdoeceu'>Mais de uma vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='0' id='nenhumaqtdVezesAdoeceu'>
+                                        <input formControlName='qtdVezesAdoeceu' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesAdoeceu'>
                                         <label for='nenhumaqtdVezesAdoeceu'>Nenhuma vez</label>
                                     </div>
                                 </div>
@@ -319,15 +319,15 @@
                                 <label>Quantas vezes?</label>
                                 <div class="group-radio">
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='1' id='unicavezqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Uma única vez' id='unicavezqtdVezesInternado'>
                                         <label for='unicavezqtdVezesInternado'>Uma única vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='2' id='maisdeumaqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Mais de uma vez' id='maisdeumaqtdVezesInternado'>
                                         <label for='maisdeumaqtdVezesInternado'>Mais de uma vez</label>
                                     </div>
                                     <div class="input-radio">
-                                        <input formControlName='qtdVezesInternado' type="radio" value='0' id='nenhumaqtdVezesInternado'>
+                                        <input formControlName='qtdVezesInternado' type="radio" value='Nenhuma vez' id='nenhumaqtdVezesInternado'>
                                         <label for='nenhumaqtdVezesInternado'>Nenhuma vez</label>
                                     </div>
                                 </div>
@@ -991,7 +991,7 @@
                     </div>
                 </div>
                 <div class="form-group-bool">
-                    <div class="group-input-bool">
+                    <!-- <div class="group-input-bool">
                         <label>Outro</label>
                         <div class="group-radio">
                             <div class="input-radio">
@@ -1003,7 +1003,7 @@
                                 <label for='naooutro'>Não</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="group-input-bool">
                         <label>Exposição a Raio-X</label>
                         <div class="group-radio">
@@ -1138,26 +1138,18 @@
                         <label>Creatina</label>
                         <input class="form-control" type="text" formControlName="creatinina">
                     </div>
-                    <div class="group-input">
-                        <label>Ambulario</label>
-                        <input class="form-control" type="text" formControlName="ambulatorio">
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="group-input">
-                        <label>Habito Alimentar</label>
-                        <input class="form-control" type="text" formControlName="habitoAlimentar">
-                    </div>
                     <div class="group-input">
                         <label>IMC</label>
                         <input class="form-control" type="text" formControlName="imc">
                     </div>
-                </div>
-                <div class="form-group form-group-bool">
                     <div class="group-input">
                         <label>Circunferência Abdominal</label>
                         <input class="form-control" type="text" formControlName="circunferenciaAbdominal">
                     </div>
+                </div>
+                <div class="form-group form-group-bool">
                     <div class="group-input-bool">
                         <label>Você (ou sua esposa) teve dificuldade de engravidar</label>
                         <div class="group-radio">
@@ -1171,8 +1163,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group-bool">
                     <div class="group-input-bool">
                         <label>Você (ou sua esposa) teve aborto espontâneo</label>
                         <div class="group-radio">
@@ -1186,6 +1176,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="form-group-bool">
                     <div class="group-input-bool">
                         <label>Tem filhos</label>
                         <div class="group-radio">
@@ -1199,8 +1191,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group-bool">
                     <ng-container *ngIf="formDiagnostico.get('temFilhos').value === 'Sim'" >
                         <div class="group-input-bool">
                             <label>Filhos com má formação (congênita)</label>
@@ -1216,6 +1206,8 @@
                             </div>
                         </div>
                     </ng-container>
+                </div>
+                <div class="form-group form-group-bool">
                     <div class="group-input-bool">
                         <label>Você faz uso de algum medicamento de uso contínuo</label>
                         <div class="group-radio">
@@ -1229,14 +1221,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group form-group-bool">
                     <ng-container *ngIf="formDiagnostico.get('medicamentoContinuo').value === 'Sim'" >
                         <div class="group-input">
                             <label>Qual medicamento:</label>
                             <input class="form-control" type="text" formControlName='medicamento'>
                         </div>
                     </ng-container>
+                </div>
+                <div class="form-group form-group-bool">
                     <div class="group-input-bool">
                         <label>Usou remédio para micose nos últimos dois meses</label>
                         <div class="group-radio">
@@ -1250,15 +1242,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <ng-container *ngIf="formDiagnostico.get('remedioMicose').value === 'Sim'" >
-                    <div class="form-group">
+                    <ng-container *ngIf="formDiagnostico.get('remedioMicose').value === 'Sim'" >
                         <div class="group-input">
                             <label>Nome medicamento para Micose:</label>
                             <input class="form-control" type="text" formControlName='nomeRemedio' maxlength="50">
                         </div>
-                    </div>
-                </ng-container>
+                    </ng-container>
+                </div>
                 <div class="cntButton">
                     <button (click)='submitFicha()'>Enviar</button>
                     <div class="btnVoltar" (click)='currentStep = currentStep - 1'>Voltar</div>

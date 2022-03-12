@@ -9,7 +9,7 @@ import { CommonService } from './common-service/common.service';
 })
 
 export class SharedService {
-  private apiUrl = "https://api.plantandoecolhendosaude.com.br/api/"; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
+  private apiUrl = environment.urlApi; //https://api.plantandoecolhendosaude.com.br/api/ ----- environment.urlApi"
   constructor(
     private httpClient: HttpClient,
     private commonService:CommonService

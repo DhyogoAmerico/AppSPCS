@@ -248,9 +248,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     urinaescuraSangue: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
-    outro: new FormControl(
-      { value: '', disabled: false },
-    ),
     exposicaoRaiox: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
@@ -321,12 +318,6 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     creatinina: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
-    ),
-    ambulatorio: new FormControl(
-      { value: '', disabled: false }, Validators.compose([Validators.required])
-    ),
-    habitoAlimentar: new FormControl(
       { value: '', disabled: false }, Validators.compose([Validators.required])
     ),
     imc: new FormControl(
@@ -557,9 +548,9 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
       this.formDiagnostico.get('formaAplicacao').setValue('Não Informado');
       this.formDiagnostico.get('viaExposicao').setValue('Nenhum');
       this.formDiagnostico.get('adoeceu').setValue('Não');
-      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('0');
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue('Nenhuma vez');
       this.formDiagnostico.get('internado').setValue('Não');
-      this.formDiagnostico.get('qtdVezesInternado').setValue('0');
+      this.formDiagnostico.get('qtdVezesInternado').setValue('Nenhuma vez');
       this.formDiagnostico.get('quandoInterndo').setValue('0');
       this.formDiagnostico.get('tipoContato').setValue('Sem contato');
       this.formDiagnostico.get('equipamentoProtecao').setValue('Não');
@@ -659,11 +650,11 @@ export class RegisterDiagnosticoComponent extends BaseComponent implements OnIni
     }
 
     if (this.formDiagnostico.get('adoeceu').value === "Não") {
-      this.formDiagnostico.get('qtdVezesAdoeceu').setValue("0");
+      this.formDiagnostico.get('qtdVezesAdoeceu').setValue("Nenhuma vez");
     }
 
     if (this.formDiagnostico.get('internado').value === "Não") {
-      this.formDiagnostico.get('qtdVezesInternado').setValue("0");
+      this.formDiagnostico.get('qtdVezesInternado').setValue("Nenhuma vez");
       this.formDiagnostico.get('quandoInterndo').setValue("Nenhuma vez");
     }
 

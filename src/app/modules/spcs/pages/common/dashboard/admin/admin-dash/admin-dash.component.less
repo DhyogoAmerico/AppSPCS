@@ -22,8 +22,11 @@
             justify-content: space-evenly;
             background: #ffffff;
             cursor: pointer;
-            box-shadow: 0 0 5px 0px #adadad;
             border: 1px solid #dfdfdf;
+            transition: box-shadow .25s ease-in-out;
+            &:hover {
+                box-shadow: 0 0 5px 0px #adadad;
+            }
             i {
                 font-size: 35px;
             }
