@@ -14,8 +14,10 @@ import { Route, Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
 
 
-@Injectable()
-export class LoadingIntercept extends BaseComponent implements HttpInterceptor {
+@Injectable({
+    providedIn: 'root'
+})
+export class LoadingIntercept implements HttpInterceptor {
 
     private count = 0;
     private timerLoading = 400;
@@ -26,7 +28,7 @@ export class LoadingIntercept extends BaseComponent implements HttpInterceptor {
         @Inject(PLATFORM_ID) private _platformId: Object,
         private toastService: ToastService,
         private _router: Router
-    ) { super(); }
+    ) {  }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -39,7 +41,7 @@ export class LoadingIntercept extends BaseComponent implements HttpInterceptor {
 
         if(isPlatformServer(this._platformId)){
             return next.handle(request);
-          }
+        }
 
         return next.handle(request)
             .do(evt => {
@@ -79,7 +81,7 @@ export class LoadingIntercept extends BaseComponent implements HttpInterceptor {
         this.timerSubscribe.unsubscribe();
 
         this.timer = Observable.timer(2000, 1000);
-        this.timerSubscribe = this.timer.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+        this.timerSubscribe = this.timer.subscribe(
             tick => {
                 if (tick >= limit) {
                     setTimeout(() => {

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlApi: 'https://api.plantandoecolhendosaude.com.br/api/'
+  urlApi: 'https://api.colhendosaude.com.br/api/'
 };
